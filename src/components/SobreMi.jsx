@@ -1,6 +1,7 @@
+import { Divide } from "lucide-react";
 import { THEME, T } from "../constants";
-import { StarDeco, MoonDeco, Feather, FadeIn, SectionTagLeft, scrollTo } from "./ui";
-import { Award, BookOpen, Heart } from 'lucide-react';
+import { StarDeco, MoonDeco, FadeIn } from "./ui";
+import DividerLeaves from "./DividerLeaves";
 
 export default function SobreMi({ lang }) {
   const t = T[lang].sobre;
@@ -9,47 +10,68 @@ export default function SobreMi({ lang }) {
     <section
       id="sobre"
       className="py-24 px-6 md:px-12 relative overflow-hidden"
-      style={{ backgroundColor: `${THEME.sage}0A` }}
+      style={{ background: "transparent" }}
     >
+      {/* Decoraciones */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <StarDeco className="absolute top-12 right-20" />
         <MoonDeco className="absolute bottom-16 left-12" />
-        {/* Pluma sutil centrada en la transición */}
-        <Feather
-          filter="saturate(0.5) brightness(0.95) hue-rotate(15deg)"
+
+        {/* Pluma decorativa */}
+        <img
+          src="/assets/plumas1.png"
+          alt=""
+          aria-hidden="true"
           style={{
-            top: "-10%", left: "50%",
-            width: "min(320px, 40vw)",
-            opacity: 0.18,
-            transform: "rotate(5deg)",
+            position: "absolute",
+            top: "-8%",
+            right: "-3%",
+            width: "min(350px, 42vw)",
+            opacity: 0.55,
+            mixBlendMode: "multiply",
+            transform: "rotate(8deg) scaleX(-1)",
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "saturate(0.5) brightness(0.9) hue-rotate(20deg)",
+          }}
+          onError={(e) => {
+            e.target.style.display = "none";
           }}
         />
       </div>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-
-        {/* ── Imagen en arco ── */}
+        {/* Imagen */}
         <FadeIn delay={0.1}>
           <div className="relative flex justify-center">
-            <div style={{
-              width: "min(300px, 70vw)",
-              aspectRatio: "0.78",
-              borderRadius: "9999px 9999px 3rem 3rem",
-              overflow: "hidden",
-              border: `1px solid ${THEME.border}`,
-              boxShadow: `0 16px 50px rgba(138,158,138,0.15)`,
-              backgroundColor: `${THEME.rose}18`,
-            }}>
-              {/*
-                ↓ FOTO SECUNDARIA (opcional) — reemplazar src con "/assets/foto-magali-2.jpg"
-              */}
+            <div
+              style={{
+                width: "min(300px, 70vw)",
+                aspectRatio: "0.72",
+                borderRadius: "9999px",
+                overflow: "hidden",
+                border: `2px solid ${THEME.gold}40`,
+                boxShadow: `
+                  0 0 0 8px ${THEME.rose}14,
+                  0 20px 50px rgba(196,150,138,0.18)
+                `,
+                backgroundColor: `${THEME.rose}18`,
+              }}
+            >
               <img
                 src="/assets/foto-magali-2.jpg"
                 alt="Magalí Sol Cerezo"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = "none";
-                  e.target.parentElement.style.background = `linear-gradient(160deg, ${THEME.rose}30, ${THEME.sage}20)`;
+                  e.target.parentElement.style.background = `
+                    linear-gradient(
+                      160deg,
+                      ${THEME.rose}30,
+                      ${THEME.sage}20
+                    )
+                  `;
                 }}
               />
             </div>
@@ -57,96 +79,126 @@ export default function SobreMi({ lang }) {
             {/* Badge */}
             <div
               className="absolute -bottom-6 -right-4 px-5 py-4 rounded-2xl"
-              style={{ backgroundColor: THEME.card, boxShadow: `0 8px 30px rgba(0,0,0,0.07)`, border: `1px solid ${THEME.border}` }}
+              style={{
+                backgroundColor: THEME.card,
+                boxShadow: `0 8px 30px rgba(0,0,0,0.07)`,
+                border: `1px solid ${THEME.border}`,
+              }}
             >
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", color: THEME.gold, fontSize: "1.1rem", fontStyle: "italic" }}>✦</div>
-              <div style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.textMuted, fontSize: "0.7rem", marginTop: 2 }}>
+              <div
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  color: THEME.gold,
+                  fontSize: "1.1rem",
+                  fontStyle: "italic",
+                }}
+              >
+                ✦
+              </div>
+
+              <div
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  color: THEME.textMuted,
+                  fontSize: "0.7rem",
+                  marginTop: 2,
+                }}
+              >
                 Lic. Psicología
               </div>
             </div>
           </div>
         </FadeIn>
 
-        {/* ── Texto ── */}
+        {/* Texto */}
         <FadeIn delay={0.25}>
-          <SectionTagLeft label={t.tag} />
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <div
+                style={{
+                  width: 28,
+                  height: 1,
+                  backgroundColor: THEME.gold,
+                }}
+              />
 
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
-            color: THEME.text,
-            fontSize: "clamp(2rem, 4vw, 3rem)",
-            fontWeight: 400,
-            lineHeight: 1.15,
-            fontStyle: "italic",
-          }} className="mb-1">
-            {t.title}
-          </h2>
-
-          <p style={{
-            fontFamily: "'Quicksand', sans-serif",
-            color: THEME.gold,
-            fontSize: "0.82rem",
-            letterSpacing: "0.1em",
-          }} className="mb-8">
-            {t.role}
-          </p>
-
-          {[t.p1, t.p2, t.p3].map((p, i) => (
-            <p key={i} style={{
-              fontFamily: "'Quicksand', sans-serif",
-              color: THEME.textMuted,
-              lineHeight: 1.85,
-              marginBottom: "1.1rem",
-              fontSize: "0.97rem",
-            }}>
-              {p}
-            </p>
-          ))}
-
-<div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
-              {[
-                { icon: Award, label: 'Certificada', sublabel: 'Psicología Integrativa' },
-                { icon: BookOpen, label: 'Formación', sublabel: 'Terapia Humanista' },
-                { icon: Heart, label: 'Enfoque', sublabel: 'Holístico & Consciente' },
-              ].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div key={i} className="flex flex-col items-start gap-2 bg-white/60 rounded-2xl p-4 border border-[#C9A96E]/10">
-                    <Icon className="w-6 h-6 text-[#8A9E8A]" />
-                    <div>
-                      <div className="font-['Quicksand'] text-sm text-[#2D2924]" style={{ fontWeight: 700 }}>
-                        {item.label}
-                      </div>
-                      <div className="font-['Quicksand'] text-xs text-[#2D2924]/60">
-                        {item.sublabel}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+              <span
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  color: THEME.gold,
+                  fontSize: "0.75rem",
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {t.tag}
+              </span>
             </div>
 
+            <h2
+              style={{
+                fontFamily:
+                  "'Cormorant Garamond', 'Playfair Display', serif",
+                color: THEME.text,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontWeight: 400,
+                lineHeight: 1.15,
+              }}
+              className="mb-1"
+            >
+              {t.title}
+            </h2>
 
+            <p
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: THEME.gold,
+                fontSize: "0.82rem",
+                letterSpacing: "0.1em",
+              }}
+              className="mb-8"
+            >
+              {t.role}
+            </p>
 
-          <button
-            onClick={() => scrollTo("sesiones")}
-            style={{
-              marginTop: "1rem",
-              backgroundColor: THEME.rose,
-              color: "#fff",
-              fontFamily: "'Quicksand', sans-serif",
-              fontSize: "0.88rem",
-              fontWeight: 600,
-              padding: "0.75rem 1.75rem",
-              borderRadius: 9999,
-              boxShadow: `0 4px 20px ${THEME.rose}35`,
-            }}
-            className="transition-all hover:opacity-90"
-          >
-            {t.cta}
-          </button>
+            {[t.p1, t.p2, t.p3].map((p, i) => (
+              <p
+                key={i}
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  color: THEME.textMuted,
+                  lineHeight: 1.85,
+                  marginBottom: "1.1rem",
+                  fontSize: "0.97rem",
+                }}
+              >
+                {p}
+              </p>
+            ))}
+
+            <button
+              onClick={() =>
+                document
+                  .getElementById("sesiones")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="mt-4 px-7 py-3 rounded-full font-semibold transition-all"
+              style={{
+                backgroundColor: THEME.rose,
+                color: "#fff",
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: "0.88rem",
+                boxShadow: `0 4px 20px ${THEME.rose}35`,
+              }}
+            >
+              {t.cta}
+            </button>
+          </div>
         </FadeIn>
       </div>
+
+              <DividerLeaves flip style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }} />
+
     </section>
   );
 }

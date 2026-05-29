@@ -23,13 +23,12 @@ export function getNextBusinessDays(count = 4, lang = "es") {
 
     const dayIndex = current.getDay();
 
-    // Excluir sábado y domingo
+    // excluir sábado y domingo
     if (dayIndex !== 0 && dayIndex !== 6) {
-      const dayName = dayNames[lang][dayIndex];
-      const dayNumber = current.getDate();
-      const month = monthNames[lang][current.getMonth()];
-
-      days.push(`${dayName} ${dayNumber} ${month}`);
+      days.push({
+        raw: new Date(current),
+        label: `${dayNames[lang][dayIndex]} ${current.getDate()} ${monthNames[lang][current.getMonth()]}`,
+      });
     }
   }
 

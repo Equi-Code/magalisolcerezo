@@ -33,6 +33,36 @@ export const T = {
       cta1: "Reservar sesión",
       cta2: "Conocer mis terapias",
     },
+
+    quickCards: {
+      terapias: {
+        title: "Terapias",
+        text: "Conocé todas las terapias y herramientas que pueden ayudarte.",
+      },
+
+      sobre: {
+        title: "Sobre mí",
+        text: "Mi historia, mi propósito y cómo puedo acompañarte.",
+      },
+
+      sesiones: {
+        title: "Reservar sesión",
+        text: "Elegí el día y horario que mejor se adapte a vos.",
+      },
+
+      testimonios: {
+        title: "Testimonios",
+        text: "Experiencias reales de personas que ya transitaron su proceso.",
+      },
+
+      contacto: {
+        title: "Contacto",
+        text: "Escribime por WhatsApp, Instagram o correo electrónico.",
+      },
+    },
+
+
+
     sobre: {
       tag: "Sobre mí",
       title: "Magalí Sol Cerezo",
@@ -97,15 +127,35 @@ export const T = {
       msgPlaceholder: "¿Qué te gustaría contarme?",
       btn: "Enviar consulta",
       successMsg: "¡Gracias por escribir! Te respondo a la brevedad 🌿",
-      faqTitle: "Preguntas Frecuentes",
-      faqs: [
-        { q: "¿Cómo se realizan las sesiones?", a: "Las sesiones son 100% online por videollamada (Zoom o Meet). Podés conectarte desde cualquier lugar del mundo." },
-        { q: "¿Cuánto dura una sesión?", a: "Cada sesión tiene una duración aproximada de 60 a 90 minutos, dependiendo del proceso y la terapia elegida." },
-        { q: "¿Cuáles son las formas de pago?", a: "Acepto transferencia bancaria, Mercado Pago y PayPal para sesiones internacionales. Consultame por los valores actualizados." },
-        { q: "¿Necesito experiencia previa?", a: "No es necesaria ninguna experiencia previa. Solo necesitás predisposición y apertura hacia el proceso." },
-        { q: "¿Con qué frecuencia se realizan las sesiones?", a: "Esto se define de manera personalizada según cada proceso. Generalmente se trabaja de forma semanal o quincenal." },
-      ],
     },
+    faq: {
+      tag: "Preguntas frecuentes",
+      title: "Todo lo que querés saber",
+      faqs: [
+        {
+          q: "¿Cómo se realizan las sesiones?",
+          a: "Las sesiones son 100% online por videollamada (Zoom o Meet). Podés conectarte desde cualquier lugar del mundo."
+        },
+        {
+          q: "¿Cuánto dura una sesión?",
+          a: "Cada sesión tiene una duración aproximada de 60 a 90 minutos, dependiendo del proceso y la terapia elegida."
+        },
+        {
+          q: "¿Cuáles son las formas de pago?",
+          a: "Acepto transferencia bancaria, Mercado Pago y PayPal para sesiones internacionales. Consultame por los valores actualizados."
+        },
+        {
+          q: "¿Necesito experiencia previa?",
+          a: "No es necesaria ninguna experiencia previa. Solo necesitás predisposición y apertura hacia el proceso."
+        },
+        {
+          q: "¿Con qué frecuencia se realizan las sesiones?",
+          a: "Esto se define de manera personalizada según cada proceso. Generalmente se trabaja de forma semanal o quincenal."
+        }
+      ]
+    },
+
+
     footer: {
       tagline: "Un espacio para volver a vos.",
       instagram: "@magalisol.cerezo",
@@ -119,6 +169,8 @@ export const T = {
       designedWith: "Diseñado con amor ✦",
     },
   },
+
+
   en: {
     nav: {
       inicio: "Home",
@@ -135,6 +187,35 @@ export const T = {
       cta1: "Book a session",
       cta2: "Explore my therapies",
     },
+
+    quickCards: {
+      terapias: {
+        title: "Therapies",
+        text: "Discover all therapies and healing tools available for you.",
+      },
+
+      sobre: {
+        title: "About me",
+        text: "My story, my purpose, and how I can support you.",
+      },
+
+      sesiones: {
+        title: "Book a session",
+        text: "Choose the day and time that suits you best.",
+      },
+
+      testimonios: {
+        title: "Testimonials",
+        text: "Real experiences from people who went through their healing process.",
+      },
+
+      contacto: {
+        title: "Contact",
+        text: "Reach me through WhatsApp, Instagram or email.",
+      },
+    },
+
+
     sobre: {
       tag: "About",
       title: "Magalí Sol Cerezo",
@@ -198,6 +279,10 @@ export const T = {
       msgPlaceholder: "What would you like to share?",
       btn: "Send inquiry",
       successMsg: "Thank you for reaching out! I'll reply shortly 🌿",
+    },
+    faq: {
+      tag: "Frequently Asked Questions",
+      title: "Everything you want to know",
       faqTitle: "Frequently Asked Questions",
       faqs: [
         { q: "How are sessions conducted?", a: "Sessions are 100% online via video call (Zoom or Meet). You can connect from anywhere in the world." },

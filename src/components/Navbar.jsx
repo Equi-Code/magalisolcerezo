@@ -14,11 +14,11 @@ export default function Navbar({ lang, setLang }) {
   }, []);
 
   const links = [
-    { label: t.inicio,      id: "inicio" },
-    { label: t.sobre,       id: "sobre" },
-    { label: t.terapias,    id: "terapias" },
+    { label: t.inicio, id: "inicio" },
+    { label: t.sobre, id: "sobre" },
+    { label: t.terapias, id: "terapias" },
     { label: t.testimonios, id: "testimonios" },
-    { label: t.contacto,    id: "contacto" },
+    { label: t.contacto, id: "contacto" },
   ];
 
   const handleLink = (id) => { setMenuOpen(false); scrollTo(id); };
@@ -31,21 +31,29 @@ export default function Navbar({ lang, setLang }) {
         borderBottom: scrolled ? `1px solid ${THEME.border}` : "none",
         transition: "all 0.4s ease",
       }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4"
+      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5"
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between">
 
         {/* ── Logo ─────────────────────────────────────── */}
-        <button onClick={() => handleLink("inicio")} className="flex items-center gap-2">
+        <button onClick={() => handleLink("inicio")} className="flex items-center gap-4">
           {/*
             ↓ LOGO OFICIAL — reemplazar src con "/assets/logo.png"
             El logo tiene fondo blanco; sobre la navbar clara se ve perfecto.
           */}
           <img
-            src="../public/assets/logo.png"
+            src="./public/assets/logo.png"
             alt="Magalí Sol Cerezo"
-            style={{ height: 40, width: "auto", objectFit: "contain" }}
-            onError={(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "block"; }}
+            style={{
+              height: scrolled ? 88 : 110,
+              width: "auto",
+              objectFit: "contain",
+              transition: "all 0.35s ease",
+            }}
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "block";
+            }}
           />
           <span style={{
             display: "none",

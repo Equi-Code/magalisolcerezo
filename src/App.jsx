@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react";
 import { THEME } from "./constants";
-import SplashScreen  from "./components/SplashScreen";
-import Navbar        from "./components/Navbar";
-import Hero          from "./components/Hero";
-import SobreMi       from "./components/SobreMi";
-import Terapias      from "./components/Terapias";
-import Sesiones      from "./components/Sesiones";
-import TestimonialsSlider  from "./components/Testimonios";
-import Contacto      from "./components/Contacto";
-import Footer        from "./components/Footer";
+import SplashScreen from "./components/SplashScreen";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import SobreMi from "./components/SobreMi";
+import Terapias from "./components/Terapias";
+import Sesiones from "./components/Sesiones";
+import TestimonialsSlider from "./components/Testimonios";
+import Contacto from "./components/Contacto";
+import Footer from "./components/Footer";
+import DividerLeaves from "./components/DividerLeaves";
+import HeroSection from "./components/HeroSection";
+import QuickCards from "./components/QuickCards";
+
 
 export default function App() {
-  const [lang, setLang]             = useState("es");
+  const [lang, setLang] = useState("es");
   const [splashDone, setSplashDone] = useState(false);
 
   // ── Inyectar Google Fonts + estilos globales ──────────────────────────────
@@ -19,8 +23,8 @@ export default function App() {
     // Fonts
     if (!document.getElementById("magali-fonts")) {
       const link = document.createElement("link");
-      link.id   = "magali-fonts";
-      link.rel  = "stylesheet";
+      link.id = "magali-fonts";
+      link.rel = "stylesheet";
       link.href =
         "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Quicksand:wght@400;500;600;700&display=swap";
       document.head.appendChild(link);
@@ -29,7 +33,7 @@ export default function App() {
     // Global reset / scrollbar / selection
     if (!document.getElementById("magali-globals")) {
       const style = document.createElement("style");
-      style.id    = "magali-globals";
+      style.id = "magali-globals";
       style.textContent = `
         *, *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -63,14 +67,25 @@ export default function App() {
           transition: "opacity 0.6s ease",
         }}
       >
-        <Navbar      lang={lang} setLang={setLang} />
-        <Hero        lang={lang} />
-        <Terapias    lang={lang} />
-        <SobreMi     lang={lang} />
-        <Sesiones    lang={lang} />
+        <Navbar lang={lang} setLang={setLang} />
+
+
+        <HeroSection>
+          <Hero lang={lang} />
+          <QuickCards lang={lang} />
+          <SobreMi lang={lang} />
+        </HeroSection>
+
+        <Terapias lang={lang} />
+
+
+        <Sesiones lang={lang} />
+
         <TestimonialsSlider lang={lang} />
-        <Contacto    lang={lang} />
-        <Footer      lang={lang} />
+
+        <Contacto lang={lang} />
+
+        <Footer lang={lang} />
       </div>
     </>
   );
