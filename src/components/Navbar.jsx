@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { THEME, T } from "../constants";
 import { scrollTo } from "./ui";
 
+
+
 export default function Navbar({ lang, setLang }) {
   const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
@@ -42,7 +44,7 @@ export default function Navbar({ lang, setLang }) {
             El logo tiene fondo blanco; sobre la navbar clara se ve perfecto.
           */}
           <img
-            src="./assets/logo_2.png"
+            src=" public/assets/logos_2.png"
             alt="Magalí Sol Cerezo"
             style={{
               height: scrolled ? 88 : 110,

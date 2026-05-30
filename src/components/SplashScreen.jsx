@@ -225,7 +225,7 @@ export default function SplashScreen({ onFinish }) {
           Reemplazar src con "/assets/logo.png" al montar el proyecto.
         */}
         <img
-          src="/assets/logo.png"
+          src="public/assets/logo.png"
           alt="Magalí Sol Cerezo"
           style={{
             width: "clamp(140px, 40vw, 240px)",
