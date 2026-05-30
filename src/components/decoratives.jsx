@@ -1,6 +1,4 @@
 
-raw
-Decoratives · JSX
 // ============================================================
 //  decoratives.jsx
 //  Elementos SVG decorativos reutilizables — Magalí Sol Cerezo
@@ -12,14 +10,14 @@ Decoratives · JSX
 //  y `size` (número) para escalar sin romper proporciones.
 //  Los colores se toman del objeto THEME centralizado.
 // ============================================================
- 
+
 // 🎨 Paleta compartida — mantené este objeto sincronizado con el THEME global
 const THEME = {
   gold: "#C9A96E",
   sage: "#8A9E8A",
   rose: "#C4968A",
 };
- 
+
 // ─────────────────────────────────────────────
 //  ✦  ESTRELLA DE CUATRO PUNTAS
 //  Uso típico: dispersa en fondos como confeti sutil
@@ -41,7 +39,7 @@ export const StarDeco = ({ className = "", size = 12, opacity = 0.5 }) => (
     />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  🌙  LUNA CRECIENTE MINIMALISTA
 //  Uso típico: esquinas de sección, cerca de textos espirituales
@@ -66,7 +64,7 @@ export const MoonDeco = ({ className = "", size = 18, opacity = 0.4 }) => (
     />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  ○  CÍRCULO DOBLE CONCÉNTRICO
 //  Uso típico: fondo de hero o sección testimonios como aura decorativa
@@ -97,7 +95,7 @@ export const CircleDeco = ({ className = "", size = 80 }) => (
     />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  ☀️  SOL RADIANTE (inspirado en el logo)
 //  Uso típico: separadores de sección, detalle en cards de terapia
@@ -113,14 +111,14 @@ export const SunDeco = ({ className = "", size = 32, opacity = 0.55 }) => (
     aria-hidden="true"
   >
     {/* Rayos largos en cruz */}
-    <line x1="16" y1="1"  x2="16" y2="31" stroke={THEME.gold} strokeWidth="0.7" strokeOpacity={opacity} />
-    <line x1="1"  y1="16" x2="31" y2="16" stroke={THEME.gold} strokeWidth="0.7" strokeOpacity={opacity} />
+    <line x1="16" y1="1" x2="16" y2="31" stroke={THEME.gold} strokeWidth="0.7" strokeOpacity={opacity} />
+    <line x1="1" y1="16" x2="31" y2="16" stroke={THEME.gold} strokeWidth="0.7" strokeOpacity={opacity} />
     {/* Rayos diagonales */}
-    <line x1="5"  y1="5"  x2="27" y2="27" stroke={THEME.gold} strokeWidth="0.5" strokeOpacity={opacity * 0.7} />
-    <line x1="27" y1="5"  x2="5"  y2="27" stroke={THEME.gold} strokeWidth="0.5" strokeOpacity={opacity * 0.7} />
+    <line x1="5" y1="5" x2="27" y2="27" stroke={THEME.gold} strokeWidth="0.5" strokeOpacity={opacity * 0.7} />
+    <line x1="27" y1="5" x2="5" y2="27" stroke={THEME.gold} strokeWidth="0.5" strokeOpacity={opacity * 0.7} />
     {/* Rayos intermedios */}
-    <line x1="16" y1="1"  x2="22" y2="8"  stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
-    <line x1="16" y1="1"  x2="10" y2="8"  stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
+    <line x1="16" y1="1" x2="22" y2="8" stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
+    <line x1="16" y1="1" x2="10" y2="8" stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
     <line x1="31" y1="16" x2="24" y2="10" stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
     <line x1="31" y1="16" x2="24" y2="22" stroke={THEME.gold} strokeWidth="0.4" strokeOpacity={opacity * 0.5} />
     {/* Núcleo circular */}
@@ -133,7 +131,7 @@ export const SunDeco = ({ className = "", size = 32, opacity = 0.55 }) => (
     <path d="M30 16 L28 16.5 L28.5 16 L28 15.5 Z" fill={THEME.gold} fillOpacity={opacity} />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  ◇  ROMBO / DIAMANTE ELEGANTE
 //  Uso típico: separadores de texto, badges de terapia, listas
@@ -160,7 +158,7 @@ export const DiamondDeco = ({ className = "", size = 10, color = THEME.gold, opa
     <circle cx="5" cy="5" r="1" fill={color} fillOpacity={opacity * 0.7} />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  🌿  HOJA SIMPLE
 //  Uso típico: íconos en listas de features, badges holísticos
@@ -192,13 +190,13 @@ export const LeafDeco = ({ className = "", size = 16, color = THEME.sage, opacit
       strokeOpacity={opacity * 0.8}
     />
     {/* Nervios laterales */}
-    <path d="M8 6  Q6 5 4 6"  stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
-    <path d="M8 8  Q6 7 4 8"  stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
+    <path d="M8 6  Q6 5 4 6" stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
+    <path d="M8 8  Q6 7 4 8" stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
     <path d="M8 6  Q10 5 12 6" stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
     <path d="M8 8  Q10 7 12 8" stroke={color} strokeWidth="0.5" strokeOpacity={opacity * 0.5} fill="none" />
   </svg>
 );
- 
+
 // ─────────────────────────────────────────────
 //  ✤  FLOR DE CUATRO PÉTALOS
 //  Uso típico: divisores de texto premium, encabezados de sección
@@ -223,6 +221,6 @@ export const FlowerDeco = ({ className = "", size = 18, opacity = 0.55 }) => (
     <circle cx="9" cy="9" r="0.8" fill={THEME.gold} fillOpacity={opacity} />
   </svg>
 );
- 
+
 
 

@@ -72,6 +72,7 @@ export default function App() {
 
         <HeroSection>
           <Hero lang={lang} />
+          
           <QuickCards lang={lang} />
           <SobreMi lang={lang} />
         </HeroSection>

@@ -373,7 +373,7 @@ export default function TestimonialsSlider({ language = "es" }) {
       {/* Pluma derecha — tono celeste */}
       {/* ↓ plumas1.png: mix-blend-mode multiply elimina el fondo negro */}
       <img
-        src="/assets/plumas1.png"
+        src=""
         alt=""
         aria-hidden="true"
         style={{

@@ -108,14 +108,14 @@ export default function SplashScreen({ onFinish }) {
     >
       {/* ── Partículas de fondo ── */}
       {[
-        { top: "12%", left: "8%",  delay: "0s",    duration: "3.1s" },
+        { top: "12%", left: "8%", delay: "0s", duration: "3.1s" },
         { top: "18%", right: "12%", delay: "0.4s", duration: "2.8s" },
-        { top: "72%", left: "14%", delay: "0.9s",  duration: "3.4s" },
-        { top: "80%", right: "9%", delay: "0.2s",  duration: "2.6s" },
-        { top: "45%", left: "4%",  delay: "1.1s",  duration: "3.7s" },
-        { top: "35%", right: "5%", delay: "0.6s",  duration: "2.9s" },
-        { top: "88%", left: "45%", delay: "1.4s",  duration: "3.2s" },
-        { top: "5%",  left: "55%", delay: "0.7s",  duration: "2.7s" },
+        { top: "72%", left: "14%", delay: "0.9s", duration: "3.4s" },
+        { top: "80%", right: "9%", delay: "0.2s", duration: "2.6s" },
+        { top: "45%", left: "4%", delay: "1.1s", duration: "3.7s" },
+        { top: "35%", right: "5%", delay: "0.6s", duration: "2.9s" },
+        { top: "88%", left: "45%", delay: "1.4s", duration: "3.2s" },
+        { top: "5%", left: "55%", delay: "0.7s", duration: "2.7s" },
       ].map((s, i) => (
         <SplashStar
           key={i}
@@ -133,8 +133,8 @@ export default function SplashScreen({ onFinish }) {
       <div
         style={{
           position: "absolute",
-          width: "min(520px, 88vw)",
-          height: "min(520px, 88vw)",
+          width: "min(420px, 85vw)",
+          height: "min(420px, 85vw)",
           borderRadius: "50%",
           border: `1px solid rgba(201,169,110,0.12)`,
           animation: "splash-spin-slow 30s linear infinite",
@@ -163,8 +163,8 @@ export default function SplashScreen({ onFinish }) {
       <div
         style={{
           position: "absolute",
-          width: "min(420px, 72vw)",
-          height: "min(420px, 72vw)",
+          width: "min(320px, 68vw)",
+          height: "min(320px, 68vw)",
           borderRadius: "50%",
           border: `1px solid rgba(201,169,110,0.18)`,
           animation: "splash-pulse-ring 4s ease-in-out infinite",
@@ -175,8 +175,8 @@ export default function SplashScreen({ onFinish }) {
       <div
         style={{
           position: "absolute",
-          width: "min(320px, 55vw)",
-          height: "min(320px, 55vw)",
+          width: "min(240px, 52vw)",
+          height: "min(240px, 52vw)",
           borderRadius: "50%",
           border: `1px dashed rgba(201,169,110,0.15)`,
           animation: "splash-spin-reverse 20s linear infinite",
@@ -225,10 +225,10 @@ export default function SplashScreen({ onFinish }) {
           Reemplazar src con "/assets/logo.png" al montar el proyecto.
         */}
         <img
-          src="../public/assets/logoPremium.png"
+          src="/assets/logo.png"
           alt="Magalí Sol Cerezo"
           style={{
-            width: "min(240px, 52vw)",
+            width: "clamp(140px, 40vw, 240px)",
             height: "auto",
             objectFit: "contain",
             position: "relative",
@@ -285,7 +285,7 @@ export default function SplashScreen({ onFinish }) {
       <p
         style={{
           position: "absolute",
-          bottom: "calc(10% + 36px)",
+          bottom: "max(90px, 12%)",
           fontFamily: "'Cormorant Garamond', serif",
           color: `${THEME.gold}70`,
           fontSize: "clamp(0.75rem, 2.2vw, 0.95rem)",

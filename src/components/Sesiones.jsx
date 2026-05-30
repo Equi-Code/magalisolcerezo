@@ -577,7 +577,7 @@ export default function OnlineSessions({ language = "es" }) {
       {/* Pluma decorativa — superior derecha */}
       {/* ↓ plumas1.png: mix-blend-mode multiply elimina el fondo negro */}
       <img
-        src="/assets/plumas1.png"
+        src=""
         alt=""
         aria-hidden="true"
         style={{
@@ -597,7 +597,7 @@ export default function OnlineSessions({ language = "es" }) {
       />
       {/* Pluma inferior izquierda — tono frío */}
       <img
-        src="/assets/plumas1.png"
+        src=""
         alt=""
         aria-hidden="true"
         style={{
