@@ -42,7 +42,7 @@ export default function Navbar({ lang, setLang }) {
             El logo tiene fondo blanco; sobre la navbar clara se ve perfecto.
           */}
           <img
-            src="../public/assets/logos_2.png"
+            src="./assets/logo_2.png"
             alt="Magalí Sol Cerezo"
             style={{
               height: scrolled ? 88 : 110,

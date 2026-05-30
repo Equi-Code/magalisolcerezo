@@ -26,7 +26,7 @@ export default function Hero({ lang }) {
           Pluma 1: superior derecha, rotada, grande
         */}
         <img
-          src="/assets/plumas1.png"
+          src="./assets/plumas1.png"
           alt=""
           aria-hidden="true"
           style={{
