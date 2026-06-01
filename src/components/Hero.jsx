@@ -238,7 +238,7 @@ linear-gradient(
 
               {/* ↓ IMAGEN PRINCIPAL DE MAGALÍ — reemplazar src con la foto real de la cliente */}
               <img
-                src="public/assets/FotoHero.JPG"
+                src="/assets/FotoHero.JPG"
                 alt="Magalí Sol Cerezo — Psicóloga Holística"
                 className="w-full h-full object-cover"
                 onError={(e) => {
