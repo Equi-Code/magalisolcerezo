@@ -72,7 +72,7 @@ export default function SobreMi({ lang }) {
             }}
           >
             <img
-              src="public/assets/FotoSobreMi.jpg"
+              src="public/assets/FotoSobreMi.JPG"
               alt="Magalí Sol Cerezo"
               className="w-full h-full object-cover"
               style={{

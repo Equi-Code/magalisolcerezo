@@ -9,14 +9,7 @@ export default function Hero({ lang }) {
   useEffect(() => { setTimeout(() => setMounted(true), 100); }, []);
 
   return (
-    <section id="inicio" className="relative flex items-center overflow-hidden" style={{ minHeight: "calc(100vh - 90px)", backgroundColor: `
-linear-gradient(
-  180deg,
-  #F7F3EE 0%,
-  #F4EFE8 40%,
-  #EEF2EC 100%
-)
-` }}>
+    <section id="inicio" className="relative flex items-center overflow-hidden" style={{ minHeight: "calc(100vh - 90px)", backgroundColor: "transparent" }}>
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
@@ -208,61 +201,51 @@ linear-gradient(
           <div className="relative">
             {/* Image with OVAL mask */}
             <div
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "580px",
-        height: "580px",
-        transform: "translate(-50%, -50%)",
-        background: `
-          radial-gradient(
-            circle,
-            rgba(212,148,87,0.20) 0%,
-            rgba(201,169,110,0.16) 35%,
-            rgba(138,158,138,0.10) 60%,
-            transparent 75%
-          )
-        `,
-        filter: "blur(85px)",
-        zIndex: 0,
-        pointerEvents: "none",
-      }}
-    />
+              style={{
+                width: "clamp(280px, 85vw, 380px)",
+                aspectRatio: "0.72",
+                borderRadius: "9999px",          /* full oval — elipse perfecta */
+                overflow: "hidden",
+                border: `2px solid ${THEME.gold}40`,
+                boxShadow: `
+0 0 0 10px rgba(138,158,138,0.08),
+0 30px 80px rgba(138,158,138,0.18),
+0 8px 24px rgba(201,169,110,0.12)
+`,
+                position: "relative",
+                backgroundColor: `
+linear-gradient(
+  to bottom,
+  rgba(255,255,255,0.03),
+  rgba(138,158,138,0.10)
+)
+`,
+              }}
+            >
 
-    {/* Foto */}
-    <div
-      style={{
-        width: "clamp(280px, 85vw, 380px)",
-        aspectRatio: "0.72",
-        borderRadius: "9999px",
-        overflow: "hidden",
-        border: `2px solid ${THEME.gold}40`,
-        boxShadow: `
-          0 0 0 10px rgba(138,158,138,0.08),
-          0 30px 80px rgba(138,158,138,0.18),
-          0 8px 24px rgba(201,169,110,0.12)
-        `,
-        position: "relative",
-        zIndex: 2,
-        backgroundColor: `${THEME.sage}18`,
-      }}
-    >
+              <div
+  style={{
+    position: "absolute",
+    width: "450px",
+    height: "450px",
+    borderRadius: "9999px",
+    background:
+      "radial-gradient(circle, rgba(201,169,110,0.15), transparent 70%)",
+    filter: "blur(40px)",
+    zIndex: 0,
+  }}
+/>
 
               {/* ↓ IMAGEN PRINCIPAL DE MAGALÍ — reemplazar src con la foto real de la cliente */}
-      <img
-        src="/assets/FotoHero.JPG"
-        alt="Magalí Sol Cerezo — Psicóloga Holística"
-        className="w-full h-full object-cover"
-        style={{
-          filter: "saturate(0.9) contrast(1.02)",
-        }}
-        onError={(e) => {
-          e.target.style.display = "none";
-          e.target.parentElement.style.background =
-            `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
-        }}
-      />
+              <img
+                src="public/assets/FotoHero.JPG"
+                alt="Magalí Sol Cerezo — Psicóloga Holística"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.parentElement.style.background = `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
+                }}
+              />
               <div
                 style={{
                   position: "absolute",
@@ -272,16 +255,6 @@ linear-gradient(
                   background: `linear-gradient(to bottom, transparent 60%, ${THEME.sage}20)`,
                 }}
               />
-
-                    {/* Overlay suave */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, transparent 60%, rgba(138,158,138,0.12))",
-        }}
-      />
             </div>
 
             {/* Floating decorative badge */}
