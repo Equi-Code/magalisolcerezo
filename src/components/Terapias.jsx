@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { THEME, T } from "../constants";
-import { StarDeco, FadeIn, SectionTag, scrollTo } from "./ui";
+import { StarDeco, FadeIn, SectionTag, scrollTo, CircleDeco, MoonDeco } from "./ui";
 import DividerLeaves from "./DividerLeaves";
 
 export default function Terapias({ lang }) {
@@ -9,11 +9,20 @@ const t = T[lang].terapias;
   const activeItem = modalIdx !== null ? t.items[modalIdx] : null;
  
   return (
-    <section id="terapias" className="py-24 px-6 md:px-12 relative" style={{ backgroundColor: THEME.bg }}>
+    <section id="terapias" className="py-12 px-6 md:px-12 relative" style={{ backgroundColor: THEME.bg }}>
       <div className="absolute inset-0 pointer-events-none">
         <StarDeco className="absolute top-20 left-16" />
         <StarDeco className="absolute bottom-24 right-24" />
       </div>
+
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
+              <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-20" />
+              <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
+              <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
+              <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
+              <MoonDeco className="absolute bottom-1/4 left-1/3" />
+            </div>
  
       <div className="max-w-6xl mx-auto">
         <FadeIn>
@@ -206,7 +215,10 @@ const t = T[lang].terapias;
         </div>
       )}
 
-      <DividerLeaves flip style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }} />
+              {/* DividerLeaves al final */}
+              <div style={{ marginTop: "1.5rem" }}>
+                <DividerLeaves />
+              </div>
 
 
     </section>

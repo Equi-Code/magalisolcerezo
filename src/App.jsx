@@ -12,12 +12,25 @@ import Footer from "./components/Footer";
 import DividerLeaves from "./components/DividerLeaves";
 import HeroSection from "./components/HeroSection";
 import QuickCards from "./components/QuickCards";
-
+import FAQ from "./components/FAQ";
+import PrivacyPolicy from "./components/Privacypolicy";
 
 export default function App() {
   const [lang, setLang] = useState("es");
   const [splashDone, setSplashDone] = useState(false);
+   const [page, setPage] = useState("home");
 
+
+    const goToPrivacy = () => {
+    setPage("privacy");
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+
+    const goToHome = () => {
+    setPage("home");
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
+ 
   // ── Inyectar Google Fonts + estilos globales ──────────────────────────────
   useEffect(() => {
     // Fonts
@@ -53,6 +66,16 @@ export default function App() {
     }
   }, []);
 
+    if (page === "privacy") {
+    return (
+      <PrivacyPolicy
+        lang={lang}
+        setLang={setLang}
+        onBack={goToHome}
+      />
+    );
+  }
+
   return (
     <>
       {/* ── Splash screen ── */}
@@ -72,7 +95,7 @@ export default function App() {
 
         <HeroSection>
           <Hero lang={lang} />
-          
+
           <QuickCards lang={lang} />
           <SobreMi lang={lang} />
         </HeroSection>
@@ -82,11 +105,15 @@ export default function App() {
 
         <Sesiones lang={lang} />
 
-        <TestimonialsSlider lang={lang} />
+        
 
         <Contacto lang={lang} />
 
-        <Footer lang={lang} />
+        <FAQ lang={lang} />
+
+        <TestimonialsSlider lang={lang} />
+
+        <Footer lang={lang} onPrivacy={goToPrivacy}/>
       </div>
     </>
   );

@@ -4,8 +4,8 @@ import { StarDeco, Feather, scrollTo } from "./ui";
 // ↓ REEMPLAZAR con el número real de WhatsApp de Magalí (formato internacional sin +)
 const WA_NUMBER = "5491100000000";
 
-export default function Footer({ lang }) {
-  const t   = T[lang].footer;
+export default function Footer({ lang, onPrivacy }) {
+  const t = T[lang].footer;
   const nav = T[lang].nav;
 
   const therapyLinks = [
@@ -17,11 +17,11 @@ export default function Footer({ lang }) {
   ];
 
   const navLinks = [
-    ["inicio",      nav.inicio],
-    ["sobre",       nav.sobre],
-    ["terapias",    nav.terapias],
+    ["inicio", nav.inicio],
+    ["sobre", nav.sobre],
+    ["terapias", nav.terapias],
     ["testimonios", nav.testimonios],
-    ["contacto",    nav.contacto],
+    ["contacto", nav.contacto],
   ];
 
   const colLabel = (text) => (
@@ -253,7 +253,7 @@ export default function Footer({ lang }) {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div
+        {/* <div
           className="relative px-6 md:px-12 py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
           style={{ borderTop: "1px solid rgba(245,240,234,0.06)" }}
         >
@@ -268,6 +268,79 @@ export default function Footer({ lang }) {
           <p style={{ fontFamily: "'Quicksand', sans-serif", color: "rgba(245,240,234,0.18)", fontSize: "0.72rem", letterSpacing: "0.04em" }}>
             {t.designedWith}
           </p>
+        </div> */}
+        <div
+          className="relative px-6 md:px-12 py-5"
+          style={{ borderTop: "1px solid rgba(245,240,234,0.07)" }}
+        >
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "0.75rem",
+          }}>
+            {/* Fila superior: copyright | ornamento | privacidad */}
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "1.25rem",
+              width: "100%",
+            }}>
+              <p style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: "rgba(245,240,234,0.22)",
+                fontSize: "0.72rem",
+                letterSpacing: "0.04em",
+                margin: 0,
+              }}>
+                {T[lang].footer.rights}
+              </p>
+
+              {/* Ornamento central */}
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <div style={{ width: 16, height: 1, backgroundColor: "rgba(201,169,110,0.3)" }} />
+                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden="true">
+                  <path d="M4 0L4.6 3.4L8 4L4.6 4.6L4 8L3.4 4.6L0 4L3.4 3.4Z"
+                    fill="#C9A96E" fillOpacity="0.5" />
+                </svg>
+                <div style={{ width: 16, height: 1, backgroundColor: "rgba(201,169,110,0.3)" }} />
+              </div>
+
+              {/* Link política de privacidad */}
+              <button
+                onClick={onPrivacy}
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.72rem",
+                  color: "rgba(245,240,234,0.35)",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  letterSpacing: "0.04em",
+                  padding: 0,
+                  transition: "color 0.2s",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = "rgba(201,169,110,0.8)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "rgba(245,240,234,0.35)"; }}
+              >
+                {lang === "es" ? "Política de privacidad" : "Privacy policy"}
+              </button>
+            </div>
+
+            {/* Fila inferior: "Diseñado con amor" */}
+            <p style={{
+              fontFamily: "'Quicksand', sans-serif",
+              color: "rgba(245,240,234,0.18)",
+              fontSize: "0.68rem",
+              letterSpacing: "0.04em",
+              margin: 0,
+            }}>
+              {lang === "es" ? "Diseñado con amor ✦" : "Designed with love ✦"}
+            </p>
+          </div>
         </div>
 
         {/* ── WhatsApp FAB — fijo en pantalla ── */}

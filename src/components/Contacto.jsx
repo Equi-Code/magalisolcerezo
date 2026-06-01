@@ -143,7 +143,7 @@ export default function Contacto({ lang = "es" }) {
   return (
     <section
       id="contacto"
-      className="py-24 px-5"
+      className="py-10 px-5"
       style={{ background: "#FCFBFA" }}
     >
       <div className="max-w-6xl mx-auto">
@@ -478,7 +478,10 @@ export default function Contacto({ lang = "es" }) {
         </div>
       </div>
 
-        <DividerLeaves flip style={{ marginTop: 48 }} />
+                {/* DividerLeaves al final */}
+                <div style={{ marginTop: "1.5rem" }}>
+                  <DividerLeaves />
+                </div>
 
     </section>
   );

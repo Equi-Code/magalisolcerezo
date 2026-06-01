@@ -38,35 +38,57 @@ export default function Navbar({ lang, setLang }) {
       <div className="max-w-6xl mx-auto flex items-center justify-between">
 
         {/* ── Logo ─────────────────────────────────────── */}
-        <button onClick={() => handleLink("inicio")} className="flex items-center gap-4">
-          {/*
-            ↓ LOGO OFICIAL — reemplazar src con "/assets/logo.png"
-            El logo tiene fondo blanco; sobre la navbar clara se ve perfecto.
-          */}
+        <button
+          onClick={() => handleLink("inicio")}
+          className="flex items-center gap-3"
+        >
           <img
             src="/assets/Logos_2.png"
             alt="Magalí Sol Cerezo"
             style={{
-              height: scrolled ? 88 : 110,
+              height: scrolled ? 60 : 72,
               width: "auto",
               objectFit: "contain",
               transition: "all 0.35s ease",
-            }}
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.nextSibling.style.display = "block";
+              fontSize: "1.1rem"
             }}
           />
-          <span style={{
-            display: "none",
-            fontFamily: "'Cormorant Garamond', serif",
-            color: THEME.text,
-            fontSize: "1.1rem",
-            letterSpacing: "0.08em",
-            fontStyle: "italic",
-          }}>
-            Magalí Sol Cerezo
-          </span>
+
+          {/* Texto al lado del logo */}
+          <div
+            className="flex"
+            style={{
+              flexDirection: "column",
+              alignItems: "flex-start",
+              lineHeight: 1.1,
+              fontSize: "0.65rem"
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: THEME.text,
+                fontSize: "1.6rem",
+                fontWeight: 500,
+                letterSpacing: "0.03em",
+              }}
+            >
+              Magalí Sol Cerezo
+            </span>
+
+            <span
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: THEME.textMuted,
+                fontSize: "0.85rem",
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                marginTop: "4px",
+              }}
+            >
+              Psicóloga Holística
+            </span>
+          </div>
         </button>
 
         {/* ── Desktop nav ──────────────────────────────── */}

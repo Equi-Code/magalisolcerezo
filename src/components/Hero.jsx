@@ -9,16 +9,23 @@ export default function Hero({ lang }) {
   useEffect(() => { setTimeout(() => setMounted(true), 100); }, []);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: "transparent" }}>
+    <section id="inicio" className="relative flex items-center overflow-hidden" style={{ minHeight: "calc(100vh - 90px)", backgroundColor: `
+linear-gradient(
+  180deg,
+  #F7F3EE 0%,
+  #F4EFE8 40%,
+  #EEF2EC 100%
+)
+` }}>
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
+        <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
         <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-20" />
         <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
         <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
         <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
-        <MoonDeco className="absolute bottom-1/4 left-1/3" /> */}
-        
+        <MoonDeco className="absolute bottom-1/4 left-1/3" />
+
         {/*
           ↓ PLUMAS — plumas1.png tiene fondo negro.
           mix-blend-mode "multiply" sobre fondo claro hace que el negro desaparezca
@@ -26,7 +33,7 @@ export default function Hero({ lang }) {
           Pluma 1: superior derecha, rotada, grande
         */}
         <img
-          src="./assets/plumas1.png"
+          src="/assets/plumas1.png"
           alt=""
           aria-hidden="true"
           style={{
@@ -66,78 +73,124 @@ export default function Hero({ lang }) {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12 w-full pt-24 pb-16 grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-24 md:pt-24 pb-12 md:pb-16 grid md:grid-cols-2 gap-8 md:gap-20 items-center">
         {/* Text */}
-        <div>
-          <div
-            style={{
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? "translateY(0)" : "translateY(30px)",
-              transition: "all 0.9s ease 0.1s",
-            }}
-          >
-            <div className="flex items-center gap-2 mb-6">
-              <div style={{ width: 32, height: 1, backgroundColor: THEME.gold }} />
-              <span style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.gold, fontSize: "0.78rem", letterSpacing: "0.2em", textTransform: "uppercase" }}>
-                {t.subtitle}
-              </span>
-            </div>
+        {/* Text */}
+        <div
+          className="order-2 md:order-1 flex justify-center"
+          style={{
+            opacity: mounted ? 1 : 0,
+            transform: mounted ? "translateY(0)" : "translateY(30px)",
+            transition: "all 0.9s ease 0.1s",
+          }}
+        >
+          <div className="text-center max-w-xl">
 
+            {/* Nombre */}
             <h1
               style={{
-                fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
+                fontFamily: "'Cormorant Garamond', serif",
                 color: THEME.text,
-                fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
-                lineHeight: 1.2,
+                fontSize: "clamp(3rem, 6vw, 5rem)",
+                lineHeight: 1.05,
                 fontWeight: 400,
-                fontStyle: "italic",
+                marginBottom: "0.5rem",
               }}
-              className="mb-6"
             >
-              {t.title}
+              Magalí Sol Cerezo
             </h1>
 
+            {/* Subtitulo */}
+            <h2
+              style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                color: THEME.sage,
+                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontStyle: "italic",
+                fontWeight: 300,
+                marginBottom: "1.5rem",
+              }}
+            >
+              Sanar es permitirte volver a habitarte en paz
+            </h2>
+
+            {/* Separador */}
+            <div className="flex items-center justify-center gap-4 mb-8">
+              <div
+                style={{
+                  width: "90px",
+                  height: "1px",
+                  backgroundColor: `${THEME.gold}70`,
+                }}
+              />
+
+              <span
+                style={{
+                  color: THEME.gold,
+                  fontSize: "1.2rem",
+                }}
+              >
+                ♡
+              </span>
+
+              <div
+                style={{
+                  width: "90px",
+                  height: "1px",
+                  backgroundColor: `${THEME.gold}70`,
+                }}
+              />
+            </div>
+
+            {/* Frase */}
             <p
               style={{
                 fontFamily: "'Quicksand', sans-serif",
                 color: THEME.textMuted,
-                fontSize: "1rem",
-                lineHeight: 1.8,
-                maxWidth: "42ch",
+                fontSize: "1.08rem",
+                lineHeight: 1.9,
+                maxWidth: "500px",
+                margin: "0 auto 2.5rem",
               }}
-              className="mb-10"
             >
-              {t.description}
+              Acompaño tu proceso de sanación para ayudarte a transformar tu energía,
+              manifestar bienestar y reconectar con tu esencia.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            {/* Botones */}
+            <div className="flex flex-wrap justify-center gap-4">
               <button
-                onClick={() => document.getElementById("sesiones")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-7 py-3 rounded-full font-semibold transition-all"
+                onClick={() =>
+                  document
+                    .getElementById("sesiones")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="px-8 py-3 rounded-full font-semibold transition-all hover:scale-105"
                 style={{
                   backgroundColor: THEME.sage,
                   color: "#fff",
                   fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "0.9rem",
-                  boxShadow: `0 4px 24px ${THEME.sage}40`,
-                  letterSpacing: "0.03em",
+                  boxShadow: `0 10px 30px ${THEME.sage}35`,
                 }}
               >
-                {t.cta1}
+                Reservar sesión
               </button>
+
               <button
-                onClick={() => document.getElementById("terapias")?.scrollIntoView({ behavior: "smooth" })}
-                className="px-7 py-3 rounded-full font-semibold transition-all"
+                onClick={() =>
+                  document
+                    .getElementById("terapias")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="px-8 py-3 rounded-full font-semibold transition-all hover:scale-105"
                 style={{
                   border: `1.5px solid ${THEME.sage}`,
                   color: THEME.sage,
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "0.9rem",
                   backgroundColor: "transparent",
-                  letterSpacing: "0.03em",
+                  fontFamily: "'Quicksand', sans-serif",
                 }}
               >
-                {t.cta2}
+                Conocer mis terapias
               </button>
             </div>
           </div>
@@ -145,7 +198,7 @@ export default function Hero({ lang }) {
 
         {/* Image with arch mask */}
         <div
-          className="flex justify-center"
+          className="order-1 md:order-2 flex justify-center"
           style={{
             opacity: mounted ? 1 : 0,
             transform: mounted ? "translateY(0) scale(1)" : "translateY(20px) scale(0.97)",
@@ -155,39 +208,85 @@ export default function Hero({ lang }) {
           <div className="relative">
             {/* Image with OVAL mask */}
             <div
-              style={{
-                width: "min(320px, 72vw)",
-                aspectRatio: "0.72",
-                borderRadius: "9999px",          /* full oval — elipse perfecta */
-                overflow: "hidden",
-                border: `2px solid ${THEME.gold}40`,
-                boxShadow: `0 0 0 8px ${THEME.sage}14, 0 24px 60px rgba(138,158,138,0.22), 0 4px 20px rgba(201,169,110,0.14)`,
-                position: "relative",
-                backgroundColor: `${THEME.sage}18`,
-              }}
-            >
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        width: "580px",
+        height: "580px",
+        transform: "translate(-50%, -50%)",
+        background: `
+          radial-gradient(
+            circle,
+            rgba(212,148,87,0.20) 0%,
+            rgba(201,169,110,0.16) 35%,
+            rgba(138,158,138,0.10) 60%,
+            transparent 75%
+          )
+        `,
+        filter: "blur(85px)",
+        zIndex: 0,
+        pointerEvents: "none",
+      }}
+    />
+
+    {/* Foto */}
+    <div
+      style={{
+        width: "clamp(280px, 85vw, 380px)",
+        aspectRatio: "0.72",
+        borderRadius: "9999px",
+        overflow: "hidden",
+        border: `2px solid ${THEME.gold}40`,
+        boxShadow: `
+          0 0 0 10px rgba(138,158,138,0.08),
+          0 30px 80px rgba(138,158,138,0.18),
+          0 8px 24px rgba(201,169,110,0.12)
+        `,
+        position: "relative",
+        zIndex: 2,
+        backgroundColor: `${THEME.sage}18`,
+      }}
+    >
+
               {/* ↓ IMAGEN PRINCIPAL DE MAGALÍ — reemplazar src con la foto real de la cliente */}
-              <img
-                src="/assets/foto-magali.jpg"
-                alt="Magalí Sol Cerezo — Psicóloga Holística"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.parentElement.style.background = `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
-                }}
-              />
+      <img
+        src="/assets/FotoHero.JPG"
+        alt="Magalí Sol Cerezo — Psicóloga Holística"
+        className="w-full h-full object-cover"
+        style={{
+          filter: "saturate(0.9) contrast(1.02)",
+        }}
+        onError={(e) => {
+          e.target.style.display = "none";
+          e.target.parentElement.style.background =
+            `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
+        }}
+      />
               <div
                 style={{
                   position: "absolute",
+                  width: "min(420px, 82vw)",
                   inset: 0,
+                  filter: "saturate(0.82) brightness(1.03)",
                   background: `linear-gradient(to bottom, transparent 60%, ${THEME.sage}20)`,
                 }}
               />
+
+                    {/* Overlay suave */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, transparent 60%, rgba(138,158,138,0.12))",
+        }}
+      />
             </div>
 
             {/* Floating decorative badge */}
             <div
-              className="absolute -bottom-4 -left-4 px-5 py-3 rounded-2xl"
+              className="absolute -bottom-2 md:-bottom-4 left-1/2 md:left-auto md:-left-4 -translate-x-1/2 md:translate-x-0 px-4 py-2 md:px-5 md:py-3 rounded-2xl"
               style={{
                 backgroundColor: THEME.card,
                 boxShadow: `0 8px 30px rgba(0,0,0,0.08)`,

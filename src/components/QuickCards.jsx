@@ -52,38 +52,38 @@ export default function QuickCards({ lang }) {
         >
             <div
                 className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-5
-          gap-4
-          mt-[-5rem]
-          md:mt-[-4rem]
-          relative
-          z-20
-          px-6
-          md:px-10
-          max-w-6xl
-          mx-auto   
+                grid
+                grid-cols-1
+                sm:grid-cols-2
+                lg:grid-cols-5
+                gap-4
+                mt-6
+                md:mt-[-4rem]
+                        relative
+                        z-20
+                        px-6
+                        md:px-10
+                        max-w-6xl
+                        mx-auto   
         "
             >
                 {cards.map((card, i) => (
 
-                        
+
 
 
                     <button
                         key={i}
                         onClick={() => scrollTo(card.id)}
                         className="
-              group
-              rounded-[2rem]
-              p-6
-              text-center
-              transition-all
-              duration-300
-              hover:-translate-y-2
-              hover:shadow-xl
+                    group
+                    rounded-[2rem]
+                    p-6
+                    text-center
+                    transition-all
+                    duration-300
+                    hover:-translate-y-2
+                    hover:shadow-xl
             "
                         style={{
                             backgroundColor: "rgba(255,255,255,0.72)",

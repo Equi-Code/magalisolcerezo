@@ -333,7 +333,7 @@ export default function TestimonialsSlider({ language = "es" }) {
       id="testimonios"
       style={{
         position:        "relative",
-        padding:         "6rem 1.5rem",
+        // padding:         "6rem 1.5rem",
         backgroundColor: THEME.bg,
         overflow:        "hidden",
       }}
@@ -651,7 +651,10 @@ export default function TestimonialsSlider({ language = "es" }) {
       `}</style>
 
 
-        <DividerLeaves flip style={{ position: "absolute", bottom: 0, left: 0, width: "100%" }} />
+                {/* DividerLeaves al final */}
+                <div style={{ marginTop: "1.5rem" }}>
+                  <DividerLeaves />
+                </div>
 
     </section>
   );

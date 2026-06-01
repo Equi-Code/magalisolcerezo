@@ -83,6 +83,9 @@ export default function FAQ({ lang }) {
           "linear-gradient(180deg, #EFF3EF 0%, #FCFBFA 100%)",
       }}
     >
+
+      
+
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
@@ -195,6 +198,9 @@ export default function FAQ({ lang }) {
         </div>
 
       </div>
+
     </div>
+
+    
   );
 }
