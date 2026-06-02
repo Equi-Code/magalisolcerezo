@@ -105,13 +105,12 @@ export default function App() {
 
         <Sesiones lang={lang} />
 
-        
-
-        <Contacto lang={lang} />
-
+    
         <FAQ lang={lang} />
 
         <TestimonialsSlider lang={lang} />
+
+                <Contacto lang={lang} />
 
         <Footer lang={lang} onPrivacy={goToPrivacy}/>
       </div>

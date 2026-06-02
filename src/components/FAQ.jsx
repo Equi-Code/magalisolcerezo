@@ -1,72 +1,7 @@
-// import { useState } from "react";
-
-// const t = {
-//   es: {
-//     tag: "Preguntas frecuentes",
-//     title: "Todo lo que querés saber",
-//     faqs: [
-//       {
-//         q: "¿Cómo se realizan las sesiones?",
-//         a: "Todas las sesiones son online, vía Zoom o Google Meet. Podés conectarte desde cualquier lugar del mundo, con tu computadora, tablet o celular. Solo necesitás una conexión estable a internet y un espacio tranquilo y privado.",
-//       },
-//       {
-//         q: "¿Cuánto dura cada sesión?",
-//         a: "La duración varía según la terapia. En general, las sesiones individuales tienen una duración de 60 a 90 minutos. Al reservar, te informo exactamente cuánto tiempo necesitamos para tu proceso.",
-//       },
-//       {
-//         q: "¿Cuáles son las formas de pago?",
-//         a: "Acepto transferencia bancaria, MercadoPago, PayPal y otras plataformas digitales. El pago se coordina al momento de confirmar el turno. Consultame por opciones para tu país o moneda.",
-//       },
-//       {
-//         q: "¿Necesito experiencia previa en meditación o terapias alternativas?",
-//         a: "No es necesario ningún conocimiento previo. Mis sesiones están diseñadas para acompañarte desde donde estés, sea tu primera vez o tengas experiencia previa. Cada proceso es único y a tu ritmo.",
-//       },
-//       {
-//         q: "¿Con qué frecuencia se recomienda hacer las sesiones?",
-//         a: "Depende de tu proceso y las terapias que elijas. En general, se recomienda comenzar con sesiones quincenales o mensuales, ajustando según tu evolución. En nuestra primera sesión evaluamos juntas el plan más adecuado para vos.",
-//       },
-//       {
-//         q: "¿Puedo combinar varias terapias?",
-//         a: "¡Absolutamente! De hecho, muchas veces el abordaje más efectivo es integrador. Trabajo con una mirada holística que combina diferentes herramientas según lo que cada persona necesita en su proceso.",
-//       },
-//     ],
-//   },
-//   en: {
-//     tag: "Frequently asked questions",
-//     title: "Everything you want to know",
-//     faqs: [
-//       {
-//         q: "How are the sessions conducted?",
-//         a: "All sessions are online, via Zoom or Google Meet. You can connect from anywhere in the world, with your computer, tablet or phone. You only need a stable internet connection and a quiet, private space.",
-//       },
-//       {
-//         q: "How long does each session last?",
-//         a: "Duration varies by therapy. Individual sessions generally last 60 to 90 minutes. When booking, I will inform you exactly how much time we need for your process.",
-//       },
-//       {
-//         q: "What are the payment options?",
-//         a: "I accept bank transfer, MercadoPago, PayPal and other digital platforms. Payment is coordinated when confirming the appointment. Ask me about options for your country or currency.",
-//       },
-//       {
-//         q: "Do I need prior experience in meditation or alternative therapies?",
-//         a: "No prior knowledge is needed. My sessions are designed to accompany you from wherever you are, whether it's your first time or you have prior experience. Each process is unique and at your own pace.",
-//       },
-//       {
-//         q: "How often are sessions recommended?",
-//         a: "It depends on your process and the therapies you choose. Generally, it is recommended to start with bi-weekly or monthly sessions, adjusting according to your evolution. In our first session we will evaluate together the most suitable plan for you.",
-//       },
-//       {
-//         q: "Can I combine multiple therapies?",
-//         a: "Absolutely! In fact, the most effective approach is often integrative. I work with a holistic perspective that combines different tools according to what each person needs in their process.",
-//       },
-//     ],
-//   },
-// };
-
-// 
-
 import { useState } from "react";
 import { THEME, T } from "../constants";
+import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
+import DividerLeaves from "./DividerLeaves";
 
 export default function FAQ({ lang }) {
   const t = T?.[lang]?.faq;
@@ -75,18 +10,33 @@ export default function FAQ({ lang }) {
 
   if (!t) return null;
 
+
+
   return (
+
+
+
     <div
-      className="py-24 px-5"
+      className="relative pt-24 pb-10 px-5 overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, #EFF3EF 0%, #FCFBFA 100%)",
       }}
     >
 
-      
+
+      {/* Decorative background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
+        <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-20" />
+        <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
+        <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
+        <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
+        <MoonDeco className="absolute bottom-1/4 left-1/3" />
+      </div>
 
       <div className="max-w-3xl mx-auto">
+
 
         {/* Header */}
         <div className="text-center mb-14">
@@ -104,7 +54,32 @@ export default function FAQ({ lang }) {
             {t.title}
           </h2>
 
-          <span className="gold-line mt-5" />
+          <div className="flex justify-center items-center gap-4 mt-5">
+            <div
+              style={{
+                width: 70,
+                height: 1,
+                background: "rgba(201,169,110,.35)",
+              }}
+            />
+
+            <span
+              style={{
+                color: THEME.gold,
+                fontSize: "1rem",
+              }}
+            >
+              ✦
+            </span>
+
+            <div
+              style={{
+                width: 70,
+                height: 1,
+                background: "rgba(201,169,110,.35)",
+              }}
+            />
+          </div>
         </div>
 
         {/* Accordions */}
@@ -119,7 +94,10 @@ export default function FAQ({ lang }) {
                     ? "1px solid rgba(201,169,110,0.3)"
                     : "1px solid rgba(201,169,110,0.12)",
 
-                background: "#FDFCFA",
+                background:
+                  open === i
+                    ? "linear-gradient(180deg,#FFFFFF,#FAF7F3)"
+                    : "#FDFCFA",
 
                 boxShadow:
                   open === i
@@ -163,7 +141,9 @@ export default function FAQ({ lang }) {
                         ? "rotate(45deg)"
                         : "rotate(0deg)",
 
-                    fontSize: 16,
+                    fontSize: 18,
+                    fontWeight: 300,
+                    transition: "all .35s ease",
                   }}
                 >
                   +
@@ -191,16 +171,48 @@ export default function FAQ({ lang }) {
                   >
                     {faq.a}
                   </p>
+
                 </div>
               </div>
             </div>
           ))}
         </div>
 
+        <div className="text-center mt-12">
+          <p
+            style={{
+              color: THEME.textMuted,
+              fontFamily: "'Quicksand', sans-serif",
+            }}
+          >
+            Si tu consulta no aparece aquí, podés escribirme y conversamos.
+          </p>
+
+          <button
+            onClick={() =>
+              document
+                .getElementById("contacto")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="mt-5 px-7 py-3 rounded-full transition-all hover:scale-105"
+            style={{
+              background: THEME.sage,
+              color: "#fff",
+            }}
+          >
+            Hacer una consulta
+          </button>
+        </div>
+
+                          <div style={{ marginTop: "1.5rem" }}>
+                            <DividerLeaves />
+                          </div>
+             
+
       </div>
 
     </div>
 
-    
+
   );
 }

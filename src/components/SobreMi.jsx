@@ -79,6 +79,7 @@ export default function SobreMi({ lang }) {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
+                objectPosition: "center",
                 filter: "saturate(0.85) brightness(1.02)"
               }}
               onError={(e) => {
@@ -193,6 +194,76 @@ export default function SobreMi({ lang }) {
                 {p}
               </p>
             ))}
+
+            <div
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+              style={{
+                display: "grid",
+                
+                gap: "1rem",
+                marginTop: "2rem",
+                transition: "all .35s ease",
+                cursor: "default",
+              }}
+            >
+
+              
+              
+{t.cards.map((item) => (
+  <div
+    key={item.title}
+    style={{
+      background: "rgba(255,255,255,0.75)",
+      backdropFilter: "blur(6px)",
+      border: `1px solid ${item.color}20`,
+      padding: "1rem",
+      borderRadius: "1rem",
+      transition: "all .3s ease",
+      minHeight: "120px",
+    }}
+  >
+    <div
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: "50%",
+        background: `${item.color}15`,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: "0.8rem",
+        color: item.color,
+        fontSize: "1rem",
+      }}
+    >
+      {item.icon}
+    </div>
+
+    <div
+      style={{
+        fontFamily: "'Quicksand', sans-serif",
+        fontWeight: 700,
+        color: THEME.text,
+        marginBottom: "0.25rem",
+        fontSize: "0.8rem",
+      }}
+    >
+      {item.title}
+    </div>
+
+    <div
+      style={{
+        fontFamily: "'Quicksand', sans-serif",
+        fontSize: "0.75rem",
+        color: THEME.textMuted,
+        lineHeight: 1.5,
+      }}
+    >
+      {item.subtitle}
+    </div>
+  </div>
+))}
+            </div>
 
             <button
               onClick={() =>

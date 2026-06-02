@@ -32,6 +32,10 @@ export default function Navbar({ lang, setLang }) {
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? `1px solid ${THEME.border}` : "none",
         transition: "all 0.4s ease",
+        background: "rgba(252,251,250,0.92)",
+         backdropFilter: "blur(12px)",
+         borderBottom: `1px solid ${THEME.border}`,
+
       }}
       className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5"
     >
@@ -164,55 +168,57 @@ export default function Navbar({ lang, setLang }) {
       </div>
 
       {/* ── Mobile menu ──────────────────────────────────── */}
-      {menuOpen && (
-        <div
-          className="md:hidden absolute top-full left-0 right-0 py-6 px-8 flex flex-col gap-4"
-          style={{ backgroundColor: "rgba(252,251,250,0.97)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${THEME.border}` }}
-        >
-          {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => handleLink(l.id)}
-              style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.text, textAlign: "left", fontSize: "0.9rem" }}
-            >
-              {l.label}
-            </button>
-          ))}
-          <div className="flex gap-2 pt-2">
-            {["es", "en"].map((l) => (
+      {
+        menuOpen && (
+          <div
+            className="md:hidden absolute top-full left-0 right-0 py-6 px-8 flex flex-col gap-4"
+            style={{ backgroundColor: "rgba(252,251,250,0.97)", backdropFilter: "blur(12px)", borderBottom: `1px solid ${THEME.border}` }}
+          >
+            {links.map((l) => (
               <button
-                key={l}
-                onClick={() => setLang(l)}
-                style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  fontSize: "0.78rem",
-                  fontWeight: lang === l ? 700 : 400,
-                  color: lang === l ? THEME.sage : THEME.textMuted,
-                  padding: "4px 14px",
-                  borderRadius: 9999,
-                  border: `1px solid ${lang === l ? THEME.sage : THEME.border}`,
-                }}
+                key={l.id}
+                onClick={() => handleLink(l.id)}
+                style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.text, textAlign: "left", fontSize: "0.9rem" }}
               >
-                {l.toUpperCase()}
+                {l.label}
               </button>
             ))}
+            <div className="flex gap-2 pt-2">
+              {["es", "en"].map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: "0.78rem",
+                    fontWeight: lang === l ? 700 : 400,
+                    color: lang === l ? THEME.sage : THEME.textMuted,
+                    padding: "4px 14px",
+                    borderRadius: 9999,
+                    border: `1px solid ${lang === l ? THEME.sage : THEME.border}`,
+                  }}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => handleLink("sesiones")}
+              style={{
+                backgroundColor: THEME.sage,
+                color: "#fff",
+                fontFamily: "'Quicksand', sans-serif",
+                padding: "0.75rem",
+                borderRadius: 9999,
+                fontWeight: 600,
+                marginTop: "0.5rem",
+              }}
+            >
+              {t.reservar}
+            </button>
           </div>
-          <button
-            onClick={() => handleLink("sesiones")}
-            style={{
-              backgroundColor: THEME.sage,
-              color: "#fff",
-              fontFamily: "'Quicksand', sans-serif",
-              padding: "0.75rem",
-              borderRadius: 9999,
-              fontWeight: 600,
-              marginTop: "0.5rem",
-            }}
-          >
-            {t.reservar}
-          </button>
-        </div>
-      )}
-    </nav>
+        )
+      }
+    </nav >
   );
 }

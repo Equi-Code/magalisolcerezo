@@ -10,10 +10,6 @@ const t = T[lang].terapias;
  
   return (
     <section id="terapias" className="py-12 px-6 md:px-12 relative" style={{ backgroundColor: THEME.bg }}>
-      <div className="absolute inset-0 pointer-events-none">
-        <StarDeco className="absolute top-20 left-16" />
-        <StarDeco className="absolute bottom-24 right-24" />
-      </div>
 
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
@@ -23,6 +19,15 @@ const t = T[lang].terapias;
               <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
               <MoonDeco className="absolute bottom-1/4 left-1/3" />
             </div>
+
+
+
+      <div className="absolute inset-0 pointer-events-none">
+        <StarDeco className="absolute top-20 left-16" />
+        <StarDeco className="absolute bottom-24 right-24" />
+      </div>
+
+
  
       <div className="max-w-6xl mx-auto">
         <FadeIn>

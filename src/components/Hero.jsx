@@ -9,7 +9,7 @@ export default function Hero({ lang }) {
   useEffect(() => { setTimeout(() => setMounted(true), 100); }, []);
 
   return (
-    <section id="inicio" className="relative flex items-center overflow-hidden" style={{ minHeight: "calc(100vh - 90px)", backgroundColor: "transparent" }}>
+    <section id="inicio" className="relative flex items-center overflow-hidden" style={{ minHeight: "calc(100vh - 75px)", backgroundColor: "transparent" }}>
       {/* Background decorations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
@@ -66,7 +66,7 @@ export default function Hero({ lang }) {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-24 md:pt-24 pb-12 md:pb-16 grid md:grid-cols-2 gap-8 md:gap-20 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-20 md:pt-20 pb-12 md:pb-16 grid md:grid-cols-2 gap-8 md:gap-20 items-center">
         {/* Text */}
         {/* Text */}
         <div
@@ -202,7 +202,7 @@ export default function Hero({ lang }) {
             {/* Image with OVAL mask */}
             <div
               style={{
-                width: "clamp(280px, 85vw, 380px)",
+                width: "clamp(300px, 88vw, 420px)",
                 aspectRatio: "0.72",
                 borderRadius: "9999px",          /* full oval — elipse perfecta */
                 overflow: "hidden",

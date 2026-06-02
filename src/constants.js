@@ -71,6 +71,25 @@ export const T = {
       p2: "A través de herramientas terapéuticas como mindfulness, tapping, sanación energética, terapias florales y otras técnicas holísticas, busco ayudarte a recuperar el equilibrio, la claridad y el bienestar emocional.",
       p3: "Creo profundamente que sanar es un proceso personal y único, y mi intención es brindarte un espacio seguro, amoroso y libre de juicios donde puedas reconectar con tu esencia.",
       cta: "Agendá tu sesión",
+
+      cards: [
+      {
+        icon: "✦",
+        title: "Acompañamiento",
+        subtitle: "Psicología Integrativa",
+      },
+      {
+        icon: "❋",
+        title: "Formación Continua",
+        subtitle: "Herramientas terapéuticas",
+      },
+      {
+        icon: "♡",
+        title: "Mirada Integral",
+        subtitle: "Cuerpo, mente y emoción",
+      },
+    ],
+
     },
     terapias: {
       tag: "Terapias",
@@ -391,6 +410,24 @@ export const T = {
       p2: "Through therapeutic tools such as mindfulness, tapping, energy healing, floral therapies and other holistic techniques, I help you recover balance, clarity and emotional wellbeing.",
       p3: "I deeply believe that healing is a personal and unique process, and my intention is to offer you a safe, loving and judgment-free space where you can reconnect with your essence.",
       cta: "Schedule your session",
+
+          cards: [
+      {
+        icon: "✦",
+        title: "Support",
+        subtitle: "Integrative Psychology",
+      },
+      {
+        icon: "❋",
+        title: "Continuous Learning",
+        subtitle: "Therapeutic Tools",
+      },
+      {
+        icon: "♡",
+        title: "Holistic Vision",
+        subtitle: "Body, Mind & Emotion",
+      },
+    ],
     },
     terapias: {
       tag: "Therapies",

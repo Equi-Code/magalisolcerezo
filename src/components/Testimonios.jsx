@@ -1,124 +1,3 @@
-// import { useState } from "react";
-// import { THEME, T } from "../constants";
-// import { StarDeco, MoonDeco, CircleDeco, Feather, FadeIn, SectionTag } from "./ui";
-
-// export default function Testimonios({ lang }) {
-//   const t = T[lang].testimonios;
-//   const [active, setActive] = useState(0);
-
-//   return (
-//     <section
-//       id="testimonios"
-//       className="py-24 px-6 md:px-12 relative overflow-hidden"
-//       style={{ backgroundColor: THEME.bg }}
-//     >
-//       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-//         <StarDeco className="absolute top-16 left-12" />
-//         <MoonDeco className="absolute bottom-16 right-16" />
-//         <CircleDeco className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 opacity-10" />
-//         {/* Pluma tono celeste frío */}
-//         <Feather
-//           filter="saturate(0.45) brightness(1.0) hue-rotate(180deg)"
-//           style={{
-//             bottom: "-6%", right: "-4%",
-//             width: "min(340px, 42vw)",
-//             opacity: 0.22,
-//             transform: "rotate(-10deg) scaleX(-1)",
-//           }}
-//         />
-//       </div>
-
-//       <div className="max-w-4xl mx-auto text-center">
-//         <FadeIn>
-//           <SectionTag label={t.tag} />
-//           <h2 style={{
-//             fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
-//             color: THEME.text,
-//             fontSize: "clamp(1.9rem, 4vw, 2.8rem)",
-//             fontWeight: 400,
-//             fontStyle: "italic",
-//           }} className="mb-16">
-//             {t.title}
-//           </h2>
-//         </FadeIn>
-
-//         <FadeIn delay={0.15}>
-//           {/* Tarjeta de testimonio */}
-//           <div
-//             className="rounded-3xl p-10 md:p-14 relative mb-8"
-//             style={{
-//               backgroundColor: THEME.card,
-//               border: `1px solid ${THEME.border}`,
-//               boxShadow: `0 8px 40px rgba(0,0,0,0.05)`,
-//             }}
-//           >
-//             {/* Comilla decorativa */}
-//             <div style={{
-//               position: "absolute",
-//               top: "1.5rem",
-//               left: "2rem",
-//               fontFamily: "'Cormorant Garamond', serif",
-//               fontSize: "6rem",
-//               lineHeight: 1,
-//               color: THEME.gold,
-//               opacity: 0.12,
-//               fontStyle: "italic",
-//               userSelect: "none",
-//               pointerEvents: "none",
-//             }}>
-//               "
-//             </div>
-
-//             <p style={{
-//               fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
-//               color: THEME.text,
-//               fontSize: "clamp(1.15rem, 2.5vw, 1.45rem)",
-//               fontStyle: "italic",
-//               lineHeight: 1.7,
-//               fontWeight: 400,
-//               position: "relative",
-//               zIndex: 1,
-//             }} className="mb-6">
-//               {t.items[active].text}
-//             </p>
-
-//             <div className="flex items-center justify-center gap-3">
-//               <div style={{ width: 24, height: 1, backgroundColor: THEME.gold }} />
-//               <span style={{
-//                 fontFamily: "'Quicksand', sans-serif",
-//                 color: THEME.gold,
-//                 fontSize: "0.8rem",
-//                 letterSpacing: "0.12em",
-//               }}>
-//                 {t.items[active].author}
-//               </span>
-//               <div style={{ width: 24, height: 1, backgroundColor: THEME.gold }} />
-//             </div>
-//           </div>
-
-//           {/* Dots de navegación */}
-//           <div className="flex justify-center gap-2 flex-wrap">
-//             {t.items.map((_, i) => (
-//               <button
-//                 key={i}
-//                 onClick={() => setActive(i)}
-//                 style={{
-//                   width: i === active ? 24 : 8,
-//                   height: 8,
-//                   borderRadius: 9999,
-//                   backgroundColor: i === active ? THEME.sage : THEME.border,
-//                   transition: "all 0.3s ease",
-//                   border: "none",
-//                   cursor: "pointer",
-//                 }}
-//               />
-//             ))}
-//           </div>
-//         </FadeIn>
-//       </div>
-//     </section>
-//   );
-// }
 
 // ============================================================
 //  TestimonialsSlider.jsx
@@ -144,77 +23,77 @@ import DividerLeaves from "./DividerLeaves";
 
 // ─── Paleta THEME — sincronizá con App.jsx ───────────────────
 const THEME = {
-  bg:        "#FCFBFA",
-  bgSage:    "#EEF3EE",
-  bgRose:    "#F7F0ED",
-  card:      "#FDFCFA",
-  sage:      "#8A9E8A",
-  rose:      "#C4968A",
-  gold:      "#C9A96E",
-  text:      "#2D2924",
+  bg: "#FCFBFA",
+  bgSage: "#EEF3EE",
+  bgRose: "#F7F0ED",
+  card: "#FDFCFA",
+  sage: "#8A9E8A",
+  rose: "#C4968A",
+  gold: "#C9A96E",
+  text: "#2D2924",
   textMuted: "#7A6E66",
-  border:    "#E8E2DC",
+  border: "#E8E2DC",
 };
 
 // ─── Tipografías ─────────────────────────────────────────────
 const FONT = {
   serif: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-  sans:  "'Quicksand', 'Nunito', system-ui, sans-serif",
+  sans: "'Quicksand', 'Nunito', system-ui, sans-serif",
 };
 
 // ─── Testimonios ─────────────────────────────────────────────
 // Podés reemplazar o ampliar este array con los datos reales
 const testimonials = [
   {
-    text:   "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
+    text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
     author: "C. M.",
-    role:   "Proceso de sanación energética",
+    role: "Proceso de sanación energética",
   },
   {
-    text:   "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
+    text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
     author: "L. P.",
-    role:   "Mindfulness y meditación",
+    role: "Mindfulness y meditación",
   },
   {
-    text:   "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
+    text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
     author: "A. R.",
-    role:   "Sanación energética en espacios",
+    role: "Sanación energética en espacios",
   },
   {
-    text:   "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
+    text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
     author: "V. S.",
-    role:   "Terapia holística integral",
+    role: "Terapia holística integral",
   },
   {
-    text:   "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
+    text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
     author: "M. G.",
-    role:   "Corte de lazos etéricos",
+    role: "Corte de lazos etéricos",
   },
   {
-    text:   "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
+    text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
     author: "F. T.",
-    role:   "Meditación guiada",
+    role: "Meditación guiada",
   },
   {
-    text:   "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
+    text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
     author: "J. N.",
-    role:   "Tapping EFT",
+    role: "Tapping EFT",
   },
   {
-    text:   "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.",
+    text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.",
     author: "S. B.",
-    role:   "Proceso de transformación personal",
+    role: "Proceso de transformación personal",
   },
 ];
 
 // ─── Traducciones del header ──────────────────────────────────
 const t = {
   es: {
-    tag:   "Testimonios",
+    tag: "Testimonios",
     title: "Voces que sanan",
   },
   en: {
-    tag:   "Testimonials",
+    tag: "Testimonials",
     title: "Voices that heal",
   },
 };
@@ -267,19 +146,21 @@ export default function TestimonialsSlider({ language = "es" }) {
   const tx = t?.[language] || t.es;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animating,    setAnimating   ] = useState(false);
-  const [direction,    setDirection   ] = useState("next"); // "next" | "prev"
-  const [paused,       setPaused      ] = useState(false);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState("next"); // "next" | "prev"
+  const [paused, setPaused] = useState(false);
   const timeoutRef = useRef(null);
 
   // ── Autoplay — se pausa al hacer hover sobre el slider ──
   useEffect(() => {
     if (paused) return;
-    timeoutRef.current = setInterval(() => {
-      transitionTo((currentIndex + 1) % testimonials.length, "next");
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     }, 6000);
-    return () => clearInterval(timeoutRef.current);
-  }, [currentIndex, paused]);
+
+    return () => clearInterval(interval);
+  }, [paused]);
 
   // ── Transición animada ────────────────────────────────────
   const transitionTo = (index, dir = "next") => {
@@ -302,27 +183,27 @@ export default function TestimonialsSlider({ language = "es" }) {
   // ── Estilos de transición del contenido ──────────────────
   const contentStyle = {
     transition: "opacity 0.38s ease, transform 0.38s ease",
-    opacity:    animating ? 0 : 1,
-    transform:  animating
+    opacity: animating ? 0 : 1,
+    transform: animating
       ? direction === "next" ? "translateY(14px)" : "translateY(-14px)"
       : "translateY(0)",
   };
 
   // ── Estilos compartidos ───────────────────────────────────
   const arrowBtnBase = {
-    width:          48,
-    height:         48,
-    borderRadius:   "50%",
+    width: 48,
+    height: 48,
+    borderRadius: "50%",
     backgroundColor: THEME.card,
-    border:         `1.5px solid rgba(138,158,138,0.3)`,
-    display:        "flex",
-    alignItems:     "center",
+    border: `1.5px solid rgba(138,158,138,0.3)`,
+    display: "flex",
+    alignItems: "center",
     justifyContent: "center",
-    cursor:         "pointer",
-    transition:     "all 0.22s ease",
-    color:          THEME.textMuted,
-    boxShadow:      `0 2px 12px rgba(45,41,36,0.06)`,
-    flexShrink:     0,
+    cursor: "pointer",
+    transition: "all 0.22s ease",
+    color: THEME.textMuted,
+    boxShadow: `0 2px 12px rgba(45,41,36,0.06)`,
+    flexShrink: 0,
   };
 
   // ── Render ────────────────────────────────────────────────
@@ -332,62 +213,103 @@ export default function TestimonialsSlider({ language = "es" }) {
 
       id="testimonios"
       style={{
-        position:        "relative",
-        // padding:         "6rem 1.5rem",
+        paddingTop: "2rem",
+        paddingBottom: "6rem",
         backgroundColor: THEME.bg,
-        overflow:        "hidden",
+        overflow: "hidden",
+        position: "relative",
       }}
     >
+
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          overflow: "hidden",
+        }}
+      >
+        {/* Círculo superior derecho */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-120px",
+            right: "-120px",
+            width: "350px",
+            height: "350px",
+            borderRadius: "9999px",
+            background: "rgba(138,158,138,0.08)",
+            filter: "blur(10px)",
+          }}
+        />
+
+        {/* Círculo inferior izquierdo */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-150px",
+            left: "-150px",
+            width: "420px",
+            height: "420px",
+            borderRadius: "9999px",
+            background: "rgba(201,169,110,0.06)",
+            filter: "blur(10px)",
+          }}
+        />
+      </div>
+
+
+
       {/* ── Decoraciones de fondo ── */}
-      <StarDeco style={{ top: "2rem",    left: "8%"   }} />
-      <StarDeco style={{ top: "2rem",    right: "12%" }} />
+      <StarDeco style={{ top: "2rem", left: "8%" }} />
+      <StarDeco style={{ top: "2rem", right: "12%" }} />
       <StarDeco style={{ bottom: "3rem", left: "18%", width: 8, height: 8 }} />
       <StarDeco style={{ bottom: "2rem", right: "8%", width: 16, height: 16 }} />
-      <MoonDeco style={{ top: "1.5rem",  right: "6%" }} />
-      <MoonDeco style={{ bottom: "2rem", left: "5%"  }} />
+      <MoonDeco style={{ top: "1.5rem", right: "6%" }} />
+      <MoonDeco style={{ bottom: "2rem", left: "5%" }} />
 
       {/* Círculo ornamental central — muy sutil */}
       <div style={{
-        position:     "absolute",
-        top:          "50%",
-        left:         "50%",
-        transform:    "translate(-50%, -50%)",
-        width:        600,
-        height:       600,
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 600,
+        height: 600,
         borderRadius: "50%",
-        border:       `1px solid rgba(201,169,110,0.07)`,
+        border: `1px solid rgba(201,169,110,0.07)`,
         pointerEvents: "none",
       }} />
       <div style={{
-        position:     "absolute",
-        top:          "50%",
-        left:         "50%",
-        transform:    "translate(-50%, -50%)",
-        width:        400,
-        height:       400,
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        height: 400,
         borderRadius: "50%",
-        border:       `1px solid rgba(138,158,138,0.07)`,
+        border: `1px solid rgba(138,158,138,0.07)`,
         pointerEvents: "none",
       }} />
 
       {/* Pluma derecha — tono celeste */}
       {/* ↓ plumas1.png: mix-blend-mode multiply elimina el fondo negro */}
       <img
-        src=""
+        src="/assets/plumas1.png"
         alt=""
         aria-hidden="true"
         style={{
-          position:      "absolute",
-          bottom:        "-5%",
-          right:         "-3%",
-          width:         "clamp(200px, 32vw, 380px)",
-          opacity:       0.55,
-          mixBlendMode:  "multiply",
-          transform:     "rotate(-8deg) scaleX(-1)",
-          objectFit:     "contain",
+          position: "absolute",
+          bottom: "-5%",
+          right: "-3%",
+          width: "clamp(200px, 32vw, 380px)",
+          opacity: 0.55,
+          mixBlendMode: "multiply",
+          transform: "rotate(-8deg) scaleX(-1)",
+          objectFit: "contain",
           pointerEvents: "none",
-          userSelect:    "none",
-          filter:        "saturate(0.4) brightness(0.88) hue-rotate(170deg)",
+          userSelect: "none",
+          filter: "saturate(0.4) brightness(0.88) hue-rotate(170deg)",
         }}
         onError={(e) => { e.target.style.display = "none"; }}
       />
@@ -403,12 +325,12 @@ export default function TestimonialsSlider({ language = "es" }) {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: "1rem" }}>
             <div style={{ width: 28, height: 1, backgroundColor: THEME.gold }} />
             <span style={{
-              fontFamily:    FONT.sans,
-              fontSize:      "0.72rem",
+              fontFamily: FONT.sans,
+              fontSize: "0.72rem",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              fontWeight:    600,
-              color:         THEME.gold,
+              fontWeight: 600,
+              color: THEME.gold,
             }}>
               {tx.tag}
             </span>
@@ -417,12 +339,12 @@ export default function TestimonialsSlider({ language = "es" }) {
 
           {/* Título */}
           <h2 style={{
-            fontFamily:  FONT.serif,
-            fontSize:    "clamp(2.2rem, 5vw, 3.4rem)",
-            fontWeight:  400,
-            fontStyle:   "italic",
-            lineHeight:  1.2,
-            color:       THEME.text,
+            fontFamily: FONT.serif,
+            fontSize: "clamp(2.2rem, 5vw, 3.4rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+            lineHeight: 1.2,
+            color: THEME.text,
           }}>
             {tx.title}
           </h2>
@@ -438,15 +360,15 @@ export default function TestimonialsSlider({ language = "es" }) {
         >
           {/* Ícono de comillas — flotante sobre la card */}
           <div style={{
-            position:       "absolute",
-            top:            "-2rem",
-            left:           "50%",
-            transform:      "translateX(-50%)",
-            zIndex:         10,
-            color:          THEME.gold,
-            opacity:        0.18,
-            lineHeight:     1,
-            pointerEvents:  "none",
+            position: "absolute",
+            top: "-2rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 10,
+            color: THEME.gold,
+            opacity: 0.18,
+            lineHeight: 1,
+            pointerEvents: "none",
           }}>
             <IconQuote />
           </div>
@@ -455,28 +377,28 @@ export default function TestimonialsSlider({ language = "es" }) {
           <div
             style={{
               backgroundColor: THEME.card,
-              borderRadius:    "1.5rem",
-              boxShadow:       `0 16px 56px rgba(45,41,36,0.08), 0 2px 8px rgba(201,169,110,0.08)`,
-              border:          `1px solid rgba(201,169,110,0.14)`,
-              padding:         "clamp(2rem, 5vw, 4rem)",
-              minHeight:       320,
-              display:         "flex",
-              flexDirection:   "column",
-              justifyContent:  "center",
-              position:        "relative",
-              overflow:        "hidden",
+              borderRadius: "1.5rem",
+              boxShadow: `0 16px 56px rgba(45,41,36,0.08), 0 2px 8px rgba(201,169,110,0.08)`,
+              border: `1px solid rgba(201,169,110,0.14)`,
+              padding: "clamp(2.5rem, 6vw, 5rem)",
+              minHeight: 380,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
             {/* Detalle de borde dorado superior */}
             <div style={{
-              position:     "absolute",
-              top:          0,
-              left:         "50%",
-              transform:    "translateX(-50%)",
-              width:        80,
-              height:       2,
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: 80,
+              height: 2,
               borderRadius: "0 0 4px 4px",
-              background:   `linear-gradient(to right, transparent, ${THEME.gold}80, transparent)`,
+              background: `linear-gradient(to right, transparent, ${THEME.gold}80, transparent)`,
             }} />
 
             {/* Contenido animado */}
@@ -484,12 +406,12 @@ export default function TestimonialsSlider({ language = "es" }) {
 
               {/* Texto del testimonio */}
               <p style={{
-                fontFamily:   FONT.serif,
-                fontSize:     "clamp(1.2rem, 2.8vw, 1.65rem)",
-                fontStyle:    "italic",
-                fontWeight:   400,
-                lineHeight:   1.72,
-                color:        THEME.text,
+                fontFamily: FONT.serif,
+                fontSize: "clamp(1.2rem, 2.8vw, 1.65rem)",
+                fontStyle: "italic",
+                fontWeight: 400,
+                lineHeight: 1.72,
+                color: THEME.text,
                 marginBottom: "2rem",
               }}>
                 "{testimonials[currentIndex].text}"
@@ -508,22 +430,22 @@ export default function TestimonialsSlider({ language = "es" }) {
               {/* Autor */}
               <div>
                 <div style={{
-                  fontFamily:   FONT.sans,
-                  fontSize:     "1rem",
-                  fontWeight:   700,
-                  color:        THEME.text,
+                  fontFamily: FONT.sans,
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  color: THEME.text,
                   marginBottom: "0.25rem",
                   letterSpacing: "0.02em",
                 }}>
                   {testimonials[currentIndex].author}
                 </div>
                 <div style={{
-                  fontFamily:    FONT.sans,
-                  fontSize:      "0.78rem",
-                  color:         THEME.sage,
+                  fontFamily: FONT.sans,
+                  fontSize: "0.78rem",
+                  color: THEME.sage,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  fontWeight:    500,
+                  fontWeight: 500,
                 }}>
                   {testimonials[currentIndex].role}
                 </div>
@@ -533,11 +455,11 @@ export default function TestimonialsSlider({ language = "es" }) {
 
           {/* ── Navegación: flechas + dots ── */}
           <div style={{
-            display:        "flex",
+            display: "flex",
             justifyContent: "center",
-            alignItems:     "center",
-            gap:            "1.25rem",
-            marginTop:      "2rem",
+            alignItems: "center",
+            gap: "1.25rem",
+            marginTop: "2rem",
           }}>
 
             {/* Flecha izquierda */}
@@ -547,15 +469,15 @@ export default function TestimonialsSlider({ language = "es" }) {
               style={arrowBtnBase}
               onMouseEnter={e => {
                 e.currentTarget.style.backgroundColor = THEME.sage;
-                e.currentTarget.style.color           = "#fff";
-                e.currentTarget.style.borderColor     = THEME.sage;
-                e.currentTarget.style.boxShadow       = `0 6px 20px rgba(138,158,138,0.35)`;
+                e.currentTarget.style.color = "#fff";
+                e.currentTarget.style.borderColor = THEME.sage;
+                e.currentTarget.style.boxShadow = `0 6px 20px rgba(138,158,138,0.35)`;
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = THEME.card;
-                e.currentTarget.style.color           = THEME.textMuted;
-                e.currentTarget.style.borderColor     = "rgba(138,158,138,0.3)";
-                e.currentTarget.style.boxShadow       = `0 2px 12px rgba(45,41,36,0.06)`;
+                e.currentTarget.style.color = THEME.textMuted;
+                e.currentTarget.style.borderColor = "rgba(138,158,138,0.3)";
+                e.currentTarget.style.boxShadow = `0 2px 12px rgba(45,41,36,0.06)`;
               }}
             >
               <IconChevronLeft />
@@ -571,13 +493,13 @@ export default function TestimonialsSlider({ language = "es" }) {
                     onClick={() => transitionTo(index, index > currentIndex ? "next" : "prev")}
                     aria-label={`Testimonio ${index + 1}`}
                     style={{
-                      width:        isActive ? 28  : 8,
-                      height:       8,
+                      width: isActive ? 28 : 8,
+                      height: 8,
                       borderRadius: "9999px",
-                      border:       "none",
-                      cursor:       "pointer",
-                      padding:      0,
-                      transition:   "all 0.3s ease",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "all 0.3s ease",
                       backgroundColor: isActive ? THEME.sage : `rgba(138,158,138,0.28)`,
                     }}
                     onMouseEnter={e => {
@@ -598,15 +520,15 @@ export default function TestimonialsSlider({ language = "es" }) {
               style={arrowBtnBase}
               onMouseEnter={e => {
                 e.currentTarget.style.backgroundColor = THEME.sage;
-                e.currentTarget.style.color           = "#fff";
-                e.currentTarget.style.borderColor     = THEME.sage;
-                e.currentTarget.style.boxShadow       = `0 6px 20px rgba(138,158,138,0.35)`;
+                e.currentTarget.style.color = "#fff";
+                e.currentTarget.style.borderColor = THEME.sage;
+                e.currentTarget.style.boxShadow = `0 6px 20px rgba(138,158,138,0.35)`;
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = THEME.card;
-                e.currentTarget.style.color           = THEME.textMuted;
-                e.currentTarget.style.borderColor     = "rgba(138,158,138,0.3)";
-                e.currentTarget.style.boxShadow       = `0 2px 12px rgba(45,41,36,0.06)`;
+                e.currentTarget.style.color = THEME.textMuted;
+                e.currentTarget.style.borderColor = "rgba(138,158,138,0.3)";
+                e.currentTarget.style.boxShadow = `0 2px 12px rgba(45,41,36,0.06)`;
               }}
             >
               <IconChevronRight />
@@ -616,23 +538,23 @@ export default function TestimonialsSlider({ language = "es" }) {
           {/* ── Indicador de progreso automático ── */}
           {!paused && (
             <div style={{
-              position:  "relative",
-              height:    2,
-              maxWidth:  200,
-              margin:    "1.25rem auto 0",
+              position: "relative",
+              height: 2,
+              maxWidth: 200,
+              margin: "1.25rem auto 0",
               borderRadius: "9999px",
               backgroundColor: `rgba(138,158,138,0.15)`,
-              overflow:  "hidden",
+              overflow: "hidden",
             }}>
               <div
                 key={currentIndex}          /* Re-monta la animación en cada cambio */
                 style={{
-                  position:   "absolute",
-                  inset:      0,
+                  position: "absolute",
+                  inset: 0,
                   borderRadius: "9999px",
                   backgroundColor: THEME.sage,
                   transformOrigin: "left center",
-                  animation:  "progressBar 6s linear forwards",
+                  animation: "progressBar 6s linear forwards",
                 }}
               />
             </div>
@@ -651,10 +573,10 @@ export default function TestimonialsSlider({ language = "es" }) {
       `}</style>
 
 
-                {/* DividerLeaves al final */}
-                <div style={{ marginTop: "1.5rem" }}>
-                  <DividerLeaves />
-                </div>
+      {/* DividerLeaves al final */}
+      <div style={{ marginTop: "1.5rem" }}>
+        <DividerLeaves />
+      </div>
 
     </section>
   );
