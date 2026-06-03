@@ -104,7 +104,7 @@ export default function Hero({ lang }) {
                 marginBottom: "1.5rem",
               }}
             >
-              Sanar es permitirte volver a habitarte en paz
+              {t.title}
             </h2>
 
             {/* Separador */}
@@ -146,8 +146,7 @@ export default function Hero({ lang }) {
                 margin: "0 auto 2.5rem",
               }}
             >
-              Acompaño tu proceso de sanación para ayudarte a transformar tu energía,
-              manifestar bienestar y reconectar con tu esencia.
+              {t.description}
             </p>
 
             {/* Botones */}
@@ -166,7 +165,7 @@ export default function Hero({ lang }) {
                   boxShadow: `0 10px 30px ${THEME.sage}35`,
                 }}
               >
-                Reservar sesión
+                {t.cta1}
               </button>
 
               <button
@@ -183,7 +182,7 @@ export default function Hero({ lang }) {
                   fontFamily: "'Quicksand', sans-serif",
                 }}
               >
-                Conocer mis terapias
+                {t.cta2}
               </button>
             </div>
           </div>
@@ -267,7 +266,7 @@ linear-gradient(
               }}
             >
               <div style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.sage, fontSize: "0.75rem", fontWeight: 600 }}>
-                ✦ Sesiones Online
+                ✦ {t.badge}
               </div>
             </div>
 

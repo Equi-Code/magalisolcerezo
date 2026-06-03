@@ -1,31 +1,15 @@
-// ============================================================
-//  PrivacyPolicy.jsx
-//  Lee contenido desde T[lang].privacy (constants.js)
-//  Incluye Navbar y Footer reales del proyecto.
-//
-//  En App.jsx:
-//    const [page, setPage] = useState("home");
-//
-//    if (page === "privacy")
-//      return (
-//        <PrivacyPolicy
-//          lang={lang}
-//          setLang={setLang}
-//          onBack={() => { setPage("home"); window.scrollTo(0,0); }}
-//        />
-//      );
-//
-//  En Footer.jsx, agregar prop y botón:
-//    <Footer lang={lang} onPrivacy={() => setPage("privacy")} />
-// ============================================================
-
 import { T, THEME } from "../constants";
-import Navbar  from "./Navbar";
-import Footer  from "./Footer";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import {
+  StarDeco,
+  MoonDeco,
+  CircleDeco
+} from "./ui";
 
 const FONT = {
   serif: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-  sans:  "'Quicksand', 'Nunito', system-ui, sans-serif",
+  sans: "'Quicksand', 'Nunito', system-ui, sans-serif",
 };
 
 // ─── Separador ornamental ─────────────────────────────────
@@ -43,12 +27,12 @@ const Divider = () => (
 // ─── Párrafo ──────────────────────────────────────────────
 const P = ({ children }) => (
   <p style={{
-    fontFamily:   FONT.sans,
-    fontSize:     "0.94rem",
-    lineHeight:   1.88,
-    color:        THEME.textMuted,
+    fontFamily: FONT.sans,
+    fontSize: "0.94rem",
+    lineHeight: 1.88,
+    color: THEME.textMuted,
     marginBottom: "1rem",
-    marginTop:    0,
+    marginTop: 0,
   }}>
     {children}
   </p>
@@ -60,14 +44,14 @@ const Ul = ({ items, card = false }) => {
     <ul style={{ padding: 0, margin: 0, listStyle: "none" }}>
       {items.map((item, i) => (
         <li key={i} style={{
-          display:      "flex",
-          gap:          "0.6rem",
-          alignItems:   "flex-start",
+          display: "flex",
+          gap: "0.6rem",
+          alignItems: "flex-start",
           marginBottom: "0.55rem",
-          fontFamily:   FONT.sans,
-          fontSize:     "0.92rem",
-          lineHeight:   1.75,
-          color:        THEME.textMuted,
+          fontFamily: FONT.sans,
+          fontSize: "0.92rem",
+          lineHeight: 1.75,
+          color: THEME.textMuted,
         }}>
           <span style={{ color: THEME.gold, flexShrink: 0, marginTop: "0.28rem", fontSize: "0.58rem" }}>✦</span>
           {item}
@@ -81,10 +65,10 @@ const Ul = ({ items, card = false }) => {
   return (
     <div style={{
       backgroundColor: THEME.bgSage,
-      borderRadius:    "1rem",
-      padding:         "1.2rem 1.5rem",
-      border:          `1px solid rgba(138,158,138,0.2)`,
-      marginBottom:    "1rem",
+      borderRadius: "1rem",
+      padding: "1.2rem 1.5rem",
+      border: `1px solid rgba(138,158,138,0.2)`,
+      marginBottom: "1rem",
     }}>
       {inner}
     </div>
@@ -96,16 +80,16 @@ const Article = ({ article }) => (
   <div>
     <Divider />
     <h2 style={{
-      fontFamily:   FONT.serif,
-      fontSize:     "clamp(1.2rem, 2.5vw, 1.6rem)",
-      fontWeight:   400,
-      fontStyle:    "italic",
-      color:        THEME.text,
+      fontFamily: FONT.serif,
+      fontSize: "clamp(1.2rem, 2.5vw, 1.6rem)",
+      fontWeight: 400,
+      fontStyle: "italic",
+      color: THEME.text,
       marginBottom: "1rem",
-      marginTop:    0,
-      display:      "flex",
-      alignItems:   "baseline",
-      gap:          "0.55rem",
+      marginTop: 0,
+      display: "flex",
+      alignItems: "baseline",
+      gap: "0.55rem",
     }}>
       <span style={{ color: THEME.gold, fontStyle: "normal", fontSize: "0.88em", fontFamily: FONT.sans, fontWeight: 500 }}>
         {article.number}.
@@ -123,16 +107,16 @@ const Article = ({ article }) => (
 
     {article.blockquote && (
       <div style={{
-        borderLeft:  `3px solid ${THEME.gold}55`,
+        borderLeft: `3px solid ${THEME.gold}55`,
         paddingLeft: "1.25rem",
-        marginTop:   "0.5rem",
-        marginBottom:"0.5rem",
-        fontFamily:  FONT.serif,
-        fontStyle:   "italic",
-        fontSize:    "1rem",
-        color:       THEME.text,
-        opacity:     0.82,
-        lineHeight:  1.7,
+        marginTop: "0.5rem",
+        marginBottom: "0.5rem",
+        fontFamily: FONT.serif,
+        fontStyle: "italic",
+        fontSize: "1rem",
+        color: THEME.text,
+        opacity: 0.82,
+        lineHeight: 1.7,
       }}>
         {article.blockquote}
       </div>
@@ -148,7 +132,51 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
   const c = T[lang]?.privacy || T.es.privacy;
 
   return (
-    <div style={{ backgroundColor: THEME.bg, minHeight: "100vh" }}>
+
+
+
+
+
+    <div style={{
+      backgroundColor: "transparent", minHeight: "100vh", position: "relative",
+      overflow: "hidden"
+    }}>
+
+
+      <div
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+        style={{
+          zIndex: 1,
+          overflow: "hidden"
+        }}
+      >
+        <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-15" />
+        <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-10" />
+
+        <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3 opacity-30" />
+        <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
+        <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
+
+        <MoonDeco className="absolute bottom-1/4 left-1/3" />
+      </div>
+
+<img
+  src="/assets/plumas1.png"
+  alt=""
+  aria-hidden="true"
+  style={{
+    position: "absolute",
+    top: "2%",
+    right: "-5%",
+    width: "min(420px, 38vw)",
+    opacity: 0.16,
+    transform: "rotate(8deg)",
+    filter: "sepia(30%) saturate(70%)",
+    pointerEvents: "none",
+    zIndex: 1,
+  }}
+/>
+
 
       {/* ── Navbar real del proyecto ──────────────────────────
           Pasamos lang y setLang para que el switch ES/EN funcione.
@@ -158,30 +186,45 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
       <Navbar
         lang={lang}
         setLang={setLang}
-        // Override del click en el logo — vuelve a la landing
-        onLogoClick={onBack}
+        onNavigate={(section) => {
+          onBack();
+
+          setTimeout(() => {
+            document
+              .getElementById(section)
+              ?.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }}
       />
 
       {/* ── Contenido principal ── */}
-      <main style={{ maxWidth: "52rem", margin: "0 auto", padding: "7rem 1.5rem 5rem" }}>
+      <main
+        style={{
+          position: "relative",
+          zIndex: 2,
+          maxWidth: "52rem",
+          margin: "0 auto",
+          padding: "10rem 1.5rem 5rem"
+        }}
+      >
 
         {/* ── Hero de la página ── */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <div style={{
-            display:        "flex",
-            alignItems:     "center",
+            display: "flex",
+            alignItems: "center",
             justifyContent: "center",
-            gap:            10,
-            marginBottom:   "1rem",
+            gap: 10,
+            marginBottom: "1rem",
           }}>
             <div style={{ width: 28, height: 1, backgroundColor: THEME.gold }} />
             <span style={{
-              fontFamily:    FONT.sans,
-              fontSize:      "0.7rem",
+              fontFamily: FONT.sans,
+              fontSize: "0.7rem",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              fontWeight:    600,
-              color:         THEME.gold,
+              fontWeight: 600,
+              color: THEME.gold,
             }}>
               {c.tag}
             </span>
@@ -189,23 +232,23 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           </div>
 
           <h1 style={{
-            fontFamily:   FONT.serif,
-            fontSize:     "clamp(2rem, 5vw, 3.2rem)",
-            fontWeight:   400,
-            fontStyle:    "italic",
-            lineHeight:   1.2,
-            color:        THEME.text,
+            fontFamily: FONT.serif,
+            fontSize: "clamp(2rem, 5vw, 3.2rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+            lineHeight: 1.2,
+            color: THEME.text,
             marginBottom: "0.75rem",
           }}>
             {c.title}
           </h1>
 
           <p style={{
-            fontFamily:    FONT.sans,
-            fontSize:      "0.82rem",
-            color:         THEME.textMuted,
+            fontFamily: FONT.sans,
+            fontSize: "0.82rem",
+            color: THEME.textMuted,
             letterSpacing: "0.04em",
-            opacity:       0.75,
+            opacity: 0.75,
           }}>
             {c.updatedLabel} {c.lastUpdated}
           </p>
@@ -214,10 +257,10 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
         {/* ── Card contenedor ── */}
         <div style={{
           backgroundColor: THEME.card,
-          borderRadius:    "1.5rem",
-          border:          `1px solid ${THEME.border}`,
-          padding:         "clamp(1.5rem, 4vw, 3rem)",
-          boxShadow:       `0 4px 32px rgba(45,41,36,0.05)`,
+          borderRadius: "1.5rem",
+          border: `1px solid ${THEME.border}`,
+          padding: "clamp(1.5rem, 4vw, 3rem)",
+          boxShadow: `0 4px 32px rgba(45,41,36,0.05)`,
         }}>
           {/* Intro */}
           {c.intro.map((p, i) => <P key={i}>{p}</P>)}
@@ -230,23 +273,23 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           {/* Cierre */}
           <Divider />
           <p style={{
-            fontFamily:  FONT.serif,
-            fontSize:    "1.1rem",
-            fontStyle:   "italic",
-            color:       THEME.textMuted,
-            textAlign:   "center",
-            marginTop:   "1rem",
-            marginBottom:"0.5rem",
+            fontFamily: FONT.serif,
+            fontSize: "1.1rem",
+            fontStyle: "italic",
+            color: THEME.textMuted,
+            textAlign: "center",
+            marginTop: "1rem",
+            marginBottom: "0.5rem",
           }}>
             {c.closingQuote}
           </p>
           <p style={{
             fontFamily: FONT.sans,
-            fontSize:   "0.75rem",
-            color:      THEME.textMuted,
-            textAlign:  "center",
-            opacity:    0.5,
-            margin:     0,
+            fontSize: "0.75rem",
+            color: THEME.textMuted,
+            textAlign: "center",
+            opacity: 0.5,
+            margin: 0,
           }}>
             — Magalí Sol Cerezo ✦
           </p>
@@ -257,21 +300,21 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           <button
             onClick={onBack}
             style={{
-              display:         "inline-flex",
-              alignItems:      "center",
-              gap:             "0.5rem",
-              padding:         "0.75rem 2rem",
-              borderRadius:    "9999px",
-              border:          "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.75rem 2rem",
+              borderRadius: "9999px",
+              border: "none",
               backgroundColor: THEME.sage,
-              color:           "#fff",
-              fontFamily:      FONT.sans,
-              fontSize:        "0.88rem",
-              fontWeight:      600,
-              cursor:          "pointer",
-              boxShadow:       `0 5px 22px rgba(138,158,138,0.35)`,
-              transition:      "all 0.25s",
-              letterSpacing:   "0.03em",
+              color: "#fff",
+              fontFamily: FONT.sans,
+              fontSize: "0.88rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              boxShadow: `0 5px 22px rgba(138,158,138,0.35)`,
+              transition: "all 0.25s",
+              letterSpacing: "0.03em",
             }}
             onMouseEnter={e => {
               e.currentTarget.style.transform = "translateY(-2px)";

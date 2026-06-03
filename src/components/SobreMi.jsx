@@ -180,7 +180,7 @@ export default function SobreMi({ lang }) {
               {t.role}
             </p>
 
-            {[t.p1, t.p2, t.p3].map((p, i) => (
+            {[t.p1, t.p2, t.p3, t.p4, t.p5, t.p6].map((p, i) => (
               <p
                 key={i}
                 style={{

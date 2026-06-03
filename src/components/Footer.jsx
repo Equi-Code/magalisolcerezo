@@ -2,7 +2,7 @@ import { THEME, T } from "../constants";
 import { StarDeco, Feather, scrollTo } from "./ui";
 
 // ↓ REEMPLAZAR con el número real de WhatsApp de Magalí (formato internacional sin +)
-const WA_NUMBER = "5491100000000";
+const WA_NUMBER = "5491160519556";
 
 
 
@@ -152,6 +152,7 @@ export default function Footer({ lang, onPrivacy }) {
                 ["sobre", nav.sobre],
                 ["terapias", nav.terapias],
                 ["testimonios", nav.testimonios],
+                ["faq", nav.faq],
                 ["contacto", nav.contacto],
               ].map(([id, label]) => (
                 <button
@@ -251,7 +252,7 @@ export default function Footer({ lang, onPrivacy }) {
                     letterSpacing: "0.02em",
                   }}
                 >
-                  mscerezopsicoholistica<br />@gmail.com
+                  info.magalisolcerezo<br />@gmail.com
                 </span>
               </div>
               <div className="flex items-center gap-2">
@@ -340,7 +341,7 @@ export default function Footer({ lang, onPrivacy }) {
         {/* WhatsApp FAB — siempre visible */}
         {/* ↓ REEMPLAZAR el número con el número real de WhatsApp de Magalí (sin +, con código país) */}
         <a
-          href="https://api.whatsapp.com/send?phone=5491100000000"
+          href="https://api.whatsapp.com/send?phone=5491160519556"
           target="_blank"
           rel="noreferrer"
           className="fixed bottom-6 right-6 w-14 h-14 flex items-center justify-center rounded-full z-50 transition-transform hover:scale-110 active:scale-95"

@@ -46,37 +46,37 @@ const FONT = {
 const testimonials = [
   {
     text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
-    author: "C. M.",
+    author: "Mayra C",
     role: "Proceso de sanación energética",
   },
   {
     text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
-    author: "L. P.",
+    author: "Macarena C.",
     role: "Mindfulness y meditación",
   },
   {
     text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
-    author: "A. R.",
+    author: "Giselle H.",
     role: "Sanación energética en espacios",
   },
   {
     text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
-    author: "V. S.",
+    author: "Ayelen, H.",
     role: "Terapia holística integral",
   },
   {
     text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
-    author: "M. G.",
+    author: "Oriana A.",
     role: "Corte de lazos etéricos",
   },
   {
     text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
-    author: "F. T.",
+    author: "Analía P.",
     role: "Meditación guiada",
   },
   {
     text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
-    author: "J. N.",
+    author: "Noelia P.",
     role: "Tapping EFT",
   },
   {

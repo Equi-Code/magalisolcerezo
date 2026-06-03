@@ -495,7 +495,7 @@ import DividerLeaves from "./DividerLeaves";
 import { StarDeco, MoonDeco, CircleDeco} from "./ui";
 
 // ─── Config ───────────────────────────────────────────────
-const WHATSAPP_NUMBER = "5491100000000"; // ← REEMPLAZAR
+const WHATSAPP_NUMBER = "5491160519556"; // ← REEMPLAZAR
 const INSTAGRAM_URL   = "https://instagram.com/magalisol.cerezo";
 
 // ─── Tipografías ──────────────────────────────────────────
@@ -673,7 +673,7 @@ function ContactModal({ lang, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // ↓ TODO: conectar EmailJS → mscerezopsicoholistica@gmail.com
+    // ↓ TODO: conectar EmailJS → info.magalisolcerezo@gmail.com
     console.log("[ContactForm] Consulta enviada:", form);
     setSent(true);
     setForm({ name: "", email: "", therapy: "", message: "" });

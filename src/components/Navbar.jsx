@@ -4,10 +4,13 @@ import { scrollTo } from "./ui";
 
 
 
-export default function Navbar({ lang, setLang }) {
+export default function Navbar({ lang, setLang, onNavigate }) {
   const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+
+
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -20,10 +23,20 @@ export default function Navbar({ lang, setLang }) {
     { label: t.sobre, id: "sobre" },
     { label: t.terapias, id: "terapias" },
     { label: t.testimonios, id: "testimonios" },
+    { label: t.faq, id: "faq" },
     { label: t.contacto, id: "contacto" },
   ];
 
-  const handleLink = (id) => { setMenuOpen(false); scrollTo(id); };
+  const handleLink = (id) => {
+    setMenuOpen(false);
+
+    if (onNavigate) {
+      onNavigate(id);
+      return;
+    }
+
+    scrollTo(id);
+  };
 
   return (
     <nav
@@ -33,8 +46,8 @@ export default function Navbar({ lang, setLang }) {
         borderBottom: scrolled ? `1px solid ${THEME.border}` : "none",
         transition: "all 0.4s ease",
         background: "rgba(252,251,250,0.92)",
-         backdropFilter: "blur(12px)",
-         borderBottom: `1px solid ${THEME.border}`,
+        backdropFilter: "blur(12px)",
+        borderBottom: `1px solid ${THEME.border}`,
 
       }}
       className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5"
@@ -43,7 +56,13 @@ export default function Navbar({ lang, setLang }) {
 
         {/* ── Logo ─────────────────────────────────────── */}
         <button
-          onClick={() => handleLink("inicio")}
+          onClick={() => {
+            if (onNavigate) {
+              onNavigate("inicio");
+            } else {
+              handleLink("inicio");
+            }
+          }}
           className="flex items-center gap-3"
         >
           <img
@@ -96,7 +115,7 @@ export default function Navbar({ lang, setLang }) {
         </button>
 
         {/* ── Desktop nav ──────────────────────────────── */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {links.map((l) => (
             <button
               key={l.id}

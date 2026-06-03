@@ -17,6 +17,7 @@ export default function FAQ({ lang }) {
 
 
     <div
+      id="faq"
       className="relative pt-24 pb-10 px-5 overflow-hidden"
       style={{
         background:
