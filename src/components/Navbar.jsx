@@ -23,6 +23,7 @@ export default function Navbar({ lang, setLang, onNavigate }) {
     { label: t.sobre, id: "sobre" },
     { label: t.terapias, id: "terapias" },
     { label: t.testimonios, id: "testimonios" },
+    { label: t.sesiones, id: "sesiones" },
     { label: t.faq, id: "faq" },
     { label: t.contacto, id: "contacto" },
   ];

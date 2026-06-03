@@ -3,7 +3,7 @@ import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
 import DividerLeaves from "./DividerLeaves";
  
 // ─── WhatsApp ────────────────────────────────────────────
-const WHATSAPP_NUMBER = "5491100000000"; // ← REEMPLAZAR
+const WHATSAPP_NUMBER = "5491160519556"; // ← REEMPLAZAR
  
 const THEME = {
   bg:        "#FCFBFA",
