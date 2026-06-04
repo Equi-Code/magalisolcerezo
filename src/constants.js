@@ -204,7 +204,7 @@ export const T = {
           list: [
             "Nombre: Magalí Sol Cerezo",
             "Profesión: Licenciada en Psicología — Terapeuta Holística",
-            "Correo electrónico: mscerezopsicoholistica@gmail.com",
+            "Correo electrónico: info.magalisolcerezo@gmail.com",
             "Instagram: @magalisol.cerezo",
             "Modalidad: Atención 100% online",
           ],
@@ -283,7 +283,7 @@ export const T = {
             "Presentar una reclamación ante la Dirección Nacional de Protección de Datos Personales (DNPDP).",
           ],
           paragraphsAfter: [
-            "Para ejercer cualquiera de estos derechos, podés escribirnos a mscerezopsicoholistica@gmail.com. Responderemos tu solicitud en un plazo máximo de 30 días hábiles.",
+            "Para ejercer cualquiera de estos derechos, podés escribirnos a info.magalisolcerezo@gmail.com. Responderemos tu solicitud en un plazo máximo de 30 días hábiles.",
           ],
         },
         {
@@ -341,7 +341,7 @@ export const T = {
           title: "Contacto",
           paragraphs: ["Si tenés preguntas o querés ejercer tus derechos, podés contactarnos:"],
           list: [
-            "📧 Email: mscerezopsicoholistica@gmail.com",
+            "📧 Email: info.magalisolcerezo@gmail.com",
             "📸 Instagram: @magalisol.cerezo",
             "💬 WhatsApp: disponible desde el sitio web",
           ],
@@ -524,7 +524,7 @@ export const T = {
     },
 
     privacy: {
-      lastUpdated: "May 2025",
+      lastUpdated: "May 2026",
       tag: "Legal document",
       title: "Privacy Policy",
       backBtn: "← Back to home",
@@ -542,7 +542,7 @@ export const T = {
           list: [
             "Name: Magalí Sol Cerezo",
             "Profession: Licensed Psychologist — Holistic Therapist",
-            "Email: mscerezopsicoholistica@gmail.com",
+            "Email: info.magalisolcerezo@gmail.com",
             "Instagram: @magalisol.cerezo",
             "Format: 100% online sessions",
           ],

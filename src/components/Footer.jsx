@@ -11,6 +11,7 @@ export default function Footer({ lang, onPrivacy }) {
   const nav = T[lang].nav;
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
+
   return (
     <>
       {/* Wave divider between last section and footer */}
@@ -18,15 +19,31 @@ export default function Footer({ lang, onPrivacy }) {
         <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ display: "block", width: "100%", height: 60 }}>
           <path
             d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"
-            fill="#1E1B17"
+            fill="#031615"
           />
         </svg>
       </div>
 
       <footer
         className="relative overflow-hidden"
-        style={{ backgroundColor: "#1E1B17" }}
+        style={{
+          background: `
+      radial-gradient(
+        ellipse 55% 45% at 50% 42%,
+        rgba(56,120,112,0.55) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        circle at center,
+        #1C4F4A 0%,
+        #0E3330 45%,
+        #072220 75%,
+        #031615 100%
+      )
+    `,
+        }}
       >
+
         {/* Feather decorations inside footer — mix-blend-mode: screen over dark bg */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Pluma grande izquierda */}
@@ -96,17 +113,51 @@ export default function Footer({ lang, onPrivacy }) {
 
         {/* Links grid */}
         <div className="relative max-w-6xl mx-auto px-6 md:px-12 py-14">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
 
             {/* Brand column */}
-            <div className="sm:col-span-2 md:col-span-1">
+            <div className="sm:col-span-2 md:col-span-1 text-center md:text-left">
+
               {/* ↓ LOGO EN FOOTER — versión clara o usar texto fallback */}
-              <img
-                src="/assets/logo-light.png"
-                alt="Magalí Sol Cerezo"
-                className="h-9 w-auto object-contain mb-4"
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
+              <div
+                style={{
+                  position: "relative",
+                  display: "inline-block",
+                  marginBottom: "1rem",
+                }}
+              >
+                {/* Brillo detrás */}
+                <div
+                  style={{
+                    position: "absolute",
+                    width: 180,
+                    height: 180,
+                    borderRadius: "50%",
+                    background:
+                      "radial-gradient(circle, rgba(56,120,112,0.35) 0%, transparent 70%)",
+                    filter: "blur(35px)",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 0,
+                    pointerEvents: "none",
+                  }}
+                />
+
+                {/* Logo */}
+                <img
+                  src="/assets/Logo.png"
+                  alt="Magalí Sol Cerezo"
+                  className="h-12 w-auto object-contain"
+                  style={{
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                  }}
+                />
+              </div>
               <p
                 style={{
                   fontFamily: "'Cormorant Garamond', serif",
@@ -268,75 +319,105 @@ export default function Footer({ lang, onPrivacy }) {
                 </span>
               </div>
             </div>
+            <div
+              style={{
+                textAlign: "center",
+                paddingBottom: "2rem",
+              }}
+            >
+              <button
+                onClick={onPrivacy}
+                style={{
+                  fontFamily: "'Quicksand', sans-serif",
+                  fontSize: "0.78rem",
+                  color: "rgba(245,240,234,0.55)",
+                  background: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  transition: "all .2s ease",
+                }}
+              >
+                {lang === "es"
+                  ? "Aviso Legal y Privacidad"
+                  : "Legal Notice & Privacy"}
+              </button>
+            </div>
+
           </div>
         </div>
 
 
+
+
+
         {/* Bottom bar */}
-<div
-  className="relative px-6 md:px-12 py-5"
-  style={{
-    borderTop: "1px solid rgba(245,240,234,0.07)",
-  }}
->
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: "1rem",
-    }}
-  >
-    <p
-      style={{
-        fontFamily: "'Quicksand', sans-serif",
-        color: "rgba(245,240,234,0.2)",
-        fontSize: "0.72rem",
-        letterSpacing: "0.04em",
-      }}
-    >
-      {t.rights}
-    </p>
+        <div
+          className="relative px-6 md:px-12 py-5"
+          style={{
+            borderTop: "1px solid rgba(245,240,234,0.07)",
+          }}
+        >
+          <div
+            className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "1rem",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: "rgba(245,240,234,0.2)",
+                fontSize: "0.72rem",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {t.rights}
+            </p>
 
-    <button
-      onClick={onPrivacy}
-      style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: "0.72rem",
-        color: "rgba(245,240,234,0.35)",
-        background: "transparent",
-        border: "none",
-        cursor: "pointer",
-        letterSpacing: "0.04em",
-        transition: "all .2s ease",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = THEME.gold;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "rgba(245,240,234,0.35)";
-      }}
-    >
-      {lang === "es"
-        ? "Política de privacidad"
-        : "Privacy Policy"}
-    </button>
+            {/* <button
+              onClick={onPrivacy}
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                fontSize: "0.72rem",
+                color: "rgba(245,240,234,0.35)",
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+                letterSpacing: "0.04em",
+                transition: "all .2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = THEME.gold;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "rgba(245,240,234,0.35)";
+              }}
+            >
+              {lang === "es"
+                ? "Aviso Legal y Privacidad"
+                : "Legal Notice & Privacy"}
+            </button> */}
 
-    <p
-      style={{
-        fontFamily: "'Quicksand', sans-serif",
-        color: "rgba(245,240,234,0.18)",
-        fontSize: "0.72rem",
-        letterSpacing: "0.04em",
-      }}
-    >
-      {lang === "es"
-        ? "Diseñado con amor ✦"
-        : "Designed with love ✦"}
-    </p>
-  </div>
-</div>
+            <p
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: "rgba(245,240,234,0.18)",
+                fontSize: "0.72rem",
+                letterSpacing: "0.04em",
+              }}
+            >
+              {lang === "es"
+                ? "Diseñado con amor ✦"
+                : "Designed with love ✦"}
+            </p>
+          </div>
+        </div>
 
         {/* WhatsApp FAB — siempre visible */}
         {/* ↓ REEMPLAZAR el número con el número real de WhatsApp de Magalí (sin +, con código país) */}
