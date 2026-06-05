@@ -331,7 +331,19 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
       </main>
 
       {/* ── Footer real del proyecto ────────────────────────── */}
-      <Footer lang={lang} onPrivacy={onBack} />
+      <Footer
+  lang={lang}
+  onPrivacy={onBack}
+  onNavigate={(section) => {
+    onBack();
+
+    setTimeout(() => {
+      document.getElementById(section)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 300);
+  }}
+/>
     </div>
   );
 }

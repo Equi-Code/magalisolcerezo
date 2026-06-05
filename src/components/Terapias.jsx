@@ -298,7 +298,7 @@ const THERAPY_META = [
     btnFill: "#A85F72",
   },
   {
-    icon: "/assets/iconos_7.png",
+    icon: "/assets/icono_7.svg",
     iconAlt: "Árbol de vida — Biodecodificación",
     circleBg: "#D7D7C7",
     accent: "#8A8D6F",

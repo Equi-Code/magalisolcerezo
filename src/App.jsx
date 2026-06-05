@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import SobreMi from "./components/SobreMi";
 import Terapias from "./components/Terapias";
-import Sesiones from "./components/Sesiones";
+import OnlineSessions from "./components/Sesiones";
 import TestimonialsSlider from "./components/Testimonios";
 import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
@@ -18,19 +18,36 @@ import PrivacyPolicy from "./components/Privacypolicy";
 export default function App() {
   const [lang, setLang] = useState("es");
   const [splashDone, setSplashDone] = useState(false);
-   const [page, setPage] = useState("home");
+  const [page, setPage] = useState("home");
 
 
-    const goToPrivacy = () => {
+  const navigateToSection = (id) => {
+    console.log("App recibió:", id);
+
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 100);
+  };
+
+
+
+  useEffect(() => {
+    console.log("APP LANG:", lang);
+  }, [lang]);
+
+  const goToPrivacy = () => {
     setPage("privacy");
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
-    const goToHome = () => {
+  const goToHome = () => {
     setPage("home");
     window.scrollTo({ top: 0, behavior: "instant" });
   };
- 
+
   // ── Inyectar Google Fonts + estilos globales ──────────────────────────────
   useEffect(() => {
     // Fonts
@@ -66,13 +83,14 @@ export default function App() {
     }
   }, []);
 
-    if (page === "privacy") {
+  if (page === "privacy") {
     return (
-      <PrivacyPolicy
-        lang={lang}
-        setLang={setLang}
-        onBack={goToHome}
-      />
+<PrivacyPolicy
+  lang={lang}
+  setLang={setLang}
+  onBack={goToHome}
+  onNavigate={navigateToSection}
+/>
     );
   }
 
@@ -103,16 +121,21 @@ export default function App() {
         <Terapias lang={lang} />
 
 
-        <Sesiones lang={lang} />
+        <OnlineSessions lang={lang} />
 
-    
+
         <FAQ lang={lang} />
 
         <TestimonialsSlider lang={lang} />
 
-                <Contacto lang={lang} />
+        <Contacto lang={lang} />
 
-        <Footer lang={lang} onPrivacy={goToPrivacy}/>
+        <Footer lang={lang}
+          lang={lang}
+          onPrivacy={goToPrivacy}
+          onNavigate={navigateToSection} />
+
+
       </div>
     </>
   );

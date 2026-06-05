@@ -9,7 +9,7 @@ export default function Navbar({ lang, setLang, onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-
+  console.log("NAVBAR LANG:", lang);
 
 
   useEffect(() => {
@@ -42,13 +42,15 @@ export default function Navbar({ lang, setLang, onNavigate }) {
   return (
     <nav
       style={{
-        backgroundColor: scrolled ? "rgba(252,251,250,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid ${THEME.border}` : "none",
+  background: scrolled
+    ? "rgba(252,251,250,0.92)"
+    : "transparent",
+
+  backdropFilter: scrolled ? "blur(12px)" : "none",
+  borderBottom: scrolled
+    ? `1px solid ${THEME.border}`
+    : "none",
         transition: "all 0.4s ease",
-        background: "rgba(252,251,250,0.92)",
-        backdropFilter: "blur(12px)",
-        borderBottom: `1px solid ${THEME.border}`,
 
       }}
       className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5"

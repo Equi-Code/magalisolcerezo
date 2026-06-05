@@ -3,8 +3,15 @@ import { THEME, T } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
 import DividerLeaves from "./DividerLeaves";
 
+
 export default function SobreMi({ lang }) {
   const t = T[lang].sobre;
+
+  const cardColors = [
+  THEME.sage,
+  THEME.rose,
+  THEME.gold,
+];
 
   return (
     <section
@@ -130,165 +137,220 @@ export default function SobreMi({ lang }) {
 
 
         {/* Texto */}
-        <FadeIn delay={0.25}>
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                style={{
-                  width: 28,
-                  height: 1,
-                  backgroundColor: THEME.gold,
-                }}
-              />
-
-              <span
-                style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: THEME.gold,
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                }}
-              >
-                {t.tag}
-              </span>
-            </div>
-
-            <h2
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <div
               style={{
-                fontFamily:
-                  "'Cormorant Garamond', 'Playfair Display', serif",
-                color: THEME.text,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                fontWeight: 400,
-                lineHeight: 1.15,
+                width: 28,
+                height: 1,
+                backgroundColor: THEME.gold,
               }}
-              className="mb-1"
-            >
-              {t.title}
-            </h2>
+            />
 
-            <p
+            <span
               style={{
                 fontFamily: "'Quicksand', sans-serif",
                 color: THEME.gold,
-                fontSize: "0.82rem",
-                letterSpacing: "0.1em",
+                fontSize: "0.75rem",
+                letterSpacing: "0.18em",
+                textTransform: "uppercase",
               }}
-              className="mb-8"
             >
-              {t.role}
-            </p>
+              {t.tag}
+            </span>
+          </div>
 
-            {[t.p1, t.p2, t.p3, t.p4, t.p5, t.p6].map((p, i) => (
-              <p
-                key={i}
+          <h2
+            style={{
+              fontFamily:
+                "'Cormorant Garamond', 'Playfair Display', serif",
+              color: THEME.text,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 400,
+              lineHeight: 1.15,
+            }}
+            className="mb-1"
+          >
+            {t.title}
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'Quicksand', sans-serif",
+              color: THEME.gold,
+              fontSize: "0.82rem",
+              letterSpacing: "0.1em",
+            }}
+            className="mb-8"
+          >
+            {t.role}
+          </p>
+          {/* Herramientas terapéuticas */}
+          {/* Texto principal */}
+          {[t.p1, t.p2, t.p3].map((p, i) => (
+            <p
+              key={i}
+              style={{
+                fontFamily: "'Quicksand', sans-serif",
+                color: THEME.textMuted,
+                lineHeight: 1.9,
+                marginBottom: "1rem",
+                fontSize: "0.97rem",
+              }}
+            >
+              {p}
+            </p>
+          ))}
+
+          {/* Herramientas terapéuticas */}
+
+          <div
+            style={{
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+            }}
+          >
+            {t.points.map((item, index) => (
+              <div
+                key={item.title}
                 style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: THEME.textMuted,
-                  lineHeight: 1.85,
-                  marginBottom: "1.1rem",
-                  fontSize: "0.97rem",
+                  display: "flex",
+                  gap: "0.9rem",
+                  alignItems: "flex-start",
+                  
                 }}
               >
-                {p}
-              </p>
+                <div
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: cardColors[index],
+                    marginTop: 8,
+                    flexShrink: 0,
+                  }}
+                />
+
+                <div>
+                  <h4
+                    style={{
+                      fontFamily: "'Quicksand', sans-serif",
+                      fontWeight: 600,
+                      color: THEME.text,
+                      fontSize: "1.05rem",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    {item.title}
+                  </h4>
+
+                  <p
+                    style={{
+                      color: THEME.textMuted,
+                      lineHeight: 1.7,
+                      fontSize: "0.95rem",
+                    }}
+                  >
+                    {item.text}
+                  </p>
+                </div>
+              </div>
             ))}
-
-            <div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4"
-              style={{
-                display: "grid",
-                
-                gap: "1rem",
-                marginTop: "2rem",
-                transition: "all .35s ease",
-                cursor: "default",
-              }}
-            >
-
-              
-              
-{t.cards.map((item) => (
-  <div
-    key={item.title}
-    style={{
-      background: "rgba(255,255,255,0.75)",
-      backdropFilter: "blur(6px)",
-      border: `1px solid ${item.color}20`,
-      padding: "1rem",
-      borderRadius: "1rem",
-      transition: "all .3s ease",
-      minHeight: "120px",
-    }}
-  >
-    <div
-      style={{
-        width: 30,
-        height: 30,
-        borderRadius: "50%",
-        background: `${item.color}15`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: "0.8rem",
-        color: item.color,
-        fontSize: "1rem",
-      }}
-    >
-      {item.icon}
-    </div>
-
-    <div
-      style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontWeight: 700,
-        color: THEME.text,
-        marginBottom: "0.25rem",
-        fontSize: "0.8rem",
-      }}
-    >
-      {item.title}
-    </div>
-
-    <div
-      style={{
-        fontFamily: "'Quicksand', sans-serif",
-        fontSize: "0.75rem",
-        color: THEME.textMuted,
-        lineHeight: 1.5,
-      }}
-    >
-      {item.subtitle}
-    </div>
-  </div>
-))}
-            </div>
-
-            <button
-              onClick={() =>
-                document
-                  .getElementById("sesiones")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="mt-4 px-7 py-3 rounded-full font-semibold transition-all"
-              style={{
-                backgroundColor: THEME.rose,
-                color: "#fff",
-                fontFamily: "'Quicksand', sans-serif",
-                fontSize: "0.88rem",
-                boxShadow: `0 4px 20px ${THEME.rose}35`,
-              }}
-            >
-              {t.cta}
-            </button>
           </div>
-        </FadeIn>
-      </div>
-      {/* DividerLeaves al final */}
-      <div style={{ marginTop: "1.5rem" }}>
-        <DividerLeaves />
-      </div>
-    </section>
+
+          {/* Cards */}
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-3"
+            style={{
+              marginTop: "2rem",
+            }}
+          >
+            {t.cards.map((item) => (
+              <div
+                key={item.title}
+                style={{
+                  background: "rgba(255,255,255,0.75)",
+                  backdropFilter: "blur(8px)",
+                  border: `1px solid ${item.color}20`,
+                  padding: "1rem",
+                  minHeight: "105px",
+                  borderRadius: "1rem",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.04)",
+                  transition: "all .3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: "50%",
+                    background: `${item.color}15`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "0.7rem",
+                    color: item.color,
+                    fontSize: "1rem",
+                  }}
+                >
+                  {item.icon}
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontWeight: 700,
+                    color: THEME.text,
+                    marginBottom: "0.2rem",
+                    fontSize: "0.85rem",
+                  }}
+                >
+                  {item.title}
+                </div>
+
+                <div
+                  style={{
+                    fontFamily: "'Quicksand', sans-serif",
+                    fontSize: "0.75rem",
+                    color: THEME.textMuted,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {item.subtitle}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() =>
+              document
+                .getElementById("sesiones")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="mt-4 px-7 py-3 rounded-full font-semibold transition-all"
+            style={{
+              backgroundColor: THEME.rose,
+              color: "#fff",
+              fontFamily: "'Quicksand', sans-serif",
+              fontSize: "0.88rem",
+              boxShadow: `0 4px 20px ${THEME.rose}35`,
+            }}
+          >
+            {t.cta}
+          </button>
+        </div>
+      </div >
+      <DividerLeaves />
+    </section >
   );
 }

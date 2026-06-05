@@ -186,7 +186,7 @@ export default function FAQ({ lang }) {
               fontFamily: "'Quicksand', sans-serif",
             }}
           >
-            Si tu consulta no aparece aquí, podés escribirme y conversamos.
+            {t.searchPlaceholder}
           </p>
 
           <button
@@ -201,14 +201,14 @@ export default function FAQ({ lang }) {
               color: "#fff",
             }}
           >
-            Hacer una consulta
+            {t.bookBtn}
           </button>
         </div>
 
-                          <div style={{ marginTop: "1.5rem" }}>
-                            <DividerLeaves />
-                          </div>
-             
+        <div style={{ marginTop: "1.5rem" }}>
+          <DividerLeaves />
+        </div>
+
 
       </div>
 

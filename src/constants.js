@@ -78,6 +78,22 @@ export const T = {
       p6: "Bienestar Integral: Técnicas diseñadas para ayudarte a bajar revoluciones, conectar contu luz interior y manifestar bienestar.",
       cta: "Agendá tu sesión",
 
+
+      points: [
+        {
+          title: "Psicología Clínica",
+          text: "Espacio terapéutico tradicional de contención y palabra.",
+        },
+        {
+          title: "Herramientas Holísticas",
+          text: "Mindfulness, Tapping (EFT), Sanación Energética y Terapias Florales.",
+        },
+        {
+          title: "Bienestar Integral",
+          text: "Técnicas diseñadas para ayudarte a bajar revoluciones, conectar con tu luz interior y manifestar bienestar.",
+        },
+      ],
+
       cards: [
         {
           icon: "✦",
@@ -117,20 +133,45 @@ export const T = {
       btnClose: "Cerrar",
       btnReservar: "Reservar sesión",
     },
+
+
+
     sesiones: {
       tag: "Sesiones Online",
       title: "Desde donde estés",
-      description: "Las sesiones online permiten acceder al acompañamiento terapéutico desde cualquier lugar del mundo. Un espacio seguro, confidencial y personalizado.",
-      features: ["Atención personalizada", "Espacio seguro y confidencial", "Sesiones por videollamada"],
+      description:
+        "Las sesiones online permiten acceder al acompañamiento terapéutico desde cualquier lugar del mundo. Un espacio seguro, confidencial y personalizado.",
+      features: [
+        { icon: "🌍", label: "Desde cualquier\nlugar del mundo" },
+        { icon: "💻", label: "Vía Zoom\no Meet" },
+        { icon: "🕐", label: "Horarios flexibles\npara vos" },
+        { icon: "🔒", label: "Espacio seguro\ny confidencial" },
+      ],
       bookTitle: "Reservá tu turno",
+
+      sub:
+        "Te acompaño estés donde estés.\nSesiones personalizadas por videollamada para tu comodidad y bienestar.",
+
+      modalTitle: "Elegí tu turno",
+      ctaModal: "Confirmar por WhatsApp",
+      ctaNote: "Te redirigiremos a WhatsApp para confirmar.",
+      available: "Disponible",
+      days: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      months: ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+
       namePlaceholder: "Tu nombre",
       times: ["15:00", "16:00", "17:00", "18:00"],
       selectDay: "Seleccioná un día",
       selectTime: "Seleccioná un horario",
       cta: "Confirmar por WhatsApp",
+
       waMsg: (name, day, time) =>
         `Hola Magalí, mi nombre es ${name}. Me interesa reservar una sesión online para el día ${day} a las ${time}. ¿Está disponible?`,
     },
+
+
+
+
     testimonios: {
       tag: "Testimonios",
       title: "Palabras que sanan",
@@ -180,7 +221,12 @@ export const T = {
           q: "¿Con qué frecuencia se realizan las sesiones?",
           a: "Esto se define de manera personalizada según cada proceso. Generalmente se trabaja de forma semanal o quincenal."
         }
-      ]
+      ],
+
+      searchPlaceholder: "¿No encontrás tu consulta? Escribime y conversamos.",
+      bookBtn: "Hacer una consulta",
+
+
     },
 
     privacy: {
@@ -377,13 +423,14 @@ export const T = {
       contacto: "Contact",
       reservar: "Book a session",
     },
+
     hero: {
       subtitle: "Holistic Psychologist",
       title: "Healing is allowing yourself to return home to peace.",
       description: "I accompany your healing journey to help you transform your energy, manifest wellbeing, and reconnect with your essence.",
       cta1: "Book a session",
       cta2: "Explore my therapies",
-      bagde: "Online sessions",
+      badge: "Online sessions",
     },
 
     quickCards: {
@@ -415,18 +462,43 @@ export const T = {
 
 
     sobre: {
-      tag: "About",
+      tag: "About Me",
       title: "Magalí Sol Cerezo",
-      role: "Psychologist & Holistic Therapist",
-      p1: "I accompany people on their path of healing and personal transformation from an integrative and conscious perspective.",
-      p2: "Through therapeutic tools such as mindfulness, tapping, energy healing, floral therapies and other holistic techniques, I help you recover balance, clarity and emotional wellbeing.",
-      p3: "I deeply believe that healing is a personal and unique process, and my intention is to offer you a safe, loving and judgment-free space where you can reconnect with your essence.",
-      cta: "Schedule your session",
+      role: "Licensed Psychologist & Holistic Therapist",
+
+      p1: "I deeply believe that healing is a personal, unique, and sacred journey. My intention is to offer you a safe, confidential, and nurturing space where you can restore balance, clarity, and emotional well-being.",
+
+      p2: "I have learned that traditional psychology greatly expands its impact when complemented by holistic wisdom. That is why my approach goes beyond listening—I provide practical tools that help you reconnect with yourself, cultivate inner peace, and transform your energy at its core.",
+
+      p3: "In our sessions, we will integrate different approaches tailored to what your soul needs today:",
+
+      p4: "Clinical Psychology: A traditional therapeutic space focused on support, reflection, and meaningful dialogue.",
+
+      p5: "Holistic Tools: Mindfulness, Tapping (EFT), Energy Healing, and Flower Therapy.",
+
+      p6: "Integral Well-Being: Techniques designed to help you slow down, reconnect with your inner light, and cultivate lasting well-being.",
+
+      cta: "Book Your Session",
+
+      points: [
+    {
+      title: "Clinical Psychology",
+      text: "A traditional therapeutic space for support, reflection, and emotional growth.",
+    },
+    {
+      title: "Holistic Tools",
+      text: "Mindfulness, EFT Tapping, Energy Healing, and Flower Essence Therapy.",
+    },
+    {
+      title: "Integral Wellbeing",
+      text: "Techniques designed to help you slow down, reconnect with your inner light, and cultivate wellbeing.",
+    },
+  ],
 
       cards: [
         {
           icon: "✦",
-          title: "Support",
+          title: "Guidance",
           subtitle: "Integrative Psychology",
         },
         {
@@ -436,8 +508,8 @@ export const T = {
         },
         {
           icon: "♡",
-          title: "Holistic Vision",
-          subtitle: "Body, Mind & Emotion",
+          title: "Holistic Perspective",
+          subtitle: "Body, Mind & Emotions",
         },
       ],
     },
@@ -452,27 +524,54 @@ export const T = {
         { icon: "✿", title: "Mindfulness & Meditation", short: "Connect with the present, reduce stress, and create emotional balance.", full: "Practices aimed at connecting with the present, reducing stress and generating greater emotional and mental balance. Includes mindfulness, guided meditation and conscious breathing." },
         { icon: "∿", title: "Tapping (EFT)", short: "Emotional release through gentle tapping on energy points.", full: "Emotional release technique that helps address emotions, anxiety, stress and energetic blocks through gentle tapping on the body's energy points." },
         { icon: "✾", title: "Floral Therapies", short: "Bach, Bush, Saint Germain and California flower essences, personalized for you.", full: "Flowers work subtly on physical, emotional and energetic balance. I work with Bach Flowers, Bush, Saint Germain and California. Each preparation is personalized." },
-        {icon: "❀",title: "Biodecoding",short:"Exploring the emotional meaning behind symptoms and conflicts to encourage awareness and personal transformation.",full:"Our bodies often express what words cannot. Biodecoding explores the emotional meaning behind symptoms and recurring conflicts, encouraging deeper awareness, self-understanding and personal transformation."
+        {
+          icon: "❀", title: "Biodecoding", short: "Exploring the emotional meaning behind symptoms and conflicts to encourage awareness and personal transformation.", full: "Our bodies often express what words cannot. Biodecoding explores the emotional meaning behind symptoms and recurring conflicts, encouraging deeper awareness, self-understanding and personal transformation."
         }
       ],
       btn: "Learn more",
       btnClose: "Close",
       btnReservar: "Book session",
     },
+
+
+
     sesiones: {
       tag: "Online Sessions",
-      title: "Wherever you are",
-      description: "Online sessions allow you to access therapeutic support from anywhere in the world. A safe, confidential and personalized space.",
-      features: ["Personalized care", "Safe and confidential space", "Video call sessions"],
-      bookTitle: "Book your appointment",
+      title: "Wherever You Are",
+      description:
+        "Online sessions allow you to access therapeutic support from anywhere in the world. A safe, confidential, and personalized space.",
+      features: [
+        { icon: "🌍", label: "From anywhere\nin the world" },
+        { icon: "💻", label: "Via Zoom\nor Meet" },
+        { icon: "🕐", label: "Flexible hours\nfor you" },
+        { icon: "🔒", label: "Safe and\nconfidential" },
+      ],
+      bookTitle: "Book Your Session",
+
+      sub:
+        "I accompany you wherever you are.\nPersonalized video call sessions for your comfort and wellbeing.",
+
+      modalTitle: "Choose your slot",
+      ctaModal: "Confirm via WhatsApp",
+      ctaNote: "We'll redirect you to WhatsApp to confirm.",
+      available: "Available",
+      days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+
       namePlaceholder: "Your name",
-      times: ["3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM"],
+      times: ["15:00", "16:00", "17:00", "18:00"],
       selectDay: "Select a day",
       selectTime: "Select a time",
       cta: "Confirm via WhatsApp",
+
       waMsg: (name, day, time) =>
-        `Hello Magalí, my name is ${name}. I would like to book an online session for ${day} at ${time}. Is it available?`,
+        `Hello Magalí, my name is ${name}. I would like to book an online session on ${day} at ${time}. Is it available?`,
     },
+
+
+
+
+
     testimonios: {
       tag: "Testimonials",
       title: "Words that heal",
@@ -509,6 +608,10 @@ export const T = {
         { q: "Do I need prior experience?", a: "No prior experience is needed. You only need openness and willingness to engage with the process." },
         { q: "How often are sessions held?", a: "This is defined personally according to each process. Generally, sessions are held weekly or bi-weekly." },
       ],
+
+
+      searchPlaceholder: "Can't find your question? Write to me and let's talk.",
+      bookBtn: "Make an inquiry",
     },
     footer: {
       tagline: "A space to return to yourself.",
