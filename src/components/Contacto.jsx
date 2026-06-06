@@ -802,7 +802,7 @@ function ContactModal({ lang, onClose }) {
 
             <p style={{ fontFamily: FONT.sans, fontSize: "0.72rem", textAlign: "center",
               color: THEME.textMuted, opacity: 0.6, margin: 0 }}>
-              mscerezopsicoholistica@gmail.com
+              info.magalisolcerezo@gmail.com
             </p>
           </form>
         )}
@@ -855,6 +855,7 @@ export default function Contacto({ lang = "es" }) {
           padding:  "4rem 1.5rem 3rem",
           backgroundColor: THEME.bgRose,
           overflow: "hidden",
+          
         }}
       >
 

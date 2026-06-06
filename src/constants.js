@@ -2,14 +2,21 @@
 // THEME — Paleta de colores centralizada
 // ============================================================
 export const THEME = {
-  bg: "#FCFBFA",
-  card: "#FDFCFA",
-  sage: "#8A9E8A",
-  rose: "#C4968A",
-  gold: "#C9A96E",
-  text: "#2D2924",
-  textMuted: "#7A6E66",
-  border: "#E8E2DC",
+  bg:      "#EEF6F4",   // base global — teal muy claro
+  bgSage:  "#E2F0ED",   // secciones alternas — teal claro
+  bgMint:  "#D4EBE7",   // secciones con más presencia teal
+  bgRose:  "#F2DEC8",   // Sesiones — durazno otoñal (se queda)
+  card:    "#F5FAF8",   // cards — blanco con tinte teal
+    sage:    "#3A7A72",   // teal medio — botones principales (era #8A9E8A)
+  sageLight: "#8AB5AE", // teal suave — estados hover y bordes
+    gold:    "#C9A96E",   // oro (sin cambios — ya conecta con el otoño)
+  amber:   "#C4823A",   // ámbar — hojas amarillas/naranjas
+  rose:    "#B5614A",   // terracota — hojas rojas (reemplaza rosa empolvado)
+  rosePale: "#F2DEC8",  // durazno pálido — fondos cálidos suaves
+    text:      "#1A3530", // text primario — teal muy oscuro
+  textMuted: "#4A6B65", // text secundario — teal medio
+  border:  "#C5DEDA",   // borde suave con tinte teal (era #E8E2DC)
+
 };
 
 // ============================================================
@@ -186,6 +193,9 @@ export const T = {
         { text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.", author: "S.B." },
       ],
     },
+
+
+
     contacto: {
       tag: "Contacto",
       title: "Comenzá tu proceso",

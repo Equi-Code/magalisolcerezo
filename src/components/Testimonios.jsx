@@ -20,20 +20,21 @@
 
 import { useState, useEffect, useRef } from "react";
 import DividerLeaves from "./DividerLeaves";
+import {T, THEME} from "../constants";
 
 // ─── Paleta THEME — sincronizá con App.jsx ───────────────────
-const THEME = {
-  bg: "#FCFBFA",
-  bgSage: "#EEF3EE",
-  bgRose: "#F7F0ED",
-  card: "#FDFCFA",
-  sage: "#8A9E8A",
-  rose: "#C4968A",
-  gold: "#C9A96E",
-  text: "#2D2924",
-  textMuted: "#7A6E66",
-  border: "#E8E2DC",
-};
+// const THEME = {
+//   bg: "#FCFBFA",
+//   bgSage: "#EEF3EE",
+//   bgRose: "#F7F0ED",
+//   card: "#FDFCFA",
+//   sage: "#8A9E8A",
+//   rose: "#C4968A",
+//   gold: "#C9A96E",
+//   text: "#2D2924",
+//   textMuted: "#7A6E66",
+//   border: "#E8E2DC",
+// };
 
 // ─── Tipografías ─────────────────────────────────────────────
 const FONT = {
@@ -43,60 +44,60 @@ const FONT = {
 
 // ─── Testimonios ─────────────────────────────────────────────
 // Podés reemplazar o ampliar este array con los datos reales
-const testimonials = [
-  {
-    text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
-    author: "Mayra C",
-    role: "Proceso de sanación energética",
-  },
-  {
-    text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
-    author: "Macarena C.",
-    role: "Mindfulness y meditación",
-  },
-  {
-    text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
-    author: "Giselle H.",
-    role: "Sanación energética en espacios",
-  },
-  {
-    text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
-    author: "Ayelen, H.",
-    role: "Terapia holística integral",
-  },
-  {
-    text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
-    author: "Oriana A.",
-    role: "Corte de lazos etéricos",
-  },
-  {
-    text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
-    author: "Analía P.",
-    role: "Meditación guiada",
-  },
-  {
-    text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
-    author: "Noelia P.",
-    role: "Tapping EFT",
-  },
-  {
-    text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.",
-    author: "S. B.",
-    role: "Proceso de transformación personal",
-  },
-];
+// const testimonials = [
+//   {
+//     text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
+//     author: "Mayra C",
+//     role: "Proceso de sanación energética",
+//   },
+//   {
+//     text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
+//     author: "Macarena C.",
+//     role: "Mindfulness y meditación",
+//   },
+//   {
+//     text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
+//     author: "Giselle H.",
+//     role: "Sanación energética en espacios",
+//   },
+//   {
+//     text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
+//     author: "Ayelen, H.",
+//     role: "Terapia holística integral",
+//   },
+//   {
+//     text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
+//     author: "Oriana A.",
+//     role: "Corte de lazos etéricos",
+//   },
+//   {
+//     text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
+//     author: "Analía P.",
+//     role: "Meditación guiada",
+//   },
+//   {
+//     text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
+//     author: "Noelia P.",
+//     role: "Tapping EFT",
+//   },
+//   {
+//     text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.",
+//     author: "S. B.",
+//     role: "Proceso de transformación personal",
+//   },
+// ];
 
 // ─── Traducciones del header ──────────────────────────────────
-const t = {
-  es: {
-    tag: "Testimonios",
-    title: "Voces que sanan",
-  },
-  en: {
-    tag: "Testimonials",
-    title: "Voices that heal",
-  },
-};
+// const t = {
+//   es: {
+//     tag: "Testimonios",
+//     title: "Voces que sanan",
+//   },
+//   en: {
+//     tag: "Testimonials",
+//     title: "Voices that heal",
+//   },
+// };
 
 // ─── Iconos SVG inline ────────────────────────────────────────
 // Reemplazan ChevronLeft / ChevronRight / Quote de lucide-react
@@ -142,8 +143,8 @@ const MoonDeco = ({ style = {} }) => (
 );
 
 // ─── COMPONENTE PRINCIPAL ────────────────────────────────────
-export default function TestimonialsSlider({ language = "es" }) {
-  const tx = t?.[language] || t.es;
+export default function TestimonialsSlider({ lang}) {
+  const tx = T[lang].testimonios;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -156,7 +157,7 @@ export default function TestimonialsSlider({ language = "es" }) {
     if (paused) return;
 
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % tx.items.length);
     }, 6000);
 
     return () => clearInterval(interval);
@@ -174,11 +175,14 @@ export default function TestimonialsSlider({ language = "es" }) {
     }, 380);
   };
 
-  const goToNext = () =>
-    transitionTo((currentIndex + 1) % testimonials.length, "next");
+ const goToNext = () =>
+  transitionTo((currentIndex + 1) % tx.items.length, "next");
 
-  const goToPrevious = () =>
-    transitionTo((currentIndex - 1 + testimonials.length) % testimonials.length, "prev");
+const goToPrevious = () =>
+  transitionTo(
+    (currentIndex - 1 + tx.items.length) % tx.items.length,
+    "prev"
+  );
 
   // ── Estilos de transición del contenido ──────────────────
   const contentStyle = {
@@ -414,7 +418,7 @@ export default function TestimonialsSlider({ language = "es" }) {
                 color: THEME.text,
                 marginBottom: "2rem",
               }}>
-                "{testimonials[currentIndex].text}"
+                "{tx.items[currentIndex].text}"
               </p>
 
               {/* Separador ornamental */}
@@ -437,17 +441,7 @@ export default function TestimonialsSlider({ language = "es" }) {
                   marginBottom: "0.25rem",
                   letterSpacing: "0.02em",
                 }}>
-                  {testimonials[currentIndex].author}
-                </div>
-                <div style={{
-                  fontFamily: FONT.sans,
-                  fontSize: "0.78rem",
-                  color: THEME.sage,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  fontWeight: 500,
-                }}>
-                  {testimonials[currentIndex].role}
+                  {tx.items[currentIndex].author}
                 </div>
               </div>
             </div>
@@ -485,7 +479,7 @@ export default function TestimonialsSlider({ language = "es" }) {
 
             {/* Dots de navegación */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              {testimonials.map((_, index) => {
+              {tx.items.map((_, index) => {
                 const isActive = index === currentIndex;
                 return (
                   <button
