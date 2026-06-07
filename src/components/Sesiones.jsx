@@ -231,7 +231,7 @@ export default function OnlineSessions({ lang = "es" }) {
         margin: "0 auto",
         borderRadius: "42px",
         padding: "2rem 1.5rem",
-        backgroundColor: THEME.bg,
+        backgroundColor: THEME.bgB,
         background: SESSION_BG,
         backdropFilter: "blur(16px)",
 

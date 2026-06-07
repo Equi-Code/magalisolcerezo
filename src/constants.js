@@ -2,20 +2,27 @@
 // THEME — Paleta de colores centralizada
 // ============================================================
 export const THEME = {
-  bg:      "#EEF6F4",   // base global — teal muy claro
-  bgSage:  "#E2F0ED",   // secciones alternas — teal claro
-  bgMint:  "#D4EBE7",   // secciones con más presencia teal
-  bgRose:  "#F2DEC8",   // Sesiones — durazno otoñal (se queda)
-  card:    "#F5FAF8",   // cards — blanco con tinte teal
-    sage:    "#3A7A72",   // teal medio — botones principales (era #8A9E8A)
-  sageLight: "#8AB5AE", // teal suave — estados hover y bordes
-    gold:    "#C9A96E",   // oro (sin cambios — ya conecta con el otoño)
-  amber:   "#C4823A",   // ámbar — hojas amarillas/naranjas
-  rose:    "#B5614A",   // terracota — hojas rojas (reemplaza rosa empolvado)
-  rosePale: "#F2DEC8",  // durazno pálido — fondos cálidos suaves
-    text:      "#1A3530", // text primario — teal muy oscuro
-  textMuted: "#4A6B65", // text secundario — teal medio
-  border:  "#C5DEDA",   // borde suave con tinte teal (era #E8E2DC)
+  // bg: "#FCFBFA",
+  // card: "#FDFCFA",
+  // sage: "#8A9E8A",
+  // rose: "#C4968A",
+  // gold: "#C9A96E",
+  // text: "#2D2924",
+  // textMuted: "#7A6E66",
+  // border: "#E8E2DC",
+
+  bg: "#F5F8F6",
+  bgA: "#EAF3EF",
+  bgB: "#F4F9F7",
+  bgHero: "#EEF6F2",
+  card: "#FDFCFA",
+  sage: "#8A9E8A",
+  rose: "#C4968A",
+  gold: "#C9A96E",
+  teal: "#2A6B5C",
+  text: "#2D2924",
+  textMuted: "#7A6E66",
+  border: "#E8E2DC",
 
 };
 
@@ -491,19 +498,19 @@ export const T = {
       cta: "Book Your Session",
 
       points: [
-    {
-      title: "Clinical Psychology",
-      text: "A traditional therapeutic space for support, reflection, and emotional growth.",
-    },
-    {
-      title: "Holistic Tools",
-      text: "Mindfulness, EFT Tapping, Energy Healing, and Flower Essence Therapy.",
-    },
-    {
-      title: "Integral Wellbeing",
-      text: "Techniques designed to help you slow down, reconnect with your inner light, and cultivate wellbeing.",
-    },
-  ],
+        {
+          title: "Clinical Psychology",
+          text: "A traditional therapeutic space for support, reflection, and emotional growth.",
+        },
+        {
+          title: "Holistic Tools",
+          text: "Mindfulness, EFT Tapping, Energy Healing, and Flower Essence Therapy.",
+        },
+        {
+          title: "Integral Wellbeing",
+          text: "Techniques designed to help you slow down, reconnect with your inner light, and cultivate wellbeing.",
+        },
+      ],
 
       cards: [
         {

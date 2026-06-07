@@ -36,7 +36,7 @@ export default function Footer({ lang, onPrivacy, onNavigate }) {
   return (
     <>
       {/* ── Ola de transición — misma paleta teal ── */}
-<div style={{ lineHeight: 0, backgroundColor: THEME.bgRose  }}>
+<div style={{ lineHeight: 0 }}>
   <svg
     viewBox="0 0 1440 120"
     preserveAspectRatio="none"

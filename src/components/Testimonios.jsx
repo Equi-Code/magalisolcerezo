@@ -219,7 +219,7 @@ const goToPrevious = () =>
       style={{
         paddingTop: "2rem",
         paddingBottom: "6rem",
-        backgroundColor: THEME.bg,
+        backgroundColor: THEME.bgA,
         overflow: "hidden",
         position: "relative",
       }}

@@ -2,15 +2,10 @@ import { useState, useEffect } from "react";
 import { THEME, T } from "../constants";
 import { scrollTo } from "./ui";
 
-
-
 export default function Navbar({ lang, setLang, onNavigate }) {
   const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  console.log("NAVBAR LANG:", lang);
-
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 30);
@@ -42,18 +37,13 @@ export default function Navbar({ lang, setLang, onNavigate }) {
   return (
     <nav
       style={{
-  background: scrolled
-    ? "rgba(252,251,250,0.92)"
-    : "transparent",
-
-  backdropFilter: scrolled ? "blur(12px)" : "none",
-  borderBottom: scrolled
-    ? `1px solid ${THEME.border}`
-    : "none",
-        transition: "all 0.4s ease",
+        backgroundColor: scrolled ? "rgba(252,251,250,0.92)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? `1px solid ${THEME.border}` : "none",
+        transition: "all 0.3s ease",
 
       }}
-      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-5"
+      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-4"
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between">
 
