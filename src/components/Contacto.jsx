@@ -142,6 +142,11 @@ console.log("SERVICE:", EMAILJS_SERVICE_ID);
 console.log("TEMPLATE:", EMAILJS_TEMPLATE_ID);
 console.log("PUBLIC:", EMAILJS_PUBLIC_KEY);
 
+console.log(
+  "PUBLIC KEY:",
+  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+);
+
 // ─── Íconos SVG inline ─────────────────────────────────────
 function IconWhatsApp({ size = 22 }) {
   return (
