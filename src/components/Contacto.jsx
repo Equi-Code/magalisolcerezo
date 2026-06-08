@@ -3,6 +3,7 @@ import { useState } from "react";
 import { THEME, T } from "../constants";
 import DividerLeaves from "./DividerLeaves";
 import { StarDeco, MoonDeco, CircleDeco } from "./ui";
+import emailjs from "@emailjs/browser";
 
 // ─── Config ───────────────────────────────────────────────
 const WHATSAPP_NUMBER = "5491160519556"; // ← REEMPLAZAR
@@ -106,6 +107,8 @@ const t = {
   },
 };
 
+
+
 // ─── Colores de botones por variante ──────────────────────
 const BTN_COLORS = {
   sage: {
@@ -128,6 +131,16 @@ const BTN_COLORS = {
     border: `1.5px solid ${THEME.gold}60`,
   },
 };
+
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
+
+console.log("SERVICE:", EMAILJS_SERVICE_ID);
+console.log("TEMPLATE:", EMAILJS_TEMPLATE_ID);
+console.log("PUBLIC:", EMAILJS_PUBLIC_KEY);
 
 // ─── Íconos SVG inline ─────────────────────────────────────
 function IconWhatsApp({ size = 22 }) {
@@ -181,14 +194,61 @@ function ContactModal({ lang, onClose }) {
   const handleChange = (e) =>
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // ↓ TODO: conectar EmailJS → info.magalisolcerezo@gmail.com
-    console.log("[ContactForm] Consulta enviada:", form);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+
+    // Email para Magalí
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        from_name: form.name,
+        from_email: form.email,
+        therapy: form.therapy || "Consulta General",
+        message: form.message,
+      },
+      EMAILJS_PUBLIC_KEY
+    );
+
+    // Respuesta automática al usuario
+await emailjs.send(
+  EMAILJS_SERVICE_ID,
+  EMAILJS_AUTOREPLY_TEMPLATE_ID,
+  {
+    name: form.name,
+    email: form.email,
+    therapy: form.therapy || "Consulta General",
+    message: form.message,
+  },
+  EMAILJS_PUBLIC_KEY
+);
+
     setSent(true);
-    setForm({ name: "", email: "", therapy: "", message: "" });
-    setTimeout(() => { setSent(false); onClose(); }, 3500);
-  };
+
+    setForm({
+      name: "",
+      email: "",
+      therapy: "",
+      message: "",
+    });
+
+    setTimeout(() => {
+      setSent(false);
+      onClose();
+    }, 3500);
+
+  } catch (error) {
+  console.error("Error completo:", error);
+  console.error("Status:", error.status);
+  console.error("Text:", error.text);
+  console.log("Enviando correo a Magali...");
+  console.log("Enviando autorespuesta...");
+
+  alert(`Error: ${error.text}`);
+  }
+};
 
   const inputStyle = {
     width: "100%",
