@@ -14,6 +14,7 @@ import HeroSection from "./components/HeroSection";
 import QuickCards from "./components/QuickCards";
 import FAQ from "./components/FAQ";
 import PrivacyPolicy from "./components/Privacypolicy";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 export default function App() {
   const [lang, setLang] = useState("es");
@@ -135,6 +136,8 @@ export default function App() {
           onPrivacy={goToPrivacy}
           onNavigate={navigateToSection} />
 
+
+        <WhatsAppButton />
 
       </div>
     </>
