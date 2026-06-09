@@ -217,6 +217,8 @@ const handleSubmit = async (e) => {
       EMAILJS_PUBLIC_KEY
     );
 
+        setSent(true);
+
     // Respuesta automática al usuario
 await emailjs.send(
   EMAILJS_SERVICE_ID,
@@ -230,8 +232,6 @@ await emailjs.send(
   EMAILJS_PUBLIC_KEY
 );
 
-    setSent(true);
-
     setForm({
       name: "",
       email: "",
@@ -242,7 +242,7 @@ await emailjs.send(
     setTimeout(() => {
       setSent(false);
       onClose();
-    }, 3500);
+    }, 1800);
 
   } catch (error) {
   console.error("Error completo:", error);
