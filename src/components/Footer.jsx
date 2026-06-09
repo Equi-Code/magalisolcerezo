@@ -129,7 +129,7 @@ export default function Footer({ lang, onPrivacy, onNavigate }) {
             <div style={{ gridColumn: "span 1" }}>
               {/* Logo */}
               <img
-                src="/assets/Logo.png"
+                src="/assets/logo.png"
                 alt="Magalí Sol Cerezo"
                 style={{
                   height: 64, width: "auto", objectFit: "contain",

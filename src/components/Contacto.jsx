@@ -199,61 +199,65 @@ function ContactModal({ lang, onClose }) {
   const handleChange = (e) =>
     setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
+    try {
 
-    // Email para Magalí
-    await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      {
-        from_name: form.name,
-        from_email: form.email,
-        therapy: form.therapy || "Consulta General",
-        message: form.message,
-      },
-      EMAILJS_PUBLIC_KEY
-    );
 
-        setSent(true);
 
-    // Respuesta automática al usuario
-await emailjs.send(
-  EMAILJS_SERVICE_ID,
-  EMAILJS_AUTOREPLY_TEMPLATE_ID,
-  {
-    name: form.name,
-    email: form.email,
-    therapy: form.therapy || "Consulta General",
-    message: form.message,
-  },
-  EMAILJS_PUBLIC_KEY
-);
+      // Email para Magalí
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          therapy: form.therapy || "Consulta General",
+          message: form.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
-    setForm({
-      name: "",
-      email: "",
-      therapy: "",
-      message: "",
-    });
+      setSent(true);
 
-    setTimeout(() => {
-      setSent(false);
-      onClose();
-    }, 1800);
 
-  } catch (error) {
-  console.error("Error completo:", error);
-  console.error("Status:", error.status);
-  console.error("Text:", error.text);
-  console.log("Enviando correo a Magali...");
-  console.log("Enviando autorespuesta...");
 
-  alert(`Error: ${error.text}`);
-  }
-};
+      // Respuesta automática al usuario
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_AUTOREPLY_TEMPLATE_ID,
+        {
+          name: form.name,
+          email: form.email,
+          therapy: form.therapy || "Consulta General",
+          message: form.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setForm({
+        name: "",
+        email: "",
+        therapy: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        setSent(false);
+        onClose();
+      }, 1800);
+
+    } catch (error) {
+      console.error("Error completo:", error);
+      console.error("Status:", error.status);
+      console.error("Text:", error.text);
+      console.log("Enviando correo a Magali...");
+      console.log("Enviando autorespuesta...");
+
+      alert(`Error: ${error.text}`);
+    }
+  };
 
   const inputStyle = {
     width: "100%",

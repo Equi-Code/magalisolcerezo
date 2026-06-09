@@ -170,7 +170,7 @@ export default function Navbar({ lang, setLang, onNavigate }) {
             }}
           >
             <img
-              src="/assets/Logos_2.png"
+              src="/assets/logos_2.png"
               alt="Magalí Sol Cerezo"
               style={{
                 height: 50, width: "auto", objectFit: "contain",

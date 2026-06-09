@@ -565,7 +565,7 @@ export default function SplashScreen({ onFinish }) {
           blanco desaparezca y queden solo los trazos dorados.
         */}
         <img
-          src="/assets/Logo.png"
+          src="/assets/logo.png"
           alt="Magalí Sol Cerezo"
           style={{
             width:        "clamp(140px, 40vw, 240px)",
