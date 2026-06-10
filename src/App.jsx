@@ -94,12 +94,34 @@ export default function App() {
     );
   }
 
+
   return (
+
+    
     <>
       {/* ── Splash screen ── */}
       {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
 
+          <div
+  style={{
+    position: "fixed",
+    top: 0,
+    left: 0,
+    zIndex: 99999,
+    background: "red",
+    color: "white",
+    padding: "10px",
+    fontSize: "24px"
+  }}
+>
+  BUILD TEST JUNIO 2026
+</div>
+
+
       {/* ── Main site (montado desde el inicio, visible tras el splash) ── */}
+
+
+
       <div
         style={{
           backgroundColor: THEME.bg,
