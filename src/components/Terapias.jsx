@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { THEME, T } from "../constants";
 import { StarDeco, FadeIn, CircleDeco, MoonDeco } from "./ui";
-import DividerLeaves from "./DividerLeaves";
 import ConstellationDivider from "./ConstellationDivider";
 
 // ============================================================

@@ -9,7 +9,6 @@ import OnlineSessions from "./components/Sesiones";
 import TestimonialsSlider from "./components/Testimonios";
 import Contacto from "./components/Contacto";
 import Footer from "./components/Footer";
-import DividerLeaves from "./components/DividerLeaves";
 import HeroSection from "./components/HeroSection";
 import QuickCards from "./components/QuickCards";
 import FAQ from "./components/FAQ";
