@@ -16,7 +16,7 @@
 import { Divide } from "lucide-react";
 import { THEME, T } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
-import ConstellationDivider from "./constellationDivider"; // Con 'c' minúscula si es el caso
+import ConstellationDivider from "./ConstellationDivider"; // Con 'c' minúscula si es el caso
 import { motion } from "framer-motion";
 
 export default function SobreMi({ lang }) {

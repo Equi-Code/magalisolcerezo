@@ -2,7 +2,7 @@ import { useState } from "react";
 import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
 import DividerLeaves from "./DividerLeaves";
 import { T } from "../constants";
-import ConstellationDivider from "./constellationDivider"; // Con 'c' minúscula si es el caso
+import ConstellationDivider from "./ConstellationDivider"; // Con 'c' minúscula si es el caso
 import { motion, AnimatePresence } from "framer-motion"; // ← Importamos herramientas de animación
 
 const WHATSAPP_NUMBER = "5491160519556";
