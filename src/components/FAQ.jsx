@@ -225,7 +225,7 @@
 import { useState } from "react";
 import { THEME, T } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco } from "./ui";
-import ConstellationDivider from "./ConstellationDivider";
+import ConstellationDivider from "./constellationDivider"; // Con 'c' minúscula si es el caso
 import { motion, AnimatePresence } from "framer-motion"; // ← Importamos framer-motion
 
 export default function FAQ({ lang }) {

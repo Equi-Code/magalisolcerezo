@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { T, THEME } from "../constants";
-import ConstellationDivider from "./ConstellationDivider";
+import ConstellationDivider from "./constellationDivider"; // Con 'c' minúscula si es el caso
 import { CircleDeco } from "./ui"; 
 
 const FONT = {
