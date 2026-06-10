@@ -1,21 +1,19 @@
-
 import { useState } from "react";
-import { THEME, T } from "../constants";
-import DividerLeaves from "./DividerLeaves";
+import { THEME } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco } from "./ui";
 import emailjs from "@emailjs/browser";
+import ConstellationDivider from "./ConstellationDivider";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ─── Config ───────────────────────────────────────────────
-const WHATSAPP_NUMBER = "5491160519556"; // ← REEMPLAZAR
+const WHATSAPP_NUMBER = "5491160519556";
 const INSTAGRAM_URL = "https://instagram.com/magalisol.cerezo";
 
-// ─── Tipografías ──────────────────────────────────────────
 const FONT = {
   serif: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
   sans: "'Quicksand', 'Nunito', system-ui, sans-serif",
 };
 
-// ─── Opciones de terapia ──────────────────────────────────
 const therapyOptions = {
   es: ["Tapping EFT", "Regresión a Vidas Pasadas", "Sanación Energética",
     "Mindfulness & Meditación", "Terapias Florales", "Biodecodificación", "Consulta general"],
@@ -23,7 +21,6 @@ const therapyOptions = {
     "Mindfulness & Meditation", "Floral Therapies", "Biodecoding", "General inquiry"],
 };
 
-// ─── Traducciones ─────────────────────────────────────────
 const t = {
   es: {
     tag: "Contacto",
@@ -39,30 +36,9 @@ const t = {
     successMsg: "¡Gracias por escribirme! Te respondo a la brevedad. 🌿",
     selectDefault: "Seleccioná una terapia",
     cards: [
-      {
-        id: "whatsapp",
-        icon: "whatsapp",
-        label: "WhatsApp",
-        desc: "Escribime y reservá tu turno",
-        btn: "Escribir ahora",
-        color: "sage",
-      },
-      {
-        id: "sesiones",
-        icon: "calendar",
-        label: "Reservar online",
-        desc: "Elegí el día y horario que mejor te convenga",
-        btn: "Agendar ahora",
-        color: "rose",
-      },
-      {
-        id: "instagram",
-        icon: "instagram",
-        label: "Instagram",
-        desc: "Seguime para más contenido y novedades",
-        btn: "@magalisol.cerezo",
-        color: "gold",
-      },
+      { id: "whatsapp", icon: "whatsapp", label: "WhatsApp", desc: "Escribime y reservá tu turno", btn: "Escribir ahora", color: "sage" },
+      { id: "sesiones", icon: "calendar", label: "Reservar online", desc: "Elegí el día y horario que mejor te convenga", btn: "Agendar ahora", color: "rose" },
+      { id: "instagram", icon: "instagram", label: "Instagram", desc: "Seguime para más contenido y novedades", btn: "@magalisol.cerezo", color: "gold" },
     ],
   },
   en: {
@@ -79,73 +55,23 @@ const t = {
     successMsg: "Thank you for writing! I will respond shortly. 🌿",
     selectDefault: "Select a therapy",
     cards: [
-      {
-        id: "whatsapp",
-        icon: "whatsapp",
-        label: "WhatsApp",
-        desc: "Message me and book your session",
-        btn: "Write now",
-        color: "sage",
-      },
-      {
-        id: "sesiones",
-        icon: "calendar",
-        label: "Book online",
-        desc: "Choose the day and time that works best for you",
-        btn: "Book now",
-        color: "rose",
-      },
-      {
-        id: "instagram",
-        icon: "instagram",
-        label: "Instagram",
-        desc: "Follow me for more content and updates",
-        btn: "@magalisol.cerezo",
-        color: "gold",
-      },
+      { id: "whatsapp", icon: "whatsapp", label: "WhatsApp", desc: "Message me and book your session", btn: "Write now", color: "sage" },
+      { id: "sesiones", icon: "calendar", label: "Book online", desc: "Choose the day and time that works best for you", btn: "Book now", color: "rose" },
+      { id: "instagram", icon: "instagram", label: "Instagram", desc: "Follow me for more content and updates", btn: "@magalisol.cerezo", color: "gold" },
     ],
   },
 };
 
-
-
-// ─── Colores de botones por variante ──────────────────────
 const BTN_COLORS = {
-  sage: {
-    bg: THEME.sage,
-    color: "#fff",
-    shadow: `0 4px 18px rgba(138,158,138,0.38)`,
-    hover: "#9AAF9A",
-  },
-  rose: {
-    bg: THEME.rose,
-    color: "#fff",
-    shadow: `0 4px 18px rgba(196,150,138,0.38)`,
-    hover: "#CF9F93",
-  },
-  gold: {
-    bg: "transparent",
-    color: THEME.gold,
-    shadow: "none",
-    hover: `${THEME.gold}14`,
-    border: `1.5px solid ${THEME.gold}60`,
-  },
+  sage: { bg: THEME.sage, color: "#fff", shadow: `0 4px 18px rgba(138,158,138,0.38)`, hover: "#9AAF9A" },
+  rose: { bg: THEME.rose, color: "#fff", shadow: `0 4px 18px rgba(196,150,138,0.38)`, hover: "#CF9F93" },
+  gold: { bg: "transparent", color: THEME.gold, shadow: "none", hover: `${THEME.gold}14`, border: `1.5px solid ${THEME.gold}60` },
 };
-
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID;
-
-console.log("SERVICE:", EMAILJS_SERVICE_ID);
-console.log("TEMPLATE:", EMAILJS_TEMPLATE_ID);
-console.log("PUBLIC:", EMAILJS_PUBLIC_KEY);
-
-console.log(
-  "PUBLIC KEY:",
-  import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-);
 
 // ─── Íconos SVG inline ─────────────────────────────────────
 function IconWhatsApp({ size = 22 }) {
@@ -188,7 +114,7 @@ const ICONS = {
   instagram: IconInstagram,
 };
 
-// ─── Modal de formulario de contacto ──────────────────────
+// ─── Modal de Formulario con Framer Motion ──────────────────────
 function ContactModal({ lang, onClose }) {
   const tx = t[lang];
   const options = therapyOptions[lang];
@@ -196,139 +122,81 @@ function ContactModal({ lang, onClose }) {
   const [form, setForm] = useState({ name: "", email: "", therapy: "", message: "" });
   const [sent, setSent] = useState(false);
 
-  const handleChange = (e) =>
-    setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleChange = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-
-
-
-      // Email para Magalí
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          therapy: form.therapy || "Consulta General",
-          message: form.message,
-        },
+        { from_name: form.name, from_email: form.email, therapy: form.therapy || "Consulta General", message: form.message },
         EMAILJS_PUBLIC_KEY
       );
-
       setSent(true);
 
-
-
-      // Respuesta automática al usuario
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_AUTOREPLY_TEMPLATE_ID,
-        {
-          name: form.name,
-          email: form.email,
-          therapy: form.therapy || "Consulta General",
-          message: form.message,
-        },
+        { name: form.name, email: form.email, therapy: form.therapy || "Consulta General", message: form.message },
         EMAILJS_PUBLIC_KEY
       );
 
-      setForm({
-        name: "",
-        email: "",
-        therapy: "",
-        message: "",
-      });
-
+      setForm({ name: "", email: "", therapy: "", message: "" });
       setTimeout(() => {
         setSent(false);
         onClose();
       }, 1800);
-
     } catch (error) {
-      console.error("Error completo:", error);
-      console.error("Status:", error.status);
-      console.error("Text:", error.text);
-      console.log("Enviando correo a Magali...");
-      console.log("Enviando autorespuesta...");
-
       alert(`Error: ${error.text}`);
     }
   };
 
   const inputStyle = {
-    width: "100%",
-    padding: "0.82rem 1.1rem",
-    borderRadius: "0.8rem",
-    border: `1px solid rgba(201,169,110,0.22)`,
-    background: "#F5F0EC",
-    fontFamily: FONT.sans,
-    fontSize: "0.9rem",
-    color: THEME.text,
-    outline: "none",
-    boxSizing: "border-box",
-    transition: "border-color 0.2s, box-shadow 0.2s",
-  };
-
-  const focusStyle = (e) => {
-    e.target.style.borderColor = `${THEME.sage}80`;
-    e.target.style.boxShadow = `0 0 0 3px ${THEME.sage}14`;
-  };
-  const blurStyle = (e) => {
-    e.target.style.borderColor = "rgba(201,169,110,0.22)";
-    e.target.style.boxShadow = "none";
+    width: "100%", padding: "0.82rem 1.1rem", borderRadius: "0.8rem",
+    border: `1px solid rgba(201,169,110,0.22)`, background: "#F5F0EC",
+    fontFamily: FONT.sans, fontSize: "0.9rem", color: THEME.text,
+    outline: "none", boxSizing: "border-box", transition: "border-color 0.2s, box-shadow 0.2s",
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       onClick={onClose}
       style={{
         position: "fixed", inset: 0, zIndex: 50,
         display: "flex", alignItems: "center", justifyContent: "center", padding: "1rem",
-        backgroundColor: "rgba(45,41,36,0.48)",
-        backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+        backgroundColor: "rgba(45,41,36,0.52)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)",
       }}
     >
-      <div
+      <motion.div
+        initial={{ scale: 0.92, y: 15, opacity: 0 }}
+        animate={{ scale: 1, y: 0, opacity: 1 }}
+        exit={{ scale: 0.95, y: 10, opacity: 0 }}
+        transition={{ type: "spring", duration: 0.45 }}
         onClick={e => e.stopPropagation()}
         style={{
-          position: "relative",
-          width: "100%",
-          maxWidth: "28rem",
-          backgroundColor: THEME.card,
-          borderRadius: "1.75rem",
-          padding: "2.25rem",
-          boxShadow: `0 40px 90px rgba(0,0,0,0.18), 0 0 0 1px ${THEME.gold}28`,
-          animation: "modalIn 0.32s cubic-bezier(0.34,1.56,0.64,1)",
+          position: "relative", width: "100%", maxWidth: "28rem",
+          backgroundColor: THEME.card, borderRadius: "1.75rem", padding: "2.25rem",
+          boxShadow: `0 40px 90px rgba(0,0,0,0.22), 0 0 0 1px ${THEME.gold}20`,
         }}
       >
-        {/* Borde dorado top */}
         <div style={{
           position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
-          width: 90, height: 2, borderRadius: "0 0 4px 4px",
-          background: `linear-gradient(to right, transparent, ${THEME.gold}90, transparent)`,
+          width: 90, height: 2, background: `linear-gradient(to right, transparent, ${THEME.gold}90, transparent)`,
         }} />
 
-        {/* Header modal */}
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: "1.75rem" }}>
           <span style={{ color: THEME.gold, fontSize: "1rem" }}>🌿</span>
-          <h3 style={{
-            fontFamily: FONT.serif, fontSize: "1.6rem", fontStyle: "italic",
-            fontWeight: 400, color: THEME.text, margin: 0,
-          }}>
+          <h3 style={{ fontFamily: FONT.serif, fontSize: "1.6rem", fontStyle: "italic", fontWeight: 400, color: THEME.text, margin: 0 }}>
             {tx.formTitle}
           </h3>
         </div>
 
         {sent ? (
-          <div style={{
-            textAlign: "center", padding: "2rem 1rem",
-            background: `rgba(138,158,138,0.08)`,
-            borderRadius: "1rem", border: `1px solid rgba(138,158,138,0.2)`,
-          }}>
+          <div style={{ textAlign: "center", padding: "2rem 1rem", background: `rgba(138,158,138,0.08)`, borderRadius: "1rem", border: `1px solid rgba(138,158,138,0.2)` }}>
             <div style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>🌿</div>
             <p style={{ fontFamily: FONT.serif, fontSize: "1.1rem", fontStyle: "italic", color: THEME.sage, margin: 0 }}>
               {tx.successMsg}
@@ -336,92 +204,51 @@ function ContactModal({ lang, onClose }) {
           </div>
         ) : (
           <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-            <input
-              type="text" name="name" value={form.name}
-              onChange={handleChange} placeholder={tx.name} required
-              style={inputStyle} onFocus={focusStyle} onBlur={blurStyle}
-            />
-            <input
-              type="email" name="email" value={form.email}
-              onChange={handleChange} placeholder={tx.email} required
-              style={inputStyle} onFocus={focusStyle} onBlur={blurStyle}
-            />
-            <select
-              name="therapy" value={form.therapy} onChange={handleChange}
-              style={{
-                ...inputStyle, cursor: "pointer",
-                color: form.therapy ? THEME.text : THEME.textMuted
-              }}
-            >
+            <input type="text" name="name" value={form.name} onChange={handleChange} placeholder={tx.name} required style={inputStyle} />
+            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder={tx.email} required style={inputStyle} />
+            <select name="therapy" value={form.therapy} onChange={handleChange} style={{ ...inputStyle, cursor: "pointer", color: form.therapy ? THEME.text : THEME.textMuted }}>
               <option value="">{tx.selectDefault}</option>
               {options.map(o => <option key={o} value={o}>{o}</option>)}
             </select>
-            <textarea
-              name="message" value={form.message} onChange={handleChange}
-              placeholder={tx.messagePlaceholder} rows={4} required
-              style={{ ...inputStyle, resize: "none" }}
-              onFocus={focusStyle} onBlur={blurStyle}
-            />
+            <textarea name="message" value={form.message} onChange={handleChange} placeholder={tx.messagePlaceholder} rows={4} required style={{ ...inputStyle, resize: "none" }} />
 
             <div style={{ height: 1, backgroundColor: THEME.border, margin: "0.25rem 0" }} />
 
-            <button
+            <motion.button
               type="submit"
+              whileHover={{ scale: 1.01, backgroundColor: "#9AAF9A" }}
+              whileTap={{ scale: 0.99 }}
               style={{
                 padding: "0.9rem", borderRadius: "0.85rem", border: "none",
-                backgroundColor: THEME.sage, color: "#fff",
-                fontFamily: FONT.sans, fontSize: "0.9rem", fontWeight: 600,
-                cursor: "pointer", letterSpacing: "0.03em",
+                backgroundColor: THEME.sage, color: "#fff", fontFamily: FONT.sans,
+                fontSize: "0.9rem", fontWeight: 600, cursor: "pointer", letterSpacing: "0.03em",
                 boxShadow: `0 5px 20px rgba(138,158,138,0.35)`,
-                transition: "all 0.25s",
               }}
-              onMouseEnter={e => { e.currentTarget.style.background = "#9AAF9A"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = THEME.sage; e.currentTarget.style.transform = "translateY(0)"; }}
             >
               {tx.send}
-            </button>
-
-            <p style={{
-              fontFamily: FONT.sans, fontSize: "0.72rem", textAlign: "center",
-              color: THEME.textMuted, opacity: 0.6, margin: 0
-            }}>
+            </motion.button>
+            <p style={{ fontFamily: FONT.sans, fontSize: "0.72rem", textAlign: "center", color: THEME.textMuted, opacity: 0.6, margin: 0 }}>
               info.magalisolcerezo@gmail.com
             </p>
           </form>
         )}
 
-        {/* Botón cerrar */}
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute", top: "1.1rem", right: "1.4rem",
-            background: "transparent", border: "none", color: THEME.textMuted,
-            fontSize: "1rem", opacity: 0.4, cursor: "pointer", transition: "opacity 0.2s",
-          }}
-          onMouseEnter={e => { e.currentTarget.style.opacity = "0.8"; }}
-          onMouseLeave={e => { e.currentTarget.style.opacity = "0.4"; }}
-        >
+        <button onClick={onClose} style={{ position: "absolute", top: "1.1rem", right: "1.4rem", background: "transparent", border: "none", color: THEME.textMuted, fontSize: "1rem", opacity: 0.4, cursor: "pointer" }}>
           ✕
         </button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
-// ══════════════════════════════════════════════════════════
-//  COMPONENTE PRINCIPAL
-// ══════════════════════════════════════════════════════════
+// ─── Componente Principal ────────────────────────────────────────
 export default function Contacto({ lang = "es" }) {
   const tx = t[lang];
   const [modal, setModal] = useState(false);
 
-  // Acción de cada card
   const handleCardAction = (cardId) => {
     if (cardId === "whatsapp") {
-      window.open(
-        `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`,
-        "_blank", "noopener,noreferrer"
-      );
+      window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}`, "_blank", "noopener,noreferrer");
     } else if (cardId === "sesiones") {
       document.getElementById("sesiones")?.scrollIntoView({ behavior: "smooth" });
     } else if (cardId === "instagram") {
@@ -435,260 +262,224 @@ export default function Contacto({ lang = "es" }) {
         id="contacto"
         style={{
           position: "relative",
-          padding: "7rem 1.5rem 6rem",
+          padding: "4.5rem 1.5rem", // Reducido el padding vertical para compactar el espacio muerto
           backgroundColor: THEME.bgB,
-          overflow: "hidden",
-
+          overflow: "visible", 
         }}
       >
+        {/* 1. Capa de Fondo Base y Acuarela */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "radial-gradient(ellipse 60% 70% at 0% 50%, rgba(168,205,185,0.15) 0%, transparent 65%)",
+          pointerEvents: "none",
+          zIndex: 0
+        }} />
 
+        {/* Decoraciones de Fondo con micro-animaciones */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
           <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-20" />
-          <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
-          <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
-          <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
-          <MoonDeco className="absolute bottom-1/4 left-1/3" />
+
+          {/* Estrellas titilando suavemente */}
+          <motion.div animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+            <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
+          </motion.div>
+          <motion.div animate={{ opacity: [0.1, 0.5, 0.1] }} transition={{ duration: 4, delay: 1, repeat: Infinity, ease: "easeInOut" }}>
+            <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
+          </motion.div>
+          <motion.div animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 3.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}>
+            <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
+          </motion.div>
+
+          {/* Luna con un leve balanceo/flotado */}
+          <motion.div
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-1/4 left-1/3"
+          >
+            <MoonDeco />
+          </motion.div>
         </div>
-
-
-
-
-
-        {/* Acuarela de fondo — misma técnica que HeroSection */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "radial-gradient(ellipse 60% 70% at 0% 50%, rgba(168,205,185,0.18) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }} />
 
         <div style={{ maxWidth: "68rem", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
-          {/* ── Banner principal — izquierda | cards ── */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "minmax(240px, 320px) 1fr",  // izquierda fija, derecha flexible
-            gap: "3rem",
-            alignItems: "center",
-          }}
-            className="contacto-outer-grid"
+          {/* Grid de Diseño Principal Mejorado */}
+          <div 
+            className="contact-main-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1.3fr", // 2 columnas fijas balanceadas para pantallas de escritorio
+              gap: "3.5rem",
+              alignItems: "center", // Centrado vertical impecable entre textos y tarjetas
+            }}
           >
 
-            {/* ── COLUMNA IZQUIERDA — Título ── */}
-            <div>
-              {/* Tag */}
-              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "1rem" }}>
+            {/* ── COLUMNA IZQUIERDA: Header y Call to Action ── */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.65 }}
+              style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "0.4rem" }}>
                 <div style={{ width: 24, height: 1, backgroundColor: THEME.gold }} />
-                <span style={{
-                  fontFamily: FONT.sans, fontSize: "0.7rem", letterSpacing: "0.22em",
-                  textTransform: "uppercase", fontWeight: 600, color: THEME.gold,
-                }}>
+                <span style={{ fontFamily: FONT.sans, fontSize: "0.7rem", letterSpacing: "0.22em", textTransform: "uppercase", fontWeight: 600, color: THEME.gold }}>
                   {tx.tag}
                 </span>
               </div>
 
-              <h2 style={{
-                fontFamily: FONT.serif,
-                fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-                fontWeight: 400,
-                fontStyle: "italic",
-                lineHeight: 1.2,
-                color: THEME.text,
-                marginBottom: "0.85rem",
-              }}>
+              <h2 style={{ fontFamily: FONT.serif, fontSize: "clamp(2rem, 4vw, 2.6rem)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.2, color: THEME.text, margin: 0 }}>
                 {tx.title}
               </h2>
 
-              <p style={{
-                fontFamily: FONT.sans,
-                fontSize: "0.95rem",
-                lineHeight: 1.75,
-                color: THEME.textMuted,
-                marginBottom: "1.5rem",
-                maxWidth: "32ch",
-              }}>
+              <p style={{ fontFamily: FONT.sans, fontSize: "0.95rem", lineHeight: 1.6, color: THEME.textMuted, margin: "0 0 1.2rem 0", maxWidth: "34ch" }}>
                 {tx.sub}
               </p>
 
-              {/* Botón consulta general — abre el modal del formulario */}
-              <button
+              <motion.button
                 onClick={() => setModal(true)}
+                whileHover={{ scale: 1.03, backgroundColor: `${THEME.text}08`, borderColor: `${THEME.text}60` }}
+                whileTap={{ scale: 0.98 }}
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "0.7rem 1.6rem",
-                  borderRadius: "9999px",
-                  border: `1.5px solid ${THEME.text}30`,
-                  backgroundColor: "transparent",
-                  color: THEME.text,
-                  fontFamily: FONT.sans,
-                  fontSize: "0.84rem",
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  letterSpacing: "0.03em",
-                  transition: "all 0.25s",
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.backgroundColor = `${THEME.text}08`;
-                  e.currentTarget.style.borderColor = `${THEME.text}60`;
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.backgroundColor = "transparent";
-                  e.currentTarget.style.borderColor = `${THEME.text}30`;
+                  display: "inline-flex", alignItems: "center", gap: "0.5rem", alignSelf: "flex-start",
+                  padding: "0.7rem 1.5rem", borderRadius: "9999px",
+                  border: `1.5px solid ${THEME.text}30`, backgroundColor: "transparent",
+                  color: THEME.text, fontFamily: FONT.sans, fontSize: "0.84rem",
+                  fontWeight: 600, cursor: "pointer", letterSpacing: "0.03em",
                 }}
               >
                 ✉ {tx.formBtn}
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
 
-            {/* ── COLUMNA DERECHA — 3 contact cards ── */}
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",   // siempre 3 columnas iguales en desktop
-              gap: "1rem",
-            }}
-              // En mobile pasan a columna única
+            {/* ── COLUMNA DERECHA: Sub-grilla interna simétrica para las 3 tarjetas ── */}
+            <div 
               className="contact-cards-grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, 1fr)", // Estructura de 2 columnas idénticas
+                gap: "1.2rem",
+                width: "100%"
+              }}
             >
-              {tx.cards.map((card) => {
+              {tx.cards.map((card, idx) => {
                 const Icon = ICONS[card.icon];
                 const colors = BTN_COLORS[card.color];
+                const isInstagram = card.id === "instagram";
 
                 return (
-                  <div
+                  <motion.div
                     key={card.id}
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: idx * 0.12 }}
+                    whileHover={{ y: -5, boxShadow: "0 14px 38px rgba(45,41,36,0.09)", borderColor: "rgba(201,169,110,0.25)" }}
                     style={{
-                      backgroundColor: "rgba(253,252,250,0.78)",
-                      backdropFilter: "blur(12px)",
-                      WebkitBackdropFilter: "blur(12px)",
-                      border: `1px solid rgba(232,226,220,0.75)`,
-                      borderRadius: "1.25rem",
-                      padding: "1.75rem 1.5rem",
-                      minHeight: "220px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      gap: "0.65rem",
-                      boxShadow: "0 4px 20px rgba(45,41,36,0.05)",
-                      transition: "transform 0.25s, box-shadow 0.25s",
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.transform = "translateY(-4px)";
-                      e.currentTarget.style.boxShadow = "0 12px 36px rgba(45,41,36,0.10)";
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.transform = "translateY(0)";
-                      e.currentTarget.style.boxShadow = "0 4px 20px rgba(45,41,36,0.05)";
+                      backgroundColor: "rgba(253,252,250,0.82)", backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)", border: `1px solid rgba(232,226,220,0.8)`,
+                      borderRadius: "1.35rem", padding: "1.5rem 1.2rem",
+                      display: "flex", 
+                      flexDirection: isInstagram ? "row" : "column", // Instagram horizontal, las otras verticales
+                      alignItems: isInstagram ? "center" : "flex-start",
+                      justifyContent: isInstagram ? "space-between" : "flex-start",
+                      textAlign: "left",
+                      gap: "0.75rem", 
+                      boxShadow: "0 4px 20px rgba(45,41,36,0.04)",
+                      gridColumn: isInstagram ? "span 2" : "span 1", // Instagram se estira abajo ocupando las 2 columnas
                     }}
                   >
-                    {/* Ícono */}
-                    <div style={{
-                      width: 42,
-                      height: 42,
-                      borderRadius: "50%",
-                      backgroundColor: `${colors.bg === "#fff" || colors.bg === "transparent"
-                        ? THEME.sage : colors.bg}18`,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: colors.bg === "transparent" ? THEME.gold : colors.bg,
-                      flexShrink: 0,
-                    }}>
-                      <Icon size={20} />
+                    {/* Contenedor Izquierdo/Superior (Icono + Textos) */}
+                    <div style={{ display: "flex", flexDirection: isInstagram ? "row" : "column", alignItems: "center", gap: "0.75rem", flexGrow: isInstagram ? 0 : 1, width: isInstagram ? "auto" : "100%" }}>
+                      {/* Contenedor del Icono */}
+                      <div style={{
+                        width: 40, height: 40, borderRadius: "50%",
+                        backgroundColor: `${colors.bg === "transparent" ? THEME.sage : colors.bg}18`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        color: colors.bg === "transparent" ? THEME.gold : colors.bg, flexShrink: 0,
+                      }}>
+                        <Icon size={19} />
+                      </div>
+
+                      {/* Textos */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem", width: "100%" }}>
+                        <p style={{ fontFamily: FONT.serif, fontSize: "1.15rem", fontWeight: 500, color: THEME.text, margin: 0, lineHeight: 1.2 }}>
+                          {card.label}
+                        </p>
+                        <p style={{ fontFamily: FONT.sans, fontSize: "0.78rem", color: THEME.textMuted, lineHeight: 1.4, margin: 0 }}>
+                          {card.desc}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Label */}
-                    <p style={{
-                      fontFamily: FONT.serif,
-                      fontSize: "1.1rem",
-                      fontWeight: 500,
-                      color: THEME.text,
-                      margin: 0,
-                      lineHeight: 1.2,
-                    }}>
-                      {card.label}
-                    </p>
-
-                    {/* Descripción */}
-                    <p style={{
-                      fontFamily: FONT.sans,
-                      fontSize: "0.78rem",
-                      color: THEME.textMuted,
-                      lineHeight: 1.6,
-                      margin: 0,
-                      flexGrow: 1,
-                    }}>
-                      {card.desc}
-                    </p>
-
-                    {/* Botón de acción */}
-                    <button
+                    {/* Botón de Acción */}
+                    <motion.button
                       onClick={() => handleCardAction(card.id)}
+                      whileHover={{ scale: 1.02, backgroundColor: colors.hover }}
+                      whileTap={{ scale: 0.98 }}
                       style={{
-                        marginTop: "0.4rem",
-                        padding: "0.55rem 1.1rem",
-                        borderRadius: "9999px",
-                        border: colors.border || "none",
-                        backgroundColor: colors.bg,
-                        color: colors.color,
-                        fontFamily: FONT.sans,
-                        fontSize: "0.78rem",
-                        fontWeight: 600,
-                        cursor: "pointer",
-                        letterSpacing: "0.03em",
-                        boxShadow: colors.shadow,
-                        transition: "all 0.22s",
-                        width: "100%",
+                        marginTop: isInstagram ? "0" : "auto", // Elimina margen superior si es horizontal
+                        padding: "0.6rem 1.1rem", borderRadius: "9999px",
+                        border: colors.border || "none", backgroundColor: colors.bg,
+                        color: colors.color, fontFamily: FONT.sans, fontSize: "0.78rem",
+                        fontWeight: 600, cursor: "pointer", letterSpacing: "0.03em",
+                        boxShadow: colors.shadow, 
+                        width: isInstagram ? "auto" : "100%", 
+                        minWidth: isInstagram ? "150px" : "none",
                         textAlign: "center",
-                      }}
-                      onMouseEnter={e => {
-                        e.currentTarget.style.backgroundColor = colors.hover;
-                        e.currentTarget.style.transform = "translateY(-1px)";
-                      }}
-                      onMouseLeave={e => {
-                        e.currentTarget.style.backgroundColor = colors.bg;
-                        e.currentTarget.style.transform = "translateY(0)";
                       }}
                     >
                       {card.btn}
-                    </button>
-                  </div>
+                    </motion.button>
+                  </motion.div>
                 );
               })}
             </div>
+
           </div>
         </div>
 
-        {/* Separador botánico al final */}
-        <div style={{ marginTop: "3rem" }}>
-          <DividerLeaves />
+        {/* Separador de constelación al fondo */}
+        <div style={{ marginTop: "4rem" }}>
+          <ConstellationDivider fromColor="transparent" toColor="transparent" />
         </div>
+
+        {/* Inyección de Media Queries nativas para asegurar responsividad total */}
+        <style>{`
+          @media (max-width: 868px) {
+            .contact-main-grid {
+              grid-template-columns: 1fr !important;
+              gap: 2.5rem !important;
+            }
+          }
+          @media (max-width: 520px) {
+            .contact-cards-grid {
+              grid-template-columns: 1fr !important;
+            }
+            div[style*="grid-column: span 2"] {
+              grid-column: span 1 !important; 
+              flex-direction: column !important;
+              align-items: flex-start !important;
+              text-align: left !important;
+            }
+            div[style*="grid-column: span 1"] button, 
+            div[style*="grid-column: span 2"] button {
+              width: 100% !important;
+              margin-top: 0.5rem !important;
+            }
+            div[style*="flex-direction: row"] {
+              flex-direction: column !important;
+              align-items: flex-start !important;
+            }
+          }
+        `}</style>
       </section>
 
-      {/* Modal formulario de contacto */}
-      {modal && <ContactModal lang={lang} onClose={() => setModal(false)} />}
-
-      <style>{`
-        @keyframes modalIn {
-          from { opacity: 0; transform: scale(0.93) translateY(18px); }
-          to   { opacity: 1; transform: scale(1)    translateY(0);    }
-        }
-        /* Cards responsivas */
-        @media (max-width: 640px) {
-          .contact-cards-grid {
-            grid-template-columns: 1fr !important;
-          }
-          .contacto-outer-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (min-width: 641px) and (max-width: 900px) {
-          .contact-cards-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-          }
-        }
-      `}</style>
+      {/* Renderizado Condicional del Modal */}
+      <AnimatePresence>
+        {modal && <ContactModal lang={lang} onClose={() => setModal(false)} />}
+      </AnimatePresence>
     </>
   );
 }

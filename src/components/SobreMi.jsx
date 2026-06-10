@@ -1,17 +1,51 @@
+// ============================================================
+//  SobreMi.jsx — con animaciones framer-motion
+//
+//  ANIMACIONES:
+//  · Imagen: slide desde izquierda + scale, spring suave
+//  · Badge: pop con spring (delay tras imagen)
+//  · Tag + Título + Rol: fade up escalonado
+//  · Párrafos: fade up stagger
+//  · Points: slide desde izquierda, stagger
+//  · Cards: scale + fade, stagger
+//  · Botón CTA: fade up + shimmer hover
+//  · Pluma: nueva plumas.png (fondo blanco, mix-blend-mode: multiply)
+//  · Luna: luna_y_estrellas__1_.png (fondo blanco, multiply)
+// ============================================================
+
 import { Divide } from "lucide-react";
 import { THEME, T } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco, FadeIn, scrollTo } from "./ui";
-import DividerLeaves from "./DividerLeaves";
-
+import ConstellationDivider from "./ConstellationDivider";
+import { motion } from "framer-motion";
 
 export default function SobreMi({ lang }) {
   const t = T[lang].sobre;
 
   const cardColors = [
-  THEME.sage,
-  THEME.rose,
-  THEME.gold,
-];
+    THEME.sage,
+    THEME.rose,
+    THEME.gold,
+  ];
+
+  // Variantes para animar la lista de puntos y las cards en cascada (stagger)
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12, // Tiempo entre la aparición de cada elemento
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: [0.215, 0.610, 0.355, 1.000] }
+    }
+  };
 
   return (
     <section
@@ -19,25 +53,43 @@ export default function SobreMi({ lang }) {
       className="py-20 px-6 md:px-12 relative overflow-hidden"
       style={{ background: "transparent" }}
     >
-
+      {/* Decoraciones de Fondo con micro-animaciones */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-40" />
         <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-20" />
-        <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
-        <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
-        <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
-        <MoonDeco className="absolute bottom-1/4 left-1/3" />
+        
+        {/* Estrellas titilando suavemente */}
+        <motion.div animate={{ opacity: [0.2, 0.6, 0.2] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>
+          <StarDeco className="absolute top-1/4 left-1/4 w-3 h-3" />
+        </motion.div>
+        <motion.div animate={{ opacity: [0.1, 0.5, 0.1] }} transition={{ duration: 4, delay: 1, repeat: Infinity, ease: "easeInOut" }}>
+          <StarDeco className="absolute top-3/4 right-1/3 w-2 h-2" />
+        </motion.div>
+        <motion.div animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 3.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}>
+          <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
+        </motion.div>
+        
+        {/* Luna con un leve balanceo/flotado */}
+        <motion.div 
+          animate={{ y: [0, -6, 0] }} 
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 left-1/3"
+        >
+          <MoonDeco />
+        </motion.div>
       </div>
 
-
-
-      {/* Decoraciones */}
+      {/* Más decoraciones */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <StarDeco className="absolute top-12 right-20" />
         <MoonDeco className="absolute bottom-16 left-12" />
 
-        {/* Pluma decorativa */}
-        <img
+        {/* Pluma decorativa con entrada suave */}
+        <motion.img
+          initial={{ opacity: 0, x: 30, rotate: 12 }}
+          whileInView={{ opacity: 0.55, x: 0, rotate: 8 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           src="/assets/plumas1.png"
           alt=""
           aria-hidden="true"
@@ -46,9 +98,8 @@ export default function SobreMi({ lang }) {
             top: "-8%",
             right: "-3%",
             width: "min(350px, 42vw)",
-            opacity: 0.55,
             mixBlendMode: "multiply",
-            transform: "rotate(8deg) scaleX(-1)",
+            transform: "scaleX(-1)",
             objectFit: "contain",
             pointerEvents: "none",
             userSelect: "none",
@@ -61,9 +112,17 @@ export default function SobreMi({ lang }) {
       </div>
 
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        {/* Imagen */}
-
-        <div className="relative flex justify-center">
+        {/* Columna Imagen */}
+        <motion.div 
+          className="relative flex justify-center"
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
           <div
             style={{
               width: "min(300px, 70vw)",
@@ -104,7 +163,7 @@ export default function SobreMi({ lang }) {
 
           {/* Badge */}
           <div
-            className=" absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full flex flex-col items-center"
+            className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full flex flex-col items-center"
             style={{
               backgroundColor: THEME.card,
               boxShadow: `0 8px 30px rgba(0,0,0,0.07)`,
@@ -133,20 +192,17 @@ export default function SobreMi({ lang }) {
               Lic. Psicología
             </div>
           </div>
-        </div>
+        </motion.div>
 
-
-        {/* Texto */}
-        <div>
+        {/* Columna Texto */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+        >
           <div className="flex items-center gap-2 mb-4">
-            <div
-              style={{
-                width: 28,
-                height: 1,
-                backgroundColor: THEME.gold,
-              }}
-            />
-
+            <div style={{ width: 28, height: 1, backgroundColor: THEME.gold }} />
             <span
               style={{
                 fontFamily: "'Quicksand', sans-serif",
@@ -162,8 +218,7 @@ export default function SobreMi({ lang }) {
 
           <h2
             style={{
-              fontFamily:
-                "'Cormorant Garamond', 'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
               color: THEME.text,
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 400,
@@ -185,7 +240,7 @@ export default function SobreMi({ lang }) {
           >
             {t.role}
           </p>
-          {/* Herramientas terapéuticas */}
+
           {/* Texto principal */}
           {[t.p1, t.p2, t.p3].map((p, i) => (
             <p
@@ -202,9 +257,12 @@ export default function SobreMi({ lang }) {
             </p>
           ))}
 
-          {/* Herramientas terapéuticas */}
-
-          <div
+          {/* Herramientas terapéuticas con stagger effect */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
             style={{
               marginTop: "2rem",
               marginBottom: "2rem",
@@ -214,13 +272,13 @@ export default function SobreMi({ lang }) {
             }}
           >
             {t.points.map((item, index) => (
-              <div
+              <motion.div
                 key={item.title}
+                variants={itemVariants}
                 style={{
                   display: "flex",
                   gap: "0.9rem",
                   alignItems: "flex-start",
-                  
                 }}
               >
                 <div
@@ -233,7 +291,6 @@ export default function SobreMi({ lang }) {
                     flexShrink: 0,
                   }}
                 />
-
                 <div>
                   <h4
                     style={{
@@ -246,7 +303,6 @@ export default function SobreMi({ lang }) {
                   >
                     {item.title}
                   </h4>
-
                   <p
                     style={{
                       color: THEME.textMuted,
@@ -257,20 +313,25 @@ export default function SobreMi({ lang }) {
                     {item.text}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Cards */}
-          <div
+          {/* Cards informativas animadas al entrar y al hacer Hover */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-3"
-            style={{
-              marginTop: "2rem",
-            }}
+            style={{ marginTop: "2rem" }}
           >
             {t.cards.map((item) => (
-              <div
+              <motion.div
                 key={item.title}
+                variants={itemVariants}
+                whileHover={{ y: -5, boxShadow: "0 12px 30px rgba(0,0,0,0.08)" }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 style={{
                   background: "rgba(255,255,255,0.75)",
                   backdropFilter: "blur(8px)",
@@ -279,13 +340,7 @@ export default function SobreMi({ lang }) {
                   minHeight: "105px",
                   borderRadius: "1rem",
                   boxShadow: "0 8px 25px rgba(0,0,0,0.04)",
-                  transition: "all .3s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
+                  cursor: "default"
                 }}
               >
                 <div
@@ -327,30 +382,38 @@ export default function SobreMi({ lang }) {
                 >
                   {item.subtitle}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <button
+          {/* Botón CTA con micro-interacción */}
+          <motion.button
+            whileHover={{ scale: 1.03, boxShadow: `0 6px 24px ${THEME.rose}45` }}
+            whileTap={{ scale: 0.98 }}
             onClick={() =>
               document
                 .getElementById("sesiones")
                 ?.scrollIntoView({ behavior: "smooth" })
             }
-            className="mt-4 px-7 py-3 rounded-full font-semibold transition-all"
+            className="mt-6 px-7 py-3 rounded-full font-semibold transition-colors"
             style={{
               backgroundColor: THEME.rose,
               color: "#fff",
               fontFamily: "'Quicksand', sans-serif",
               fontSize: "0.88rem",
-              boxShadow: `0 4px 20px ${THEME.rose}35`,
             }}
           >
             {t.cta}
-          </button>
-        </div>
-      </div >
-      <DividerLeaves />
-    </section >
+          </motion.button>
+        </motion.div>
+      </div>
+            {/* Separador de constelación */}
+            <div style={{ marginTop: "3rem" }}>
+              <ConstellationDivider
+                fromColor="transparent"
+                toColor="transparent"
+              />
+            </div>
+    </section>
   );
 }

@@ -8,7 +8,6 @@ import {
     Mail
 } from "lucide-react";
 
-
 export default function QuickCards({ lang }) {
     const t = T[lang].quickCards;
 
@@ -56,121 +55,115 @@ export default function QuickCards({ lang }) {
     ];
 
     return (
-        <section
-            className="
-group
-rounded-[2rem]
-p-6
-text-center
-transition-all
-duration-300
-hover:-translate-y-2
-hover:shadow-xl
-flex
-flex-col
-items-center
-h-full
-"
-            style={{
-                background: "transparent",
-            }}
-        >
-            <div
-  className="
-    grid
-    grid-cols-1
-    sm:grid-cols-2
-    lg:grid-cols-5
-    gap-4
-    px-4
-    md:px-8
-    max-w-7xl
-    mx-auto
-  "
-            >
-{cards.map((card, i) => {
-  const Icon = card.icon;
+        <section className="py-6 w-full bg-transparent">
+            <div className="
+                grid 
+                grid-cols-1 
+                xs:grid-cols-2 
+                sm:grid-cols-2 
+                md:grid-cols-3 
+                lg:grid-cols-5 
+                gap-4 
+                px-4 
+                md:px-8 
+                max-w-7xl 
+                mx-auto
+            ">
+                {cards.map((card, i) => {
+                    const Icon = card.icon;
 
-  return (
-    <button
-      key={i}
-      onClick={() => scrollTo(card.id)}
-  className="
-    group
-    rounded-[1.75rem]
-    text-center
-    transition-all
-    duration-300
-    hover:-translate-y-2
-    hover:shadow-xl
-  "
-  style={{
-    backgroundColor: "rgba(255,255,255,0.72)",
-    backdropFilter: "blur(14px)",
-    border: `1px solid ${THEME.border}`,
-    boxShadow: "0 10px 30px rgba(0,0,0,0.04)",
-    padding: "1.5rem",
-    minHeight: window.innerWidth < 768 ? "180px" : "220px",
-  }}
-    >
-      <div
-        className="
-    w-12 h-12 md:w-16 md:h-16
-    rounded-full
-    mx-auto
-    mb-3 md:mb-4
-    flex items-center justify-center
-  "
-        style={{
-          backgroundColor: card.soft,
-        }}
-      >
-        <Icon
-  size={20}
-  strokeWidth={1.5}
-  color={card.iconColor}
-        />
-      </div>
+                    return (
+                        <button
+                            key={i}
+                            onClick={() => scrollTo(card.id)}
+                            className="
+                                group 
+                                rounded-[1.75rem] 
+                                text-center 
+                                transition-all 
+                                duration-300 
+                                hover:-translate-y-2 
+                                hover:shadow-xl
+                                flex 
+                                flex-col 
+                                items-center 
+                                justify-between
+                                p-4 md:p-6
+                                h-auto md:min-h-[250px]
+                            "
+                            style={{
+                                backgroundColor: "rgba(255, 255, 255, 0.72)",
+                                backdropFilter: "blur(14px)",
+                                border: `1px solid ${THEME.border}`,
+                                boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
+                            }}
+                        >
+                            {/* Contenedor superior para agrupar icono + textos */}
+                            <div className="w-full flex flex-col items-center">
+                                {/* Círculo del icono optimizado para móvil/desktop */}
+                                <div
+                                    className="
+                                        w-14 h-14 md:w-16 md:h-16
+                                        rounded-full
+                                        mb-2 md:mb-4
+                                        flex items-center justify-center
+                                        transition-transform
+                                        duration-300
+                                        group-hover:scale-110
+                                    "
+                                    style={{
+                                        backgroundColor: card.soft,
+                                    }}
+                                >
+                                    {/* Icono más grande: pasó de size 20 a 24 (md:26) */}
+                                    <Icon
+                                        className="w-6 h-6 md:w-[26px] md:h-[26px]"
+                                        strokeWidth={1.4}
+                                        color={card.color}
+                                    />
+                                </div>
 
-      <h3
-        style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          color: THEME.text,
-          fontSize: "1.25rem",
-          minHeight: "60px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {card.title}
-      </h3>
+                                {/* Título de la tarjeta */}
+                                <h3
+                                    className="text-base md:text-lg font-medium px-1"
+                                    style={{
+                                        fontFamily: "'Cormorant Garamond', serif",
+                                        color: THEME.text,
+                                        minHeight: "44px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    {card.title}
+                                </h3>
 
-      <p
-        style={{
-          fontFamily: "'Quicksand', sans-serif",
-          color: THEME.textMuted,
-          fontSize: "0.82rem",
-          lineHeight: 1.6,
-          minHeight: "70px",
-        }}
-      >
-        {card.text}
-      </p>
+                                {/* Texto de la descripción */}
+                                <p
+                                    className="text-[0.80rem] md:text-[0.84rem] mt-1 px-1"
+                                    style={{
+                                        fontFamily: "'Quicksand', sans-serif",
+                                        color: THEME.textMuted,
+                                        lineHeight: 1.5,
+                                    }}
+                                >
+                                    {card.text}
+                                </p>
+                            </div>
 
-      <div
-        className="mt-3"
-        style={{
-          color: card.color,
-          fontSize: "1rem",
-        }}
-      >
-        →
-      </div>
-    </button>
-  );
-})}
-                
+                            {/* Flecha indicadora inferior */}
+                            <div
+                                className="mt-3 transition-transform duration-300 group-hover:translate-x-1"
+                                style={{
+                                    color: card.color,
+                                    fontSize: "1.1rem",
+                                }}
+                            >
+                                →
+                            </div>
+                        </button>
+                    );
+                })}
             </div>
         </section>
     );

@@ -1,109 +1,16 @@
+import { useState, useEffect } from "react";
+import { T, THEME } from "../constants";
+import ConstellationDivider from "./ConstellationDivider";
+import { CircleDeco } from "./ui"; 
 
-// ============================================================
-//  TestimonialsSlider.jsx
-//  Carrusel de testimonios — Magalí Sol Cerezo
-//
-//  ESTRUCTURA ORIGINAL preservada íntegramente.
-//  Se aplicaron los estilos del sistema de diseño del proyecto:
-//    · Tipografía: Cormorant Garamond (serif) + Quicksand (sans)
-//    · Paleta THEME centralizada
-//    · Decoraciones: plumas, StarDeco, MoonDeco
-//    · fondo: THEME.bgSage (verde agua) — sección posterior a OnlineSessions
-//
-//  DEPENDENCIAS ELIMINADAS (reemplazadas con CSS nativo):
-//    · framer-motion  → transiciones CSS opacity + transform
-//    · lucide-react   → SVG inline (ChevronLeft, ChevronRight, Quote)
-//    · Sin instalación extra requerida — 0 dependencias externas
-//
-//  AUTOPLAY: cada 6 segundos, se pausa al hacer hover.
-// ============================================================
-
-import { useState, useEffect, useRef } from "react";
-import DividerLeaves from "./DividerLeaves";
-import {T, THEME} from "../constants";
-
-// ─── Paleta THEME — sincronizá con App.jsx ───────────────────
-// const THEME = {
-//   bg: "#FCFBFA",
-//   bgSage: "#EEF3EE",
-//   bgRose: "#F7F0ED",
-//   card: "#FDFCFA",
-//   sage: "#8A9E8A",
-//   rose: "#C4968A",
-//   gold: "#C9A96E",
-//   text: "#2D2924",
-//   textMuted: "#7A6E66",
-//   border: "#E8E2DC",
-// };
-
-// ─── Tipografías ─────────────────────────────────────────────
 const FONT = {
   serif: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
   sans: "'Quicksand', 'Nunito', system-ui, sans-serif",
 };
 
-// ─── Testimonios ─────────────────────────────────────────────
-// Podés reemplazar o ampliar este array con los datos reales
-// const testimonials = [
-//   {
-//     text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.",
-//     author: "Mayra C",
-//     role: "Proceso de sanación energética",
-//   },
-//   {
-//     text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.",
-//     author: "Macarena C.",
-//     role: "Mindfulness y meditación",
-//   },
-//   {
-//     text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.",
-//     author: "Giselle H.",
-//     role: "Sanación energética en espacios",
-//   },
-//   {
-//     text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.",
-//     author: "Ayelen, H.",
-//     role: "Terapia holística integral",
-//   },
-//   {
-//     text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.",
-//     author: "Oriana A.",
-//     role: "Corte de lazos etéricos",
-//   },
-//   {
-//     text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.",
-//     author: "Analía P.",
-//     role: "Meditación guiada",
-//   },
-//   {
-//     text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.",
-//     author: "Noelia P.",
-//     role: "Tapping EFT",
-//   },
-//   {
-//     text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.",
-//     author: "S. B.",
-//     role: "Proceso de transformación personal",
-//   },
-// ];
-
-// ─── Traducciones del header ──────────────────────────────────
-// const t = {
-//   es: {
-//     tag: "Testimonios",
-//     title: "Voces que sanan",
-//   },
-//   en: {
-//     tag: "Testimonials",
-//     title: "Voices that heal",
-//   },
-// };
-
 // ─── Iconos SVG inline ────────────────────────────────────────
-// Reemplazan ChevronLeft / ChevronRight / Quote de lucide-react
-
 const IconChevronLeft = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
     aria-hidden="true">
     <polyline points="15 18 9 12 15 6" />
@@ -111,7 +18,7 @@ const IconChevronLeft = () => (
 );
 
 const IconChevronRight = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
     aria-hidden="true">
     <polyline points="9 18 15 12 9 6" />
@@ -119,7 +26,7 @@ const IconChevronRight = () => (
 );
 
 const IconQuote = () => (
-  <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  <svg width="52" height="52" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
     <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z" />
     <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z" />
   </svg>
@@ -135,7 +42,7 @@ const StarDeco = ({ style = {} }) => (
 );
 
 const MoonDeco = ({ style = {} }) => (
-  <svg width="20" height="20" viewBox="0 0 18 18" fill="none"
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
     style={{ position: "absolute", ...style }} aria-hidden="true">
     <path d="M15 9.5A6 6 0 0 1 8.5 3a6 6 0 1 0 6.5 6.5z"
       stroke={THEME.gold} strokeWidth="1" strokeOpacity="0.35" fill="none" />
@@ -143,16 +50,15 @@ const MoonDeco = ({ style = {} }) => (
 );
 
 // ─── COMPONENTE PRINCIPAL ────────────────────────────────────
-export default function TestimonialsSlider({ lang}) {
+export default function TestimonialsSlider({ lang }) {
   const tx = T[lang].testimonios;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
-  const [direction, setDirection] = useState("next"); // "next" | "prev"
+  const [direction, setDirection] = useState("next");
   const [paused, setPaused] = useState(false);
-  const timeoutRef = useRef(null);
 
-  // ── Autoplay — se pausa al hacer hover sobre el slider ──
+  // ── Autoplay ──
   useEffect(() => {
     if (paused) return;
 
@@ -161,70 +67,66 @@ export default function TestimonialsSlider({ lang}) {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [paused]);
+  }, [paused, tx.items.length]);
 
   // ── Transición animada ────────────────────────────────────
   const transitionTo = (index, dir = "next") => {
     if (animating) return;
     setDirection(dir);
     setAnimating(true);
-    // Espera a que el fade-out termine, luego cambia el índice
     setTimeout(() => {
       setCurrentIndex(index);
       setAnimating(false);
     }, 380);
   };
 
- const goToNext = () =>
-  transitionTo((currentIndex + 1) % tx.items.length, "next");
+  const goToNext = () =>
+    transitionTo((currentIndex + 1) % tx.items.length, "next");
 
-const goToPrevious = () =>
-  transitionTo(
-    (currentIndex - 1 + tx.items.length) % tx.items.length,
-    "prev"
-  );
+  const goToPrevious = () =>
+    transitionTo(
+      (currentIndex - 1 + tx.items.length) % tx.items.length,
+      "prev"
+    );
 
   // ── Estilos de transición del contenido ──────────────────
   const contentStyle = {
     transition: "opacity 0.38s ease, transform 0.38s ease",
     opacity: animating ? 0 : 1,
     transform: animating
-      ? direction === "next" ? "translateY(14px)" : "translateY(-14px)"
+      ? direction === "next" ? "translateY(10px)" : "translateY(-10px)"
       : "translateY(0)",
   };
 
-  // ── Estilos compartidos ───────────────────────────────────
+  // ── Estilos de flechas redondeadas estéticas ──────────────
   const arrowBtnBase = {
-    width: 48,
-    height: 48,
+    width: 44,
+    height: 44,
     borderRadius: "50%",
     backgroundColor: THEME.card,
-    border: `1.5px solid rgba(138,158,138,0.3)`,
+    border: `1.5px solid rgba(138,158,138,0.25)`,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
     transition: "all 0.22s ease",
     color: THEME.textMuted,
-    boxShadow: `0 2px 12px rgba(45,41,36,0.06)`,
+    boxShadow: `0 3px 10px rgba(45,41,36,0.04)`,
     flexShrink: 0,
   };
 
-  // ── Render ────────────────────────────────────────────────
   return (
     <section
-
-
       id="testimonios"
       style={{
-        paddingTop: "2rem",
-        paddingBottom: "6rem",
-        backgroundColor: THEME.bgA,
+        paddingTop: "3.5rem",
+        paddingBottom: "4.5rem",
+        backgroundColor: THEME.bgB,
         overflow: "hidden",
         position: "relative",
       }}
     >
-
+      {/* Capa de Decoraciones de Fondo Unificada */}
       <div
         style={{
           position: "absolute",
@@ -233,104 +135,59 @@ const goToPrevious = () =>
           overflow: "hidden",
         }}
       >
-        {/* Círculo superior derecho */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-120px",
-            right: "-120px",
-            width: "350px",
-            height: "350px",
-            borderRadius: "9999px",
-            background: "rgba(138,158,138,0.08)",
-            filter: "blur(10px)",
-          }}
-        />
+        {/* Círculos UI Decorativos - SINTAXIS CORREGIDA ACA */}
+        <div style={{ position: "absolute", top: "-4rem", right: "-4rem", width: "18rem", height: "18rem", opacity: 0.35 }}>
+          <CircleDeco />
+        </div>
+        <div style={{ position: "absolute", bottom: "-5rem", left: "-5rem", width: "22rem", height: "22rem", opacity: 0.25 }}>
+          <CircleDeco />
+        </div>
 
-        {/* Círculo inferior izquierdo */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-150px",
-            left: "-150px",
-            width: "420px",
-            height: "420px",
-            borderRadius: "9999px",
-            background: "rgba(201,169,110,0.06)",
-            filter: "blur(10px)",
-          }}
-        />
+        {/* Estrellas nativas con animación CSS suave */}
+        <StarDeco style={{ top: "20%", left: "15%", width: 10, height: 10, animation: "twinkle 3s ease-in-out infinite" }} />
+        <StarDeco style={{ top: "80%", right: "18%", width: 8, height: 8, animation: "twinkle 4s ease-in-out infinite 1s" }} />
+        <StarDeco style={{ top: "30%", right: "12%", width: 14, height: 14, animation: "twinkle 3.5s ease-in-out infinite 0.5s" }} />
+
+        {/* Luna flotante */}
+        <div style={{ position: "absolute", bottom: "30%", left: "12%", animation: "floatDeco 5s ease-in-out infinite" }}>
+          <MoonDeco />
+        </div>
       </div>
 
+      {/* Círculos concéntricos ornamentales */}
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 500, height: 500, borderRadius: "50%", border: `1px solid rgba(201,169,110,0.05)`, pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 320, height: 320, borderRadius: "50%", border: `1px solid rgba(138,158,138,0.05)`, pointerEvents: "none" }} />
 
-
-      {/* ── Decoraciones de fondo ── */}
-      <StarDeco style={{ top: "2rem", left: "8%" }} />
-      <StarDeco style={{ top: "2rem", right: "12%" }} />
-      <StarDeco style={{ bottom: "3rem", left: "18%", width: 8, height: 8 }} />
-      <StarDeco style={{ bottom: "2rem", right: "8%", width: 16, height: 16 }} />
-      <MoonDeco style={{ top: "1.5rem", right: "6%" }} />
-      <MoonDeco style={{ bottom: "2rem", left: "5%" }} />
-
-      {/* Círculo ornamental central — muy sutil */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 600,
-        height: 600,
-        borderRadius: "50%",
-        border: `1px solid rgba(201,169,110,0.07)`,
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 400,
-        height: 400,
-        borderRadius: "50%",
-        border: `1px solid rgba(138,158,138,0.07)`,
-        pointerEvents: "none",
-      }} />
-
-      {/* Pluma derecha — tono celeste */}
-      {/* ↓ plumas1.png: mix-blend-mode multiply elimina el fondo negro */}
+      {/* Pluma ornamental decorativa */}
       <img
         src="/assets/plumas1.png"
         alt=""
         aria-hidden="true"
         style={{
           position: "absolute",
-          bottom: "-5%",
-          right: "-3%",
-          width: "clamp(200px, 32vw, 380px)",
-          opacity: 0.55,
+          bottom: "2%",
+          left: "-5%",
+          width: "280px",
+          opacity: 0.14,
           mixBlendMode: "multiply",
-          transform: "rotate(-8deg) scaleX(-1)",
+          transform: "rotate(35deg)",
           objectFit: "contain",
           pointerEvents: "none",
           userSelect: "none",
-          filter: "saturate(0.4) brightness(0.88) hue-rotate(170deg)",
+          filter: "saturate(0.4) brightness(0.95)",
         }}
-        onError={(e) => { e.target.style.display = "none"; }}
+        onError={(e) => { e.currentTarget.style.display = "none"; }}
       />
 
-      <div style={{ maxWidth: "56rem", margin: "0 auto", position: "relative", zIndex: 1 }}>
-
-        {/* ════════════════════════════════
-            HEADER
-        ════════════════════════════════ */}
-        <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-
-          {/* Tag dorado */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: "1rem" }}>
-            <div style={{ width: 28, height: 1, backgroundColor: THEME.gold }} />
+      <div style={{ maxWidth: "44rem", margin: "0 auto", padding: "0 1.5rem", position: "relative", zIndex: 1 }}>
+        
+        {/* ── HEADER ── */}
+        <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: "0.75rem" }}>
+            <div style={{ width: 24, height: 1, backgroundColor: THEME.gold }} />
             <span style={{
               fontFamily: FONT.sans,
-              fontSize: "0.72rem",
+              fontSize: "0.7rem",
               letterSpacing: "0.22em",
               textTransform: "uppercase",
               fontWeight: 600,
@@ -338,54 +195,41 @@ const goToPrevious = () =>
             }}>
               {tx.tag}
             </span>
-            <div style={{ width: 28, height: 1, backgroundColor: THEME.gold }} />
+            <div style={{ width: 24, height: 1, backgroundColor: THEME.gold }} />
           </div>
 
-          {/* Título */}
           <h2 style={{
             fontFamily: FONT.serif,
-            fontSize: "clamp(2.2rem, 5vw, 3.4rem)",
+            fontSize: "clamp(2rem, 4.5vw, 2.75rem)",
             fontWeight: 400,
             fontStyle: "italic",
-            lineHeight: 1.2,
+            lineHeight: 1.25,
             color: THEME.text,
+            margin: 0
           }}>
             {tx.title}
           </h2>
         </div>
 
-        {/* ════════════════════════════════
-            SLIDER
-        ════════════════════════════════ */}
+        {/* ── SLIDER CARD ── */}
         <div
           style={{ position: "relative" }}
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          {/* Ícono de comillas — flotante sobre la card */}
-          <div style={{
-            position: "absolute",
-            top: "-2rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            zIndex: 10,
-            color: THEME.gold,
-            opacity: 0.18,
-            lineHeight: 1,
-            pointerEvents: "none",
-          }}>
+          {/* Icono de Comillas Superior */}
+          <div style={{ position: "absolute", top: "-1.5rem", left: "50%", transform: "translateX(-50%)", zIndex: 10, color: THEME.gold, opacity: 0.15, lineHeight: 1, pointerEvents: "none" }}>
             <IconQuote />
           </div>
 
-          {/* ── Card principal del testimonio ── */}
           <div
             style={{
               backgroundColor: THEME.card,
-              borderRadius: "1.5rem",
-              boxShadow: `0 16px 56px rgba(45,41,36,0.08), 0 2px 8px rgba(201,169,110,0.08)`,
-              border: `1px solid rgba(201,169,110,0.14)`,
-              padding: "clamp(2.5rem, 6vw, 5rem)",
-              minHeight: 380,
+              borderRadius: "1.25rem",
+              boxShadow: `0 12px 40px rgba(45,41,36,0.05), 0 2px 6px rgba(201,169,110,0.04)`,
+              border: `1px solid rgba(201,169,110,0.12)`,
+              padding: "3.5rem 2.2rem 2.5rem 2.2rem", 
+              minHeight: 260,
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -393,70 +237,40 @@ const goToPrevious = () =>
               overflow: "hidden",
             }}
           >
-            {/* Detalle de borde dorado superior */}
-            <div style={{
-              position: "absolute",
-              top: 0,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: 80,
-              height: 2,
-              borderRadius: "0 0 4px 4px",
-              background: `linear-gradient(to right, transparent, ${THEME.gold}80, transparent)`,
-            }} />
+            {/* Pequeña línea dorada de acento superior */}
+            <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 60, height: 2, background: `linear-gradient(to right, transparent, ${THEME.gold}60, transparent)` }} />
 
-            {/* Contenido animado */}
             <div style={{ textAlign: "center", ...contentStyle }}>
-
-              {/* Texto del testimonio */}
               <p style={{
                 fontFamily: FONT.serif,
-                fontSize: "clamp(1.2rem, 2.8vw, 1.65rem)",
+                fontSize: "clamp(1.15rem, 2.5vw, 1.45rem)",
                 fontStyle: "italic",
                 fontWeight: 400,
-                lineHeight: 1.72,
+                lineHeight: 1.68,
                 color: THEME.text,
-                marginBottom: "2rem",
+                margin: "0 0 1.75rem 0",
               }}>
                 "{tx.items[currentIndex].text}"
               </p>
 
-              {/* Separador ornamental */}
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: "1.25rem" }}>
-                <div style={{ width: 32, height: 1, background: `linear-gradient(to right, transparent, ${THEME.gold}60)` }} />
-                <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true">
-                  <path d="M4 0L4.6 3.4L8 4L4.6 4.6L4 8L3.4 4.6L0 4L3.4 3.4Z"
-                    fill={THEME.gold} fillOpacity="0.7" />
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, marginBottom: "1rem" }}>
+                <div style={{ width: 24, height: 1, background: `linear-gradient(to right, transparent, ${THEME.gold}40)` }} />
+                <svg width="6" height="6" viewBox="0 0 8 8" aria-hidden="true">
+                  <path d="M4 0L4.6 3.4L8 4L4.6 4.6L4 8L3.4 4.6L0 4L3.4 3.4Z" fill={THEME.gold} fillOpacity="0.6" />
                 </svg>
-                <div style={{ width: 32, height: 1, background: `linear-gradient(to left, transparent, ${THEME.gold}60)` }} />
+                <div style={{ width: 24, height: 1, background: `linear-gradient(to left, transparent, ${THEME.gold}40)` }} />
               </div>
 
-              {/* Autor */}
               <div>
-                <div style={{
-                  fontFamily: FONT.sans,
-                  fontSize: "1rem",
-                  fontWeight: 700,
-                  color: THEME.text,
-                  marginBottom: "0.25rem",
-                  letterSpacing: "0.02em",
-                }}>
+                <div style={{ fontFamily: FONT.sans, fontSize: "0.92rem", fontWeight: 700, color: THEME.text, margin: 0, letterSpacing: "0.02em" }}>
                   {tx.items[currentIndex].author}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* ── Navegación: flechas + dots ── */}
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: "1.25rem",
-            marginTop: "2rem",
-          }}>
-
-            {/* Flecha izquierda */}
+          {/* Controles de Navegación */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "1rem", marginTop: "1.75rem" }}>
             <button
               onClick={goToPrevious}
               aria-label="Testimonio anterior"
@@ -465,20 +279,20 @@ const goToPrevious = () =>
                 e.currentTarget.style.backgroundColor = THEME.sage;
                 e.currentTarget.style.color = "#fff";
                 e.currentTarget.style.borderColor = THEME.sage;
-                e.currentTarget.style.boxShadow = `0 6px 20px rgba(138,158,138,0.35)`;
+                e.currentTarget.style.boxShadow = `0 4px 15px rgba(138,158,138,0.28)`;
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = THEME.card;
                 e.currentTarget.style.color = THEME.textMuted;
-                e.currentTarget.style.borderColor = "rgba(138,158,138,0.3)";
-                e.currentTarget.style.boxShadow = `0 2px 12px rgba(45,41,36,0.06)`;
+                e.currentTarget.style.borderColor = "rgba(138,158,138,0.25)";
+                e.currentTarget.style.boxShadow = `0 3px 10px rgba(45,41,36,0.04)`;
               }}
             >
               <IconChevronLeft />
             </button>
 
-            {/* Dots de navegación */}
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+            {/* Dots indicadores */}
+            <div style={{ display: "flex", alignItems: "center", gap: "0.45rem" }}>
               {tx.items.map((_, index) => {
                 const isActive = index === currentIndex;
                 return (
@@ -487,27 +301,22 @@ const goToPrevious = () =>
                     onClick={() => transitionTo(index, index > currentIndex ? "next" : "prev")}
                     aria-label={`Testimonio ${index + 1}`}
                     style={{
-                      width: isActive ? 28 : 8,
-                      height: 8,
+                      width: isActive ? 24 : 7,
+                      height: 7,
                       borderRadius: "9999px",
                       border: "none",
                       cursor: "pointer",
                       padding: 0,
                       transition: "all 0.3s ease",
-                      backgroundColor: isActive ? THEME.sage : `rgba(138,158,138,0.28)`,
+                      backgroundColor: isActive ? THEME.sage : `rgba(138,158,138,0.25)`,
                     }}
-                    onMouseEnter={e => {
-                      if (!isActive) e.currentTarget.style.backgroundColor = `rgba(138,158,138,0.5)`;
-                    }}
-                    onMouseLeave={e => {
-                      if (!isActive) e.currentTarget.style.backgroundColor = `rgba(138,158,138,0.28)`;
-                    }}
+                    onMouseEnter={e => { if (!isActive) e.currentTarget.style.backgroundColor = `rgba(138,158,138,0.45)`; }}
+                    onMouseLeave={e => { if (!isActive) e.currentTarget.style.backgroundColor = `rgba(138,158,138,0.25)`; }}
                   />
                 );
               })}
             </div>
 
-            {/* Flecha derecha */}
             <button
               onClick={goToNext}
               aria-label="Siguiente testimonio"
@@ -516,62 +325,50 @@ const goToPrevious = () =>
                 e.currentTarget.style.backgroundColor = THEME.sage;
                 e.currentTarget.style.color = "#fff";
                 e.currentTarget.style.borderColor = THEME.sage;
-                e.currentTarget.style.boxShadow = `0 6px 20px rgba(138,158,138,0.35)`;
+                e.currentTarget.style.boxShadow = `0 4px 15px rgba(138,158,138,0.28)`;
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = THEME.card;
                 e.currentTarget.style.color = THEME.textMuted;
-                e.currentTarget.style.borderColor = "rgba(138,158,138,0.3)";
-                e.currentTarget.style.boxShadow = `0 2px 12px rgba(45,41,36,0.06)`;
+                e.currentTarget.style.borderColor = "rgba(138,158,138,0.25)";
+                e.currentTarget.style.boxShadow = `0 3px 10px rgba(45,41,36,0.04)`;
               }}
             >
               <IconChevronRight />
             </button>
           </div>
 
-          {/* ── Indicador de progreso automático ── */}
+          {/* Barra de Progreso Discreta */}
           {!paused && (
-            <div style={{
-              position: "relative",
-              height: 2,
-              maxWidth: 200,
-              margin: "1.25rem auto 0",
-              borderRadius: "9999px",
-              backgroundColor: `rgba(138,158,138,0.15)`,
-              overflow: "hidden",
-            }}>
+            <div style={{ position: "relative", height: 2, maxWidth: 140, margin: "1rem auto 0", borderRadius: "9999px", backgroundColor: `rgba(138,158,138,0.12)`, overflow: "hidden" }}>
               <div
-                key={currentIndex}          /* Re-monta la animación en cada cambio */
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "9999px",
-                  backgroundColor: THEME.sage,
-                  transformOrigin: "left center",
-                  animation: "progressBar 6s linear forwards",
-                }}
+                key={currentIndex}
+                style={{ position: "absolute", inset: 0, borderRadius: "9999px", backgroundColor: THEME.sage, transformOrigin: "left center", animation: "progressBar 6s linear forwards" }}
               />
             </div>
           )}
         </div>
-        {/* ── FIN SLIDER ── */}
-
       </div>
 
-      {/* Animación de barra de progreso — inyectada una sola vez */}
+      {/* Inyección de Keyframes */}
       <style>{`
         @keyframes progressBar {
           from { transform: scaleX(0); }
           to   { transform: scaleX(1); }
         }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.15; }
+          50% { opacity: 0.6; }
+        }
+        @keyframes floatDeco {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
       `}</style>
 
-
-      {/* DividerLeaves al final */}
-      <div style={{ marginTop: "1.5rem" }}>
-        <DividerLeaves />
+      <div style={{ marginTop: "2.5rem" }}>
+        <ConstellationDivider fromColor="transparent" toColor="transparent" />
       </div>
-
     </section>
   );
 }

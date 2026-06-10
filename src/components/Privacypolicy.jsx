@@ -128,27 +128,18 @@ const Article = ({ article }) => (
 //  COMPONENTE PRINCIPAL
 // ══════════════════════════════════════════════════════════
 export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
-  // Lee directamente desde T[lang].privacy
   const c = T[lang]?.privacy || T.es.privacy;
 
   return (
-
-
-
-
-
     <div style={{
       backgroundColor: "transparent", minHeight: "100vh", position: "relative",
       overflow: "hidden"
     }}>
 
-
+      {/* Capa de Fondos Astrales */}
       <div
         className="absolute inset-0 pointer-events-none overflow-hidden"
-        style={{
-          zIndex: 1,
-          overflow: "hidden"
-        }}
+        style={{ zIndex: 1 }}
       >
         <CircleDeco className="absolute -top-10 -right-10 w-72 h-72 opacity-15" />
         <CircleDeco className="absolute -bottom-20 -left-20 w-96 h-96 opacity-10" />
@@ -160,44 +151,39 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
         <MoonDeco className="absolute bottom-1/4 left-1/3" />
       </div>
 
-<img
-  src="/assets/plumas1.png"
-  alt=""
-  aria-hidden="true"
-  style={{
-    position: "absolute",
-    top: "2%",
-    right: "-5%",
-    width: "min(420px, 38vw)",
-    opacity: 0.16,
-    transform: "rotate(8deg)",
-    filter: "sepia(30%) saturate(70%)",
-    pointerEvents: "none",
-    zIndex: 1,
-  }}
-/>
+      {/* Imagen decorativa Plumas */}
+      <img
+        src="/assets/plumas1.png"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "2%",
+          right: "-5%",
+          width: "min(420px, 38vw)",
+          opacity: 0.16,
+          transform: "rotate(8deg)",
+          filter: "sepia(30%) saturate(70%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
 
-
-      {/* ── Navbar real del proyecto ──────────────────────────
-          Pasamos lang y setLang para que el switch ES/EN funcione.
-          onBack se usa como scrollTo("inicio") internamente en Navbar,
-          pero acá también dispara la vuelta a la home.
-      ────────────────────────────────────────────────────── */}
+      {/* Navbar con enrutamiento suave integrado */}
       <Navbar
         lang={lang}
         setLang={setLang}
         onNavigate={(section) => {
           onBack();
-
           setTimeout(() => {
             document
               .getElementById(section)
               ?.scrollIntoView({ behavior: "smooth" });
-          }, 100);
+          }, 200);
         }}
       />
 
-      {/* ── Contenido principal ── */}
+      {/* Contenido principal */}
       <main
         style={{
           position: "relative",
@@ -207,8 +193,7 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           padding: "10rem 1.5rem 5rem"
         }}
       >
-
-        {/* ── Hero de la página ── */}
+        {/* Hero de la página */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <div style={{
             display: "flex",
@@ -254,7 +239,7 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           </p>
         </div>
 
-        {/* ── Card contenedor ── */}
+        {/* Card contenedora de las políticas */}
         <div style={{
           backgroundColor: THEME.card,
           borderRadius: "1.5rem",
@@ -295,7 +280,7 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
           </p>
         </div>
 
-        {/* ── Botón volver ── */}
+        {/* Botón volver */}
         <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
           <button
             onClick={onBack}
@@ -330,20 +315,19 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
         </div>
       </main>
 
-      {/* ── Footer real del proyecto ────────────────────────── */}
+      {/* Footer dinámico integrado y limpio */}
       <Footer
-  lang={lang}
-  onPrivacy={onBack}
-  onNavigate={(section) => {
-    onBack();
-
-    setTimeout(() => {
-      document.getElementById(section)?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 300);
-  }}
-/>
+        lang={lang}
+        onPrivacy={onBack}
+        onNavigate={(section) => {
+          onBack();
+          setTimeout(() => {
+            document.getElementById(section)?.scrollIntoView({
+              behavior: "smooth",
+            });
+          }, 200);
+        }}
+      />
     </div>
   );
 }
