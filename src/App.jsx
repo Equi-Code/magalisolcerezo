@@ -102,21 +102,6 @@ export default function App() {
       {/* ── Splash screen ── */}
       {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
 
-<div
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    zIndex: 99999,
-    background: "red",
-    color: "white",
-    padding: "20px"
-  }}
->
-  VERSION NUEVA
-</div>
-
-
       {/* ── Main site (montado desde el inicio, visible tras el splash) ── */}
 
 
