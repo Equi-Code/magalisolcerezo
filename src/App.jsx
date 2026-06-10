@@ -102,7 +102,7 @@ export default function App() {
       {/* ── Splash screen ── */}
       {!splashDone && <SplashScreen onFinish={() => setSplashDone(true)} />}
 
-          <div
+<div
   style={{
     position: "fixed",
     top: 0,
@@ -110,11 +110,10 @@ export default function App() {
     zIndex: 99999,
     background: "red",
     color: "white",
-    padding: "10px",
-    fontSize: "24px"
+    padding: "20px"
   }}
 >
-  BUILD TEST JUNIO 2026
+  VERSION NUEVA
 </div>
 
 
