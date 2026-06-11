@@ -68,7 +68,7 @@ export default function FAQ({ lang }) {
 
           <h2
             className="font-serif text-4xl md:text-5xl font-light mt-3"
-            style={{ color: "#2D2924" }}
+            style={{ color: "#2D2924", fontStyle: "italic" }}
           >
             {t.title}
           </h2>
