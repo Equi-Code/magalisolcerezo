@@ -73,6 +73,7 @@ export default function Terapias({ lang }) {
         overflow: "visible" // ← PASO 1: Permitimos que los fondos floten libremente entre secciones
       }}
     >
+      
       {/* Capa de Decoraciones y Flujo Zigzag */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
         {/* Elementos del lado derecho heredados */}

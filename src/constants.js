@@ -108,6 +108,29 @@ export const T = {
         },
       ],
 
+      formacion: [
+        {
+          title: "Lic. en Psicología",
+          subtitle: "Universidad Kennedy",
+        },
+        {
+          title: "Tramo docente",
+          subtitle: "CEPAD",
+        },
+        {
+          title: "Coach de Mindfulness",
+          subtitle: "Certificación profesional",
+        },
+        {
+          title: "Coach Angelical",
+          subtitle: "Terapeuta Holística",
+        },
+        {
+          title: "Terapeuta Floral",
+          subtitle: "Terapias Estrellas",
+        },
+      ],
+
       cards: [
         {
           icon: "✦",
@@ -190,13 +213,13 @@ export const T = {
       tag: "Testimonios",
       title: "Palabras que sanan",
       items: [
-        { text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.", author: "C.M." },
-        { text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.", author: "L.P." },
-        { text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquilo.", author: "A.R." },
-        { text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.", author: "V.S." },
-        { text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.", author: "M.G." },
-        { text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.", author: "F.T." },
-        { text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.", author: "J.N." },
+        { text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.", author: "Mayra C." },
+        { text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.", author: "Macarena C." },
+        { text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquil0.", author: "Giselle H." },
+        { text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.", author: "Ayelen H." },
+        { text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.", author: "Oriana A." },
+        { text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.", author: "Analia P." },
+        { text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.", author: "Noelia P." },
         { text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.", author: "S.B." },
       ],
     },
@@ -247,7 +270,7 @@ export const T = {
     },
 
     privacy: {
-      lastUpdated: "Mayo 2025",
+      lastUpdated: "Mayo 2026",
       tag: "Documento legal",
       title: "Política de Privacidad",
       backBtn: "← Volver al inicio",
@@ -417,7 +440,7 @@ export const T = {
     footer: {
       tagline: "Un espacio para volver a vos.",
       instagram: "@magalisol.cerezo",
-      rights: "© 2025 Magalí Sol Cerezo. Todos los derechos reservados.",
+      rights: "© 2026 Magalí Sol Cerezo. Todos los derechos reservados.",
       ctaTitle: "¿Lista para comenzar tu proceso?",
       ctaSubtitle: "Un espacio para volver a vos — seguro, amoroso y libre de juicios.",
       navLabel: "Secciones",
@@ -512,6 +535,29 @@ export const T = {
         },
       ],
 
+      formacion: [
+        {
+          title: "B.A. in Psychology",
+          subtitle: "Kennedy University",
+        },
+        {
+          title: "Teaching Track",
+          subtitle: "CEPAD",
+        },
+        {
+          title: "Mindfulness Coach",
+          subtitle: "Professional certification",
+        },
+        {
+          title: "Angelic Coach",
+          subtitle: "Holistic Therapist",
+        },
+        {
+          title: "Floral Therapist",
+          subtitle: "Star Essences Therapy",
+        },
+      ],
+
       cards: [
         {
           icon: "✦",
@@ -530,6 +576,7 @@ export const T = {
         },
       ],
     },
+
     terapias: {
       tag: "Therapies",
       title: "Each journey is unique",
@@ -593,13 +640,13 @@ export const T = {
       tag: "Testimonials",
       title: "Words that heal",
       items: [
-        { text: "Today I feel from within that I am healing, with a much clearer vision. Thank you for accompanying me in this process.", author: "C.M." },
-        { text: "After meditating I felt so much peace. I feel grateful and above all calm.", author: "L.P." },
-        { text: "The energy cleansing you did in our apartment was truly felt. Everything feels so much lighter and calmer.", author: "A.R." },
-        { text: "Each session leaves me with great peace and clarity. Maga knows how to accompany even after the therapeutic encounter.", author: "V.S." },
-        { text: "Your support helped me enormously emotionally. Thank you for your sweetness, dedication and care.", author: "M.G." },
-        { text: "The meditation you sent me helped me so much in a very difficult moment. I felt relief and a very deep connection with myself.", author: "F.T." },
-        { text: "Thank you for helping me slow down and see situations from a different perspective.", author: "J.N." },
+        { text: "Today I feel from within that I am healing, with a much clearer vision. Thank you for accompanying me in this process.", author: "Mayra C." },
+        { text: "After meditating I felt so much peace. I feel grateful and above all calm.", author: "Macarena C." },
+        { text: "The energy cleansing you did in our apartment was truly felt. Everything feels so much lighter and calmer.", author: "Giselle H." },
+        { text: "Each session leaves me with great peace and clarity. Maga knows how to accompany even after the therapeutic encounter.", author: "Ayelen H." },
+        { text: "Your support helped me enormously emotionally. Thank you for your sweetness, dedication and care.", author: "Oriana A." },
+        { text: "The meditation you sent me helped me so much in a very difficult moment. I felt relief and a very deep connection with myself.", author: "Analia P." },
+        { text: "Thank you for helping me slow down and see situations from a different perspective.", author: "Noelia P." },
         { text: "You are a being of light, truly. Listening to you transmits so much peace to me.", author: "S.B." },
       ],
     },
@@ -633,7 +680,7 @@ export const T = {
     footer: {
       tagline: "A space to return to yourself.",
       instagram: "@magalisol.cerezo",
-      rights: "© 2025 Magalí Sol Cerezo. All rights reserved.",
+      rights: "© 2026 Magalí Sol Cerezo. All rights reserved.",
       ctaTitle: "Ready to begin your journey?",
       ctaSubtitle: "A space to return to yourself — safe, loving and judgment-free.",
       navLabel: "Sections",

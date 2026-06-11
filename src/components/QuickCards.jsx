@@ -7,6 +7,7 @@ import {
     Heart,
     Mail
 } from "lucide-react";
+import ConstellationDivider from "./ConstellationDivider";
 
 export default function QuickCards({ lang }) {
     const t = T[lang].quickCards;
@@ -165,6 +166,11 @@ export default function QuickCards({ lang }) {
                     );
                 })}
             </div>
+
+                  {/* Separador */}
+                  <div className="mt-14">
+                    <ConstellationDivider fromColor="transparent" toColor="transparent" />
+                  </div>
         </section>
     );
 }
