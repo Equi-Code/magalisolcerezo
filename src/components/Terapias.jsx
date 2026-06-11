@@ -248,9 +248,10 @@ export default function Terapias({ lang }) {
       </div>
 
       {/* MODAL */}
+      {/* MODAL */}
       {activeItem && activeMeta && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6"
           style={{
             backgroundColor: "rgba(45,41,36,0.52)",
             backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)"
@@ -258,57 +259,62 @@ export default function Terapias({ lang }) {
           onClick={() => setModalIdx(null)}
         >
           <div
-            className="relative max-w-lg w-full rounded-3xl p-10"
+            className="relative max-w-lg w-full rounded-3xl p-6 sm:p-8 md:p-10"
             style={{
               backgroundColor: THEME.card,
               boxShadow: `0 32px 80px rgba(0,0,0,0.18), 0 0 0 1px ${activeMeta.accent}28`,
               animation: "modalIn 0.32s cubic-bezier(0.34,1.56,0.64,1)",
-              overflow: "hidden",
+              overflowY: "auto",
+              maxHeight: "calc(100vh - 2rem)", // Evita que se choque con los extremos en celulares
             }}
             onClick={e => e.stopPropagation()}
           >
+            {/* Línea decorativa superior */}
             <div style={{
               position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
               width: 100, height: 3, borderRadius: "0 0 6px 6px",
               background: `linear-gradient(to right, transparent, ${activeMeta.accent}, transparent)`,
             }} />
 
+            {/* Gradiente de fondo difuminado */}
             <div style={{
               position: "absolute", top: 0, right: 0,
-              width: 160, height: 160,
+              width: 140, height: 140,
               borderRadius: "0 1.75rem 0 100%",
               background: `radial-gradient(circle at 100% 0%, ${activeMeta.circleBg}35, transparent 70%)`,
               pointerEvents: "none",
             }} />
 
-            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: "1.5rem" }}>
+            {/* Fila del Ícono principal */}
+            <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: "1.25rem" }}>
               <div style={{
-                width: 64, height: 64, borderRadius: "50%",
+                width: 54, height: 54, borderRadius: "50%",
                 backgroundColor: activeMeta.circleBg,
                 border: `1px solid ${activeMeta.accent}28`,
-                display: "flex", alignItems: "center", justifycontent: "center",
+                display: "flex", alignItems: "center", justifyContent: "center",
                 flexShrink: 0,
                 boxShadow: `0 6px 22px ${activeMeta.circleBg}80`,
-              }}>
+              }} backdrop-blur="md">
                 <img src={activeMeta.icon} alt={activeMeta.iconAlt}
-                  style={{ width: 40, height: 40, objectFit: "contain", margin: "auto" }}
+                  style={{ width: 34, height: 34, objectFit: "contain", margin: "auto" }}
                   onError={e => { e.target.style.display = "none"; }} />
               </div>
-              <div style={{ flex: 1, height: 1, backgroundColor: activeMeta.accent, opacity: 0.2 }} />
+              <div style={{ flex: 1, height: 1, backgroundColor: activeMeta.accent, opacity: 0.15 }} />
             </div>
 
+            {/* Badge de Categoría */}
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 6,
               backgroundColor: `${activeMeta.accent}12`,
               border: `1px solid ${activeMeta.accent}28`,
-              borderRadius: "9999px", padding: "0.22rem 0.85rem", marginBottom: "0.75rem",
+              borderRadius: "9999px", padding: "0.22rem 0.8rem", marginBottom: "0.6rem",
             }}>
               <div style={{
                 width: 5, height: 5, borderRadius: "50%",
                 backgroundColor: activeMeta.accent, opacity: 0.7
               }} />
               <span style={{
-                fontFamily: "'Quicksand', sans-serif", fontSize: "0.68rem",
+                fontFamily: "'Quicksand', sans-serif", fontSize: "0.65rem",
                 color: activeMeta.accent, fontWeight: 600, letterSpacing: "0.1em",
                 textTransform: "uppercase"
               }}>
@@ -316,32 +322,35 @@ export default function Terapias({ lang }) {
               </span>
             </div>
 
+            {/* Título Adaptable */}
             <h3 style={{
               fontFamily: "'Cormorant Garamond', 'Playfair Display', serif",
-              color: THEME.text, fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
-              fontWeight: 400, fontStyle: "italic", marginBottom: "1.2rem", lineHeight: 1.2
+              color: THEME.text, fontSize: "clamp(1.4rem, 4vw, 2.1rem)", // Más elástico para pantallas chicas
+              fontWeight: 400, fontStyle: "italic", marginBottom: "1rem", lineHeight: 1.2
             }}>
               {activeItem.title}
             </h3>
 
+            {/* Texto Descriptivo con tamaño controlado */}
             <p style={{
               fontFamily: "'Quicksand', sans-serif", color: THEME.textMuted,
-              fontSize: "0.96rem", lineHeight: 1.9, marginBottom: "2rem"
+              fontSize: "clamp(0.88rem, 2.5vw, 0.96rem)", lineHeight: 1.75, marginBottom: "1.5rem"
             }}>
               {activeItem.full}
             </p>
 
-            <div style={{ height: 1, backgroundColor: activeMeta.circleBg, marginBottom: "1.5rem" }} />
+            <div style={{ height: 1, backgroundColor: activeMeta.circleBg, opacity: 0.5, marginBottom: "1.25rem" }} />
 
-            <div className="flex gap-3 flex-wrap">
+            {/* Botones de acción flexibles (Pasan a columna en pantallas mini si no entran) */}
+            <div className="flex gap-3 flex-wrap sm:flex-nowrap">
               <button
                 onClick={() => { setModalIdx(null); document.getElementById("sesiones")?.scrollIntoView({ behavior: "smooth" }); }}
                 style={{
-                  padding: "0.75rem 1.75rem", borderRadius: "9999px", border: "none",
+                  flex: "1 1 auto", padding: "0.7rem 1.5rem", borderRadius: "9999px", border: "none",
                   backgroundColor: activeMeta.btnFill, color: "#fff",
-                  fontFamily: "'Quicksand', sans-serif", fontSize: "0.88rem", fontWeight: 600,
-                  boxShadow: `0 4px 20px ${activeMeta.btnFill}40`, letterSpacing: "0.03em",
-                  cursor: "pointer", transition: "all 0.22s",
+                  fontFamily: "'Quicksand', sans-serif", fontSize: "0.85rem", fontWeight: 600,
+                  boxShadow: `0 4px 18px ${activeMeta.btnFill}35`, letterSpacing: "0.03em",
+                  cursor: "pointer", transition: "all 0.22s", textWith: "nowrap"
                 }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-1px)"; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = "translateY(0)"; }}
@@ -351,9 +360,9 @@ export default function Terapias({ lang }) {
               <button
                 onClick={() => setModalIdx(null)}
                 style={{
-                  padding: "0.75rem 1.75rem", borderRadius: "9999px",
+                  flex: "1 1 auto", padding: "0.7rem 1.5rem", borderRadius: "9999px",
                   border: `1px solid ${THEME.border}`, color: THEME.textMuted,
-                  fontFamily: "'Quicksand', sans-serif", fontSize: "0.88rem", fontWeight: 600,
+                  fontFamily: "'Quicksand', sans-serif", fontSize: "0.85rem", fontWeight: 600,
                   backgroundColor: "transparent", cursor: "pointer", transition: "all 0.2s",
                 }}
                 onMouseEnter={e => {
@@ -371,8 +380,9 @@ export default function Terapias({ lang }) {
               </button>
             </div>
 
+            {/* Botón flotante 'X' de cierre */}
             <button onClick={() => setModalIdx(null)} style={{
-              position: "absolute", top: "1.2rem", right: "1.5rem",
+              position: "absolute", top: "1rem", right: "1.2rem",
               color: THEME.textMuted, fontSize: "1.1rem", lineHeight: 1, opacity: 0.4,
               background: "transparent", border: "none", cursor: "pointer", transition: "opacity 0.2s",
             }}
