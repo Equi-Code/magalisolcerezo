@@ -254,7 +254,7 @@ export default function Hero({ lang }) {
 
               {/* Foto de la profesional */}
               <img
-                src="/assets/FotoHero.JPG"
+                src="/assets/FotoHero.webp"
                 alt="Magalí Sol Cerezo — Psicóloga Holística"
                 className="w-full h-full object-cover"
                 onError={(e) => {
