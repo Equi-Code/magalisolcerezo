@@ -36,13 +36,24 @@ const SPLASH_STYLES = `
     from { opacity: 1; }
     to   { opacity: 0; }
   }
+  /*
+    splash-text-in — ANTES animaba "letter-spacing" (propiedad de
+    layout/paint, no compositada → Lighthouse la marca como
+    "non-composited animation"). AHORA solo opacity + transform,
+    que el navegador puede correr en la GPU sin recalcular layout.
+  */
   @keyframes splash-text-in {
-    0%   { opacity: 0; letter-spacing: 0.5em; }
-    100% { opacity: 1; letter-spacing: 0.18em; }
+    0%   { opacity: 0; transform: translateY(6px) scale(0.97); }
+    100% { opacity: 1; transform: translateY(0)    scale(1); }
   }
+  /*
+    splash-bar — ANTES animaba "width" (layout en cada frame).
+    AHORA usa transform: scaleX, compositado en GPU.
+    Requiere transform-origin: left en el elemento.
+  */
   @keyframes splash-bar {
-    from { width: 0%; }
-    to   { width: 100%; }
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 `;
 
@@ -77,6 +88,12 @@ export default function SplashScreen({ onFinish }) {
       onFinish?.();
     }, 3900);
 
+    // bfcache: el cleanup SIEMPRE corre al desmontar (cambio de
+    // página, navegación atrás/adelante) y restaura overflow +
+    // limpia los timers. Este componente no es la causa del
+    // "Page prevented back/forward cache restoration" — revisar
+    // si hay listeners de "unload"/"beforeunload" en otro lado
+    // (p.ej. formularios con confirmación de salida).
     return () => {
       clearTimeout(fadeTimer);
       clearTimeout(exitTimer);
@@ -231,14 +248,19 @@ export default function SplashScreen({ onFinish }) {
         }} />
 
         {/*
-          ↓ LOGO OFICIAL — /assets/Logo.png
+          ↓ LOGO OFICIAL — /assets/Logo.webp
           El logo tiene fondo blanco con trazos dorados.
           mix-blend-mode: screen sobre fondo oscuro hace que el
           blanco desaparezca y queden solo los trazos dorados.
+          width/height explícitos → evita layout shift (CLS)
+          y satisface el audit "Image elements do not have
+          explicit width and height".
         */}
         <img
-          src="/assets/logo.png"
+          src="/assets/logo.webp"
           alt="Magalí Sol Cerezo"
+          width={240}
+          height={240}
           style={{
             width:        "clamp(140px, 40vw, 240px)",
             height:       "auto",
@@ -282,12 +304,14 @@ export default function SplashScreen({ onFinish }) {
         </div>
       </div>
 
-      {/* ── Tagline ── */}
+      {/* ── Tagline ──
+          letter-spacing ahora es FIJO (0.18em) — ya no se anima.
+          La entrada usa el keyframe splash-text-in (opacity+transform,
+          compositado) en lugar de animar letter-spacing. */}
       <p style={{
         position:      "absolute",
         bottom:        "max(90px, 12%)",
         fontFamily:    "'Cormorant Garamond', serif",
-        // Dorado ligeramente más brillante sobre el fondo teal
         color:         `rgba(210,175,110,0.75)`,
         fontSize:      "clamp(0.75rem, 2.2vw, 0.95rem)",
         fontStyle:     "italic",
@@ -300,7 +324,9 @@ export default function SplashScreen({ onFinish }) {
         Un espacio para volver a vos
       </p>
 
-      {/* ── Barra de progreso ── */}
+      {/* ── Barra de progreso ──
+          La animación ahora corre sobre el div interno con
+          transform: scaleX (compositado), no sobre "width". */}
       <div style={{
         position:        "absolute",
         bottom:          "8%",
@@ -312,9 +338,11 @@ export default function SplashScreen({ onFinish }) {
       }}>
         <div style={{
           height:          "100%",
+          width:           "100%",
           // La barra mezcla turquesa y dorado
           background:      `linear-gradient(to right, rgba(80,160,145,0.8), ${THEME.gold})`,
           borderRadius:    1,
+          transformOrigin: "left",
           animation:       "splash-bar 3s ease forwards",
         }} />
       </div>

@@ -1,35 +1,31 @@
 import { THEME, T } from "../constants";
 import { StarDeco, MoonDeco, CircleDeco } from "./ui";
-import { motion } from "framer-motion"; // ← Importamos Framer Motion
+import { motion } from "framer-motion";
 
 export default function Hero({ lang }) {
   const t = T[lang].hero;
 
-  // Variantes para coordinar la entrada secuencial de los textos
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.15, // Retraso entre cada elemento hijo
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 25 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] } 
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
     },
   };
 
   return (
-    <section 
-      id="inicio" 
-      className="relative flex items-center overflow-hidden" 
+    <section
+      id="inicio"
+      className="relative flex items-center overflow-hidden"
       style={{ minHeight: "calc(100vh - 75px)", backgroundColor: "transparent" }}
     >
       {/* ── Background decorations y Plumas Flotantes ── */}
@@ -41,17 +37,29 @@ export default function Hero({ lang }) {
         <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
         <MoonDeco className="absolute bottom-1/4 left-1/3" />
 
-        {/* Pluma 1: superior derecha, flotando orgánicamente */}
+        {/*
+          Pluma 1 — superior derecha.
+          · .png → .webp (más liviana)
+          · loading="lazy" + decoding="async": NO es el LCP
+            (la foto principal lo es), así que no debe competir
+            por ancho de banda en la carga inicial.
+          · animate.rotate/y son `transform` → ya compositados,
+            no aparecen en "Avoid non-composited animations".
+        */}
         <motion.img
-          src="/assets/plumas1.png"
+          src="/assets/plumas1.webp"
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          width={500}
+          height={500}
           initial={{ opacity: 0, x: 20, rotate: 5 }}
-          animate={{ 
-            opacity: 0.75, 
+          animate={{
+            opacity: 0.75,
             x: 0,
-            rotate: [10, 8, 12, 10], // Bucle de rotación suave
-            y: [0, -10, 5, 0]        // Levita arriba y abajo
+            rotate: [10, 8, 12, 10],
+            y: [0, -10, 5, 0]
           }}
           transition={{
             opacity: { duration: 1.2 },
@@ -64,6 +72,7 @@ export default function Hero({ lang }) {
             top: "-5%",
             right: "-3%",
             width: "min(500px, 55vw)",
+            height: "auto",
             mixBlendMode: "multiply",
             transformOrigin: "center",
             objectFit: "contain",
@@ -74,16 +83,20 @@ export default function Hero({ lang }) {
           onError={(e) => { e.target.style.display = "none"; }}
         />
 
-        {/* Pluma 2: inferior izquierda */}
+        {/* Pluma 2 — inferior izquierda */}
         <motion.img
-          src="/assets/plumas1.png"
+          src="/assets/plumas1.webp"
           alt=""
           aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          width={320}
+          height={320}
           initial={{ opacity: 0, x: -20 }}
-          animate={{ 
-            opacity: 0.45, 
+          animate={{
+            opacity: 0.45,
             x: 0,
-            y: [0, 8, -6, 0], // Contrapeso de levitación inversa
+            y: [0, 8, -6, 0],
             rotate: [-22, -24, -20, -22]
           }}
           transition={{
@@ -97,6 +110,7 @@ export default function Hero({ lang }) {
             bottom: "-2%",
             left: "-5%",
             width: "min(320px, 38vw)",
+            height: "auto",
             mixBlendMode: "multiply",
             objectFit: "contain",
             pointerEvents: "none",
@@ -109,8 +123,8 @@ export default function Hero({ lang }) {
 
       {/* ── Main Grid Content ── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full pt-20 md:pt-20 pb-12 md:pb-16 grid md:grid-cols-2 gap-8 md:gap-20 items-center">
-        
-        {/* ── COLUMNA TEXTO (Controlada secuencialmente) ── */}
+
+        {/* ── COLUMNA TEXTO ── */}
         <motion.div
           className="order-2 md:order-1 flex justify-center"
           variants={containerVariants}
@@ -118,7 +132,6 @@ export default function Hero({ lang }) {
           animate="visible"
         >
           <div className="text-center max-w-xl">
-            {/* Nombre */}
             <motion.h1
               variants={itemVariants}
               style={{
@@ -133,7 +146,6 @@ export default function Hero({ lang }) {
               Magalí Sol Cerezo
             </motion.h1>
 
-            {/* Subtitulo */}
             <motion.h2
               variants={itemVariants}
               style={{
@@ -148,14 +160,12 @@ export default function Hero({ lang }) {
               {t.title}
             </motion.h2>
 
-            {/* Separador */}
             <motion.div variants={itemVariants} className="flex items-center justify-center gap-4 mb-8">
               <div style={{ width: "90px", height: "1px", backgroundColor: `${THEME.gold}70` }} />
               <span style={{ color: THEME.gold, fontSize: "1.2rem" }}>♡</span>
               <div style={{ width: "90px", height: "1px", backgroundColor: `${THEME.gold}70` }} />
             </motion.div>
 
-            {/* Frase */}
             <motion.p
               variants={itemVariants}
               style={{
@@ -170,7 +180,6 @@ export default function Hero({ lang }) {
               {t.description}
             </motion.p>
 
-            {/* Botones de Acción */}
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
               <motion.button
                 onClick={() => document.getElementById("sesiones")?.scrollIntoView({ behavior: "smooth" })}
@@ -214,8 +223,8 @@ export default function Hero({ lang }) {
           </div>
         </motion.div>
 
-        {/* ── COLUMNA IMAGEN PRINCIPAL (Máscara de Óvalo con animación sutil) ── */}
-        <motion.div
+        {/* ── COLUMNA IMAGEN PRINCIPAL ── */}
+        <div
           className="order-1 md:order-2 flex justify-center"
           initial={{ opacity: 0, scale: 0.96, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -252,17 +261,30 @@ export default function Hero({ lang }) {
                 }}
               />
 
-              {/* Foto de la profesional */}
+              {/*
+                ↓ FOTO PRINCIPAL — LCP del sitio.
+                · ya está en .webp ✔
+                · width/height explícitos → resuelve "Image elements
+                  do not have explicit width and height" + evita CLS
+                · fetchpriority="high" (minúscula — React <18.3 no
+                  reconoce "fetchPriority" en camelCase y tira warning)
+                · decoding="async" → no bloquea el primer paint
+              */}
               <img
                 src="/assets/FotoHero.webp"
                 alt="Magalí Sol Cerezo — Psicóloga Holística"
+                width={420}
+                height={583}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.parentElement.style.background = `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
                 }}
               />
-              
+
               {/* Overlay sutil degradado sobre la foto */}
               <div
                 style={{
@@ -275,8 +297,8 @@ export default function Hero({ lang }) {
               />
             </div>
 
-            {/* Floating decorative badge */}
-            <motion.div
+            {/* Badge flotante — "Sesiones Online" */}
+            <div
               className="absolute -bottom-2 md:-bottom-4 left-1/2 md:left-auto md:-left-4 -translate-x-1/2 md:translate-x-0 px-4 py-2 md:px-5 md:py-3 rounded-2xl"
               animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -290,20 +312,36 @@ export default function Hero({ lang }) {
               <div style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.sage, fontSize: "0.75rem", fontWeight: 600 }}>
                 ✦ {t.badge}
               </div>
-            </motion.div>
+            </div>
 
-            {/* Logotipo de marca flotante en esquina superior derecha */}
-            <motion.img
-              src="/assets/logos_2.png" // Ruta simplificada sin el ../public/
+            {/*
+              Logotipo flotante — pluma+luna+sol dorado sobre fondo
+              NEGRO (logos_2.png/.webp). mix-blend-mode: screen hace
+              que el negro se vuelva transparente y quede solo el
+              brillo dorado/crema; opacity 0.6 evita que se "lave".
+              · .png → .webp
+              · loading="lazy": decorativo, no es LCP
+              · width/height explícitos
+            */}
+            <img
+              src="/assets/logos_2.webp"
               alt=""
               aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              width={56}
+              height={56}
               className="absolute -top-6 -right-6 w-14 h-14 opacity-60 object-contain"
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 35, ease: "linear" }} // Giro continuo súper lento místico
+              style={{ mixBlendMode: "screen" }}
+              // animate={{ rotate: 360 }}
+              // transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+              initial={{ rotate: -10 }}
+              animate={{ rotate: 0 }}
+              transition={{ duration: 1.2 }}
               onError={(e) => { e.target.style.display = "none"; }}
             />
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

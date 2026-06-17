@@ -78,7 +78,7 @@ export default function SobreMi({ lang }) {
           />
 
           {/* Pluma Decorativa */}
-          <motion.img
+          <img
             initial={{ opacity: 0, x: -30, rotate: -10 }}
             whileInView={{ opacity: 0.45, x: 0, rotate: -5 }}
             viewport={{ once: true }}
@@ -103,12 +103,13 @@ export default function SobreMi({ lang }) {
               <img
                 src="/assets/FotoSobreMi.webp"
                 alt={t.title || "Magalí Sol Cerezo"}
+                loading="eager"
                 className="w-full h-full object-cover object-center saturate-[0.9] brightness-[1.01]"
               />
             </div>
 
             {/* Badge de la foto */}
-            <motion.div
+            <div
               initial={{ opacity: 0, scale: 0.8, y: 10 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
@@ -119,7 +120,7 @@ export default function SobreMi({ lang }) {
               <div className="text-[0.68rem] tracking-widest font-semibold uppercase" style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.gold }}>
                 ✦ {lang === "es" ? "Lic. Psicología" : "Psychologist"}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Luna y estrellas decorativas secundarias inferiores */}

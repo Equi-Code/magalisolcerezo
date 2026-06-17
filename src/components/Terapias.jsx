@@ -8,42 +8,42 @@ import ConstellationDivider from "./ConstellationDivider";
 // ============================================================
 const THERAPY_META = [
   {
-    icon: "/assets/iconos_1.png",
+    icon: "/assets/iconos_1.webp",
     iconAlt: "Cristal — Sanación Energética",
     circleBg: "#C5DDD4",
     accent: "#4a8b79",
     btnFill: "#436a5f",
   },
   {
-    icon: "/assets/iconos_5.png",
+    icon: "/assets/iconos_5.webp",
     iconAlt: "Cadena — Corte de Lazos Etéricos",
     circleBg: "#acacac",
     accent: "#567A6E",
     btnFill: "#567A6E",
   },
   {
-    icon: "/assets/iconos_2.png",
+    icon: "/assets/iconos_2.webp",
     iconAlt: "Luna — Regresión a Vidas Pastadas",
     circleBg: "#BDD4DF",
     accent: "#5A8FA4",
     btnFill: "#5A8FA4",
   },
   {
-    icon: "/assets/iconos_3.png",
+    icon: "/assets/iconos_3.webp",
     iconAlt: "Loto — Mindfulness y Meditación",
     circleBg: "#F0CBCB",
     accent: "#B5736B",
     btnFill: "#B5736B",
   },
   {
-    icon: "/assets/iconos_4.png",
+    icon: "/assets/iconos_4.webp",
     iconAlt: "Mano con corazón — Tapping EFT",
     circleBg: "#F2DEC8",
     accent: "#B8884A",
     btnFill: "#B8884A",
   },
   {
-    icon: "/assets/iconos_6.png",
+    icon: "/assets/iconos_6.webp",
     iconAlt: "Mandala floral — Terapias Florales",
     circleBg: "#EAC5CE",
     accent: "#A85F72",

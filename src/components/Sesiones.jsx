@@ -77,8 +77,8 @@ function BookingModal({ lang, onClose }) {
   };
 
   return (
-    <motion.div 
-      onClick={onClose} 
+    <motion.div
+      onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -89,8 +89,8 @@ function BookingModal({ lang, onClose }) {
         backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
       }}
     >
-      <motion.div 
-        onClick={e => e.stopPropagation()} 
+      <motion.div
+        onClick={e => e.stopPropagation()}
         initial={{ opacity: 0, scale: 0.93, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -141,9 +141,9 @@ function BookingModal({ lang, onClose }) {
           {workdays.map((day, i) => {
             const sel = selectedDay?.label === day.label;
             return (
-              <motion.button 
-                key={i} 
-                onClick={() => setSelectedDay(day)} 
+              <motion.button
+                key={i}
+                onClick={() => setSelectedDay(day)}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
@@ -174,9 +174,9 @@ function BookingModal({ lang, onClose }) {
           {TIMES.map(time => {
             const sel = selectedTime === time;
             return (
-              <motion.button 
-                key={time} 
-                onClick={() => setSelectedTime(time)} 
+              <motion.button
+                key={time}
+                onClick={() => setSelectedTime(time)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 style={{
@@ -197,8 +197,8 @@ function BookingModal({ lang, onClose }) {
 
         <div style={{ height: 1, backgroundColor: THEME.border, marginBottom: "1.1rem" }} />
 
-        <motion.button 
-          onClick={handleBook} 
+        <motion.button
+          onClick={handleBook}
           whileHover={{ scale: 1.02, backgroundColor: "#9AAF9A" }}
           whileTap={{ scale: 0.98 }}
           style={{
@@ -219,9 +219,9 @@ function BookingModal({ lang, onClose }) {
           {tx.ctaNote}
         </p>
 
-        <motion.button 
-          onClick={onClose} 
-          aria-label="Cerrar" 
+        <motion.button
+          onClick={onClose}
+          aria-label="Cerrar"
           whileHover={{ opacity: 0.9 }}
           style={{
             position: "absolute", top: "1rem", right: "1.25rem",
@@ -284,26 +284,26 @@ export default function OnlineSessions({ lang = "es" }) {
         </div>
 
         {/* Pluma dorada decorativa */}
-        <motion.img 
+        <motion.img
           initial={{ opacity: 0, x: 20, rotate: 15 }}
           whileInView={{ opacity: 0.35, x: 0, rotate: 12 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: "easeOut" }}
-          src="/assets/plumas1.png" 
-          alt="" 
-          aria-hidden="true" 
+          src="/assets/plumas1.png"
+          alt=""
+          aria-hidden="true"
           style={{
             position: "absolute", top: "-10%", right: "-2%",
             width: "clamp(140px, 18vw, 240px)", mixBlendMode: "multiply",
             transform: "scaleX(-1)", objectFit: "contain",
             pointerEvents: "none", userSelect: "none",
             filter: "sepia(1) saturate(2) hue-rotate(5deg) brightness(0.9)",
-          }} 
-          onError={e => { e.target.style.display = "none"; }} 
+          }}
+          onError={e => { e.target.style.display = "none"; }}
         />
 
         {/* ── CARD BANNER — Entrada con Scroll ── */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -363,9 +363,12 @@ export default function OnlineSessions({ lang = "es" }) {
                   filter: "blur(30px)", zIndex: 0,
                 }} />
 
-                <motion.img
-                  src="/assets/computadora.jpeg"
+                <img
+                  src="/assets/computadora.webp"
                   alt="Online Session — Magalí Sol Cerezo"
+                  width={900}
+                  height={600}
+                  loading="lazy"
                   initial={{ transform: "perspective(1200px) rotateY(-4deg) rotateX(2deg)" }}
                   whileHover={{ transform: "perspective(1200px) rotateY(0deg) rotateX(0deg) scale(1.02)" }}
                   transition={{ type: "spring", stiffness: 250, damping: 25 }}
@@ -423,7 +426,7 @@ export default function OnlineSessions({ lang = "es" }) {
             </p>
 
             {/* Features animadas escalonadamente al hacer scroll */}
-            <motion.div 
+            <motion.div
               variants={featuresContainer}
               initial="hidden"
               whileInView="visible"
@@ -433,8 +436,8 @@ export default function OnlineSessions({ lang = "es" }) {
               }}
             >
               {tx.features.map((f, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   variants={featureItem}
                   style={{
                     display: "flex", flexDirection: "column", alignItems: "center", gap: "0.35rem", minWidth: 72, maxWidth: 90,

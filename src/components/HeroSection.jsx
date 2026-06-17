@@ -1,6 +1,11 @@
 import { THEME } from "../constants";
 import { useEffect, useState } from "react";
 
+
+
+const isMobile = window.innerWidth < 768;
+
+
 // ─── Pluma SVG ornamental — trazo fino dorado ────────────────
 function FeatherLineSVG({ size = 180, opacity = 0.45, style = {} }) {
   // Valores fijos de opacidad precalculados para evitar operaciones matemáticas en el render
@@ -116,21 +121,28 @@ function StarGold({ style = {}, size = 12 }) {
 export default function HeroSection({ children }) {
   const [scrollY, setScrollY] = useState(0);
 
-  // Efecto Parallax pasivo de alto rendimiento (usando requestAnimationFrame)
   useEffect(() => {
+    if (window.innerWidth < 768) return;
+
     let ticking = false;
+
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
           setScrollY(window.scrollY);
           ticking = false;
         });
+
         ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -153,9 +165,12 @@ export default function HeroSection({ children }) {
       ══════════════════════════════════════════════════════ */}
 
       {/* Pluma grande — filo izquierdo */}
+      
+      {!isMobile && (
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt="" aria-hidden="true"
+        className="hidden md:block"
         style={{
           position: "absolute",
           top: "-5%",
@@ -173,11 +188,17 @@ export default function HeroSection({ children }) {
         }}
         onError={e => { e.target.style.display = "none"; }}
       />
+      )}
 
+
+      
       {/* Pluma mediana — filo derecho superior */}
+      
+      {!isMobile && (
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt="" aria-hidden="true"
+        className="hidden md:block"
         style={{
           position: "absolute",
           top: "-3%",
@@ -195,11 +216,16 @@ export default function HeroSection({ children }) {
         }}
         onError={e => { e.target.style.display = "none"; }}
       />
+      )}
 
       {/* Pluma inferior derecha — zona SobreMi */}
+      
+      
+      {!isMobile && (
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt="" aria-hidden="true"
+        className="hidden md:block"
         style={{
           position: "absolute",
           bottom: "5%",
@@ -217,11 +243,16 @@ export default function HeroSection({ children }) {
         }}
         onError={e => { e.target.style.display = "none"; }}
       />
+      )}
 
       {/* Pluma extra — filo izquierdo inferior */}
+      
+      
+      {!isMobile && (
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt="" aria-hidden="true"
+        className="hidden md:block"
         style={{
           position: "absolute",
           bottom: "10%",
@@ -239,6 +270,7 @@ export default function HeroSection({ children }) {
         }}
         onError={e => { e.target.style.display = "none"; }}
       />
+      )}
 
       {/* ── PLUMAS SVG LINE-ART (Acomodadas con leve desfase) ── */}
       <FeatherLineSVG
@@ -268,8 +300,8 @@ export default function HeroSection({ children }) {
       {/* ── ESTRELLAS DISCRETAS ── */}
       <StarGold size={10} style={{ top: "12%", left: "22%", opacity: 0.5 }} />
       <StarGold size={12} style={{ top: "8%", right: "28%", opacity: 0.45 }} />
-      <StarGold size={8}  style={{ top: "32%", right: "6%", opacity: 0.32 }} />
-      <StarGold size={9}  style={{ bottom: "22%", right: "16%", opacity: 0.35 }} />
+      <StarGold size={8} style={{ top: "32%", right: "6%", opacity: 0.32 }} />
+      <StarGold size={9} style={{ bottom: "22%", right: "16%", opacity: 0.35 }} />
       <StarGold size={11} style={{ bottom: "14%", left: "16%", opacity: 0.38 }} />
 
       {/* ── Blob verde extra acuarela ── */}
