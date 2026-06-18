@@ -37,15 +37,7 @@ export default function Hero({ lang }) {
         <StarDeco className="absolute top-1/3 right-1/4 w-4 h-4" />
         <MoonDeco className="absolute bottom-1/4 left-1/3" />
 
-        {/*
-          Pluma 1 — superior derecha.
-          · .png → .webp (más liviana)
-          · loading="lazy" + decoding="async": NO es el LCP
-            (la foto principal lo es), así que no debe competir
-            por ancho de banda en la carga inicial.
-          · animate.rotate/y son `transform` → ya compositados,
-            no aparecen en "Avoid non-composited animations".
-        */}
+        {/* Pluma 1 — superior derecha */}
         <motion.img
           src="/assets/plumas1.webp"
           alt=""
@@ -223,8 +215,8 @@ export default function Hero({ lang }) {
           </div>
         </motion.div>
 
-        {/* ── COLUMNA IMAGEN PRINCIPAL ── */}
-        <div
+        {/* ── COLUMNA IMAGEN PRINCIPAL CON RESPONSIVE PICTURE ── */}
+        <motion.div
           className="order-1 md:order-2 flex justify-center"
           initial={{ opacity: 0, scale: 0.96, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -261,29 +253,31 @@ export default function Hero({ lang }) {
                 }}
               />
 
-              {/*
-                ↓ FOTO PRINCIPAL — LCP del sitio.
-                · ya está en .webp ✔
-                · width/height explícitos → resuelve "Image elements
-                  do not have explicit width and height" + evita CLS
-                · fetchpriority="high" (minúscula — React <18.3 no
-                  reconoce "fetchPriority" en camelCase y tira warning)
-                · decoding="async" → no bloquea el primer paint
-              */}
-              <img
-                src="/assets/FotoHero.webp"
-                alt="Magalí Sol Cerezo — Psicóloga Holística"
-                width={420}
-                height={583}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.parentElement.style.background = `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
-                }}
-              />
+              {/* Contenedor Picture Adaptable (LCP del sitio) */}
+              <picture className="w-full h-full object-cover">
+                <source
+                  media="(max-width: 768px)"
+                  srcSet="/assets/FotoHero-mobile.webp"
+                />
+                <source
+                  media="(max-width: 1200px)"
+                  srcSet="/assets/FotoHero-tablet.webp"
+                />
+                <img
+                  src="/assets/FotoHero.webp"
+                  alt="Magalí Sol Cerezo — Psicóloga Holística"
+                  width="420"
+                  height="583"
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.parentElement.style.background = `linear-gradient(160deg, ${THEME.sage}30, ${THEME.rose}20, ${THEME.gold}15)`;
+                  }}
+                />
+              </picture>
 
               {/* Overlay sutil degradado sobre la foto */}
               <div
@@ -298,7 +292,7 @@ export default function Hero({ lang }) {
             </div>
 
             {/* Badge flotante — "Sesiones Online" */}
-            <div
+            <motion.div
               className="absolute -bottom-2 md:-bottom-4 left-1/2 md:left-auto md:-left-4 -translate-x-1/2 md:translate-x-0 px-4 py-2 md:px-5 md:py-3 rounded-2xl"
               animate={{ y: [0, -6, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -312,17 +306,9 @@ export default function Hero({ lang }) {
               <div style={{ fontFamily: "'Quicksand', sans-serif", color: THEME.sage, fontSize: "0.75rem", fontWeight: 600 }}>
                 ✦ {t.badge}
               </div>
-            </div>
+            </motion.div>
 
-            {/*
-              Logotipo flotante — pluma+luna+sol dorado sobre fondo
-              NEGRO (logos_2.png/.webp). mix-blend-mode: screen hace
-              que el negro se vuelva transparente y quede solo el
-              brillo dorado/crema; opacity 0.6 evita que se "lave".
-              · .png → .webp
-              · loading="lazy": decorativo, no es LCP
-              · width/height explícitos
-            */}
+            {/* Logotipo flotante */}
             <img
               src="/assets/logos_2.webp"
               alt=""
@@ -333,15 +319,13 @@ export default function Hero({ lang }) {
               height={56}
               className="absolute -top-6 -right-6 w-14 h-14 opacity-60 object-contain"
               style={{ mixBlendMode: "screen" }}
-              // animate={{ rotate: 360 }}
-              // transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
               initial={{ rotate: -10 }}
               animate={{ rotate: 0 }}
               transition={{ duration: 1.2 }}
               onError={(e) => { e.target.style.display = "none"; }}
             />
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

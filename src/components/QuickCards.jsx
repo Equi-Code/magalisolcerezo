@@ -167,10 +167,10 @@ export default function QuickCards({ lang }) {
                 })}
             </div>
 
-                  {/* Separador */}
-                  <div className="mt-14">
-                    <ConstellationDivider fromColor="transparent" toColor="transparent" />
-                  </div>
+            {/* Separador */}
+            <div className="mt-14">
+                <ConstellationDivider fromColor="transparent" toColor="transparent" />
+            </div>
         </section>
     );
 }

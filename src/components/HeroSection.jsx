@@ -1,10 +1,5 @@
-import { THEME } from "../constants";
+import { THEME, T } from "../constants";
 import { useEffect, useState } from "react";
-
-
-
-const isMobile = window.innerWidth < 768;
-
 
 // ─── Pluma SVG ornamental — trazo fino dorado ────────────────
 function FeatherLineSVG({ size = 180, opacity = 0.45, style = {} }) {
@@ -111,7 +106,7 @@ function StarGold({ style = {}, size = 12 }) {
       <path
         d="M6 0L6.8 5.2L12 6L6.8 6.8L6 12L5.2 6.8L0 6L5.2 5.2L6 0Z"
         fill={THEME.gold}
-        fillOpacity="0.55"
+        fillOpacity="0.5"
       />
     </svg>
   );
@@ -119,7 +114,17 @@ function StarGold({ style = {}, size = 12 }) {
 
 // ─── WRAPPER PRINCIPAL ────────────────────────────────────────
 export default function HeroSection({ children }) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const onResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     if (window.innerWidth < 768) return;
@@ -132,17 +137,12 @@ export default function HeroSection({ children }) {
           setScrollY(window.scrollY);
           ticking = false;
         });
-
         ticking = true;
       }
     };
 
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
-    return () =>
-      window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -158,151 +158,145 @@ export default function HeroSection({ children }) {
         ].join(", "),
       }}
     >
-      {/* ══════════════════════════════════════════════════════
-          PLUMAS PNG CON EFECTO PARALLAX CONTROLADO
-          Se desplazan levemente al hacer scroll multiplicando scrollY
-          willChange: transform le avisa al navegador que use la GPU
-      ══════════════════════════════════════════════════════ */}
-
       {/* Pluma grande — filo izquierdo */}
-      
       {!isMobile && (
-      <img
-        src="/assets/plumas1.webp"
-        alt="" aria-hidden="true"
-        className="hidden md:block"
-        style={{
-          position: "absolute",
-          top: "-5%",
-          left: "-12%",
-          width: "clamp(160px, 24vw, 360px)",
-          height: "auto",
-          opacity: 0.55,
-          mixBlendMode: "multiply",
-          transform: `rotate(-6deg) translateY(${scrollY * 0.06}px)`,
-          willChange: "transform",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-          filter: "saturate(0.15) brightness(0.82) contrast(0.9)",
-        }}
-        onError={e => { e.target.style.display = "none"; }}
-      />
+        <img
+          src="/assets/plumas1.webp"
+          alt=""
+          aria-hidden="true"
+          className="hidden md:block"
+          style={{
+            position: "absolute",
+            top: "-5%",
+            left: "-12%",
+            width: "clamp(160px, 24vw, 360px)",
+            height: "auto",
+            opacity: 0.55,
+            mixBlendMode: "multiply",
+            transform: `rotate(-6deg) translateY(${scrollY * 0.06}px)`,
+            willChange: "transform",
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "saturate(0.15) brightness(0.82) contrast(0.9)",
+          }}
+          onError={(e) => { e.target.style.display = "none"; }}
+        />
       )}
 
-
-      
       {/* Pluma mediana — filo derecho superior */}
-      
       {!isMobile && (
-      <img
-        src="/assets/plumas1.webp"
-        alt="" aria-hidden="true"
-        className="hidden md:block"
-        style={{
-          position: "absolute",
-          top: "-3%",
-          right: "-10%",
-          width: "clamp(140px, 20vw, 300px)",
-          height: "auto",
-          opacity: 0.45,
-          mixBlendMode: "multiply",
-          transform: `rotate(8deg) scaleX(-1) translateY(${scrollY * -0.04}px)`,
-          willChange: "transform",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-          filter: "saturate(0.12) brightness(0.85) contrast(0.88)",
-        }}
-        onError={e => { e.target.style.display = "none"; }}
-      />
+        <img
+          src="/assets/plumas1.webp"
+          alt=""
+          aria-hidden="true"
+          className="hidden md:block"
+          style={{
+            position: "absolute",
+            top: "-3%",
+            right: "-10%",
+            width: "clamp(140px, 20vw, 300px)",
+            height: "auto",
+            opacity: 0.45,
+            mixBlendMode: "multiply",
+            transform: `rotate(8deg) scaleX(-1) translateY(${scrollY * -0.04}px)`,
+            willChange: "transform",
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "saturate(0.12) brightness(0.85) contrast(0.88)",
+          }}
+          onError={(e) => { e.target.style.display = "none"; }}
+        />
       )}
 
       {/* Pluma inferior derecha — zona SobreMi */}
-      
-      
       {!isMobile && (
-      <img
-        src="/assets/plumas1.webp"
-        alt="" aria-hidden="true"
-        className="hidden md:block"
-        style={{
-          position: "absolute",
-          bottom: "5%",
-          right: "-8%",
-          width: "clamp(120px, 16vw, 240px)",
-          height: "auto",
-          opacity: 0.35,
-          mixBlendMode: "multiply",
-          transform: `rotate(-12deg) scaleX(-1) translateY(${scrollY * 0.03}px)`,
-          willChange: "transform",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-          filter: "saturate(0.1) brightness(0.88) contrast(0.85)",
-        }}
-        onError={e => { e.target.style.display = "none"; }}
-      />
+        <img
+          src="/assets/plumas1.webp"
+          alt=""
+          aria-hidden="true"
+          className="hidden md:block"
+          style={{
+            position: "absolute",
+            bottom: "5%",
+            right: "-8%",
+            width: "clamp(120px, 16vw, 240px)",
+            height: "auto",
+            opacity: 0.35,
+            mixBlendMode: "multiply",
+            transform: `rotate(-12deg) scaleX(-1) translateY(${scrollY * 0.03}px)`,
+            willChange: "transform",
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "saturate(0.1) brightness(0.88) contrast(0.85)",
+          }}
+          onError={(e) => { e.target.style.display = "none"; }}
+        />
       )}
 
       {/* Pluma extra — filo izquierdo inferior */}
-      
-      
       {!isMobile && (
-      <img
-        src="/assets/plumas1.webp"
-        alt="" aria-hidden="true"
-        className="hidden md:block"
-        style={{
-          position: "absolute",
-          bottom: "10%",
-          left: "-8%",
-          width: "clamp(110px, 14vw, 200px)",
-          height: "auto",
-          opacity: 0.28,
-          mixBlendMode: "multiply",
-          transform: `rotate(10deg) translateY(${scrollY * -0.05}px)`,
-          willChange: "transform",
-          objectFit: "contain",
-          pointerEvents: "none",
-          userSelect: "none",
-          filter: "saturate(0.12) brightness(0.90) contrast(0.85)",
-        }}
-        onError={e => { e.target.style.display = "none"; }}
-      />
+        <img
+          src="/assets/plumas1.webp"
+          alt=""
+          aria-hidden="true"
+          className="hidden md:block"
+          style={{
+            position: "absolute",
+            bottom: "10%",
+            left: "-8%",
+            width: "clamp(110px, 14vw, 200px)",
+            height: "auto",
+            opacity: 0.28,
+            mixBlendMode: "multiply",
+            transform: `rotate(10deg) translateY(${scrollY * -0.05}px)`,
+            willChange: "transform",
+            objectFit: "contain",
+            pointerEvents: "none",
+            userSelect: "none",
+            filter: "saturate(0.12) brightness(0.90) contrast(0.85)",
+          }}
+          onError={(e) => { e.target.style.display = "none"; }}
+        />
       )}
 
-      {/* ── PLUMAS SVG LINE-ART (Acomodadas con leve desfase) ── */}
-      <FeatherLineSVG
-        size={200}
-        opacity={0.22}
-        style={{
-          top: "38%",
-          left: "-6%",
-          transform: `rotate(-5deg) translateY(${scrollY * 0.04}px)`,
-        }}
-      />
+      {/* ── ELEMENTOS DECORATIVOS COMPLETO (Solo en Desktop) ── */}
+      {!isMobile && (
+        <>
+          <FeatherLineSVG
+            size={200}
+            opacity={0.22}
+            style={{
+              top: "38%",
+              left: "-6%",
+              transform: `rotate(-5deg) translateY(${scrollY * 0.04}px)`,
+            }}
+          />
 
-      <FeatherLineSVG
-        size={175}
-        opacity={0.18}
-        style={{
-          top: "5%",
-          right: "-6%",
-          transform: `rotate(8deg) scaleX(-1) translateY(${scrollY * -0.03}px)`,
-        }}
-      />
+          <FeatherLineSVG
+            size={175}
+            opacity={0.18}
+            style={{
+              top: "5%",
+              right: "-6%",
+              transform: `rotate(8deg) scaleX(-1) translateY(${scrollY * -0.03}px)`,
+            }}
+          />
 
-      {/* ── LUNAS DORADAS ── */}
-      <MoonSVG size={52} style={{ top: "6%", right: "14%", opacity: 0.55 }} />
-      <MoonSVG size={36} style={{ bottom: "18%", left: "7%", opacity: 0.32, transform: "scaleX(-1)" }} />
+          {/* ── LUNAS DORADAS ── */}
+          <MoonSVG size={52} style={{ top: "6%", right: "14%", opacity: 0.55 }} />
+          <MoonSVG size={36} style={{ bottom: "18%", left: "7%", opacity: 0.32, transform: "scaleX(-1)" }} />
 
-      {/* ── ESTRELLAS DISCRETAS ── */}
-      <StarGold size={10} style={{ top: "12%", left: "22%", opacity: 0.5 }} />
-      <StarGold size={12} style={{ top: "8%", right: "28%", opacity: 0.45 }} />
-      <StarGold size={8} style={{ top: "32%", right: "6%", opacity: 0.32 }} />
-      <StarGold size={9} style={{ bottom: "22%", right: "16%", opacity: 0.35 }} />
-      <StarGold size={11} style={{ bottom: "14%", left: "16%", opacity: 0.38 }} />
+          {/* ── ESTRELLAS DISCRETAS ── */}
+          <StarGold size={10} style={{ top: "12%", left: "22%", opacity: 0.5 }} />
+          <StarGold size={12} style={{ top: "8%", right: "28%", opacity: 0.45 }} />
+          <StarGold size={8} style={{ top: "32%", right: "6%", opacity: 0.32 }} />
+          <StarGold size={9} style={{ bottom: "22%", right: "16%", opacity: 0.35 }} />
+          <StarGold size={11} style={{ bottom: "14%", left: "16%", opacity: 0.38 }} />
+        </>
+      )}
 
       {/* ── Blob verde extra acuarela ── */}
       <div
