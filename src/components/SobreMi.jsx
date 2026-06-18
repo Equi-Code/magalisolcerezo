@@ -129,7 +129,7 @@ export default function SobreMi({ lang }) {
             whileInView={{ opacity: 0.35, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            src="/assets/luna y estrellas.webp"
+            src="/assets/lunayestrellas.webp"
             alt=""
             aria-hidden="true"
             className="absolute -bottom-[12%] right-[5%] w-[140px] select-none pointer-events-none object-contain mix-blend-multiply z-0"
