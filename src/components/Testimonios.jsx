@@ -154,7 +154,7 @@ export default function TestimonialsSlider({ lang }) {
 
       {/* ── PLUMA CORREGIDA: Responsiva y con animación de flotación sutil ── */}
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt=""
         aria-hidden="true"
         style={{

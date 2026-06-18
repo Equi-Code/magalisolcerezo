@@ -83,7 +83,7 @@ export default function SobreMi({ lang }) {
             whileInView={{ opacity: 0.45, x: 0, rotate: -5 }}
             viewport={{ once: true }}
             transition={{ duration: 1.4, ease: "easeOut" }}
-            src="/assets/plumas.png"
+            src="/assets/plumas1.webp"
             alt=""
             aria-hidden="true"
             className="absolute -top-[10%] -left-[5%] w-[180px] select-none pointer-events-none object-contain mix-blend-multiply z-0"
@@ -129,7 +129,7 @@ export default function SobreMi({ lang }) {
             whileInView={{ opacity: 0.35, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            src="/assets/luna_y_estrellas__1_.png"
+            src="/assets/luna y estrellas.webp"
             alt=""
             aria-hidden="true"
             className="absolute -bottom-[12%] right-[5%] w-[140px] select-none pointer-events-none object-contain mix-blend-multiply z-0"

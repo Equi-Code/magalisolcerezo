@@ -89,7 +89,7 @@ export default function Terapias({ lang }) {
         
         {/* Pluma de flujo del lateral izquierdo que rompe el inicio de la grilla */}
         <img 
-          src="/assets/plumas1.png" 
+          src="/assets/plumas1.webp" 
           style={{
             position: "absolute",
             top: "20%",

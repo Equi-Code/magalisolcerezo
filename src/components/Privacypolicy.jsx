@@ -148,7 +148,7 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
 
       {/* ── PLUMA PRIVACIDAD 1: Superior Derecha Dinámica ── */}
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt=""
         aria-hidden="true"
         style={{
@@ -169,7 +169,7 @@ export default function PrivacyPolicy({ lang = "es", setLang, onBack }) {
 
       {/* ── PLUMA PRIVACIDAD 2: Inferior Izquierda Espejada ── */}
       <img
-        src="/assets/plumas1.png"
+        src="/assets/plumas1.webp"
         alt=""
         aria-hidden="true"
         style={{

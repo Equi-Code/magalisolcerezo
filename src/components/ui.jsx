@@ -63,7 +63,7 @@ export const SectionTagLeft = ({ label }) => (
 export const Feather = ({ style = {}, blendMode = "multiply", filter = "saturate(0.65) brightness(0.92)" }) => (
   // ↓ PLUMAS — mix-blend-mode elimina el fondo negro de plumas1.png
   <img
-    src="/assets/plumas1.png"
+    src="/assets/plumas1.webp"
     alt=""
     aria-hidden="true"
     style={{
