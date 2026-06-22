@@ -185,22 +185,47 @@ export default function Navbar({ lang, setLang, onNavigate }) {
             */}
             <div
               style={{
-                background: "none", border: "none", cursor: "pointer", padding: 0,
-                display: "flex", alignItems: "center", gap: 8,
-                opacity: mounted ? 1 : 0,
-                transform: mounted ? "scale(1)" : "scale(0.92)",
-                transition: "opacity 0.65s ease 0.1s, transform 0.65s ease 0.1s",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: 64,
+                height: 64,
               }}
             >
+
+              <div
+
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "50%",
+                  background:
+                    "radial-gradient(circle, rgba(10,41,38,.22) 0%, rgba(138,158,138,.18) 45%, transparent 80%)",
+                  filter: "blur(12px)",
+                  transform: "scale(1.3)",
+                  zIndex: 0,
+                }}
+
+
+
+
+              />
+
+
               <img
                 src="/assets/logoNavbar.webp"
                 alt="Magalí Sol Cerezo"
-                width={50}
-                height={50}
+                width={64}
+                height={64}
                 style={{
-                  width: 50, height: 50, objectFit: "contain",
-                  filter: "saturate(1.5) contrast(1.2) brightness(1.1)",
-                  dropShadow: "0 0 4px rgba(212,175,55,0.35)"
+                  position: "relative",
+                  zIndex: 1,
+                  width: 64,
+                  height: 64,
+                  objectFit: "contain",
+                  filter:
+                    "saturate(1.25) contrast(1.2) brightness(1.25) drop-shadow(0 0 8px rgba(201,169,110,0.25))",
                 }}
                 onError={e => {
                   e.target.parentElement.style.display = "none";
