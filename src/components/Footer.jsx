@@ -206,14 +206,14 @@ export default function Footer({ lang, onPrivacy, onNavigate }) {
                   (footer está fuera del viewport inicial)
               */}
               <img
-                src="/assets/logo.webp"
+                src="/assets/logoNavbar.webp"
                 alt="Magalí Sol Cerezo"
-                width={64}
-                height={64}
+                width={100}
+                height={100}
                 loading="lazy"
                 decoding="async"
                 style={{
-                  height: 64, width: "auto", objectFit: "contain",
+                  height: 90, width: "auto", objectFit: "contain",
                   marginBottom: "1rem",
                   mixBlendMode: "screen",
                   filter: "brightness(1.15) saturate(1.05)",
@@ -367,7 +367,7 @@ export default function Footer({ lang, onPrivacy, onNavigate }) {
               <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: "1rem" }}>
                 <span style={{ color: THEME.rose, fontSize: "0.75rem", marginTop: 2, flexShrink: 0 }}>◯</span>
                 <span style={{ fontFamily: FONT_SANS, color: TEXT_DIM, fontSize: "0.84rem", lineHeight: 1.55 }}>
-                  info.magalisolcerezo<br />@gmail.com
+                  info.magalisolcerezo@gmail.com
                 </span>
               </div>
 
@@ -507,9 +507,14 @@ export default function Footer({ lang, onPrivacy, onNavigate }) {
         @media (max-width: 640px) {
           .footer-grid { grid-template-columns: 1fr 1fr !important; }
         }
-        @media (max-width: 420px) {
-          .footer-grid { grid-template-columns: 1fr !important; }
-        }
+
+        @media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
       `}</style>
     </>
   );

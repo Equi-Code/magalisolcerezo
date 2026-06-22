@@ -193,13 +193,14 @@ export default function Navbar({ lang, setLang, onNavigate }) {
               }}
             >
               <img
-                src="/assets/logos_2.webp"
+                src="/assets/logoNavbar.webp"
                 alt="Magalí Sol Cerezo"
-                width={32}
-                height={32}
+                width={50}
+                height={50}
                 style={{
-                  width: 32, height: 32, objectFit: "contain",
-                  filter: "saturate(1.1) brightness(1.05)",
+                  width: 50, height: 50, objectFit: "contain",
+                  filter: "saturate(1.5) contrast(1.2) brightness(1.1)",
+                  dropShadow: "0 0 4px rgba(212,175,55,0.35)"
                 }}
                 onError={e => {
                   e.target.parentElement.style.display = "none";

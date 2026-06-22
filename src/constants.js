@@ -216,11 +216,11 @@ export const T = {
         { text: "Hoy siento desde mi ser que estoy sanando, con una visión mucho más clara. Gracias por acompañarme en este proceso.", author: "Mayra C." },
         { text: "Después de meditar sentí mucha paz. Me siento agradecida y sobre todo en calma.", author: "Macarena C." },
         { text: "La limpieza energética que nos hiciste en el departamento realmente se sintió. Todo se siente mucho más liviano y tranquil0.", author: "Giselle H." },
-        { text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.", author: "Ayelen H." },
+        { text: "Cada sesión me deja mucha paz y claridad. Maga sabe acompañar incluso después del encuentro terapéutico.", author: "Ayelén H." },
         { text: "Tu acompañamiento me ayudó muchísimo emocionalmente. Gracias por tu dulzura, dedicación y contención.", author: "Oriana A." },
-        { text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.", author: "Analia P." },
+        { text: "La meditación que me enviaste me ayudó muchísimo en un momento muy difícil. Sentí alivio y una conexión muy profunda conmigo.", author: "Analía P." },
         { text: "Gracias por ayudarme a bajar mil revoluciones y poder ver las situaciones desde otro lugar.", author: "Noelia P." },
-        { text: "Sos un ser de luz realmente. Escucharte me transmite muchísima paz.", author: "S.B." },
+        { text: "Maga transmite una paz increíble desde el primer momento. Escucharla y trabajar con ella te da una claridad y una contención únicas; realmente es un ser de luz. Si bien la conozco hace muchos años, ver la evolución de su carrera y el compromiso profesional que tiene con el bienestar de los demás es verdaderamente inspirador.", author: "Ezequiel R." },
       ],
     },
 
@@ -251,7 +251,7 @@ export const T = {
         },
         {
           q: "¿Cuáles son las formas de pago?",
-          a: "Acepto transferencia bancaria, Mercado Pago y PayPal para sesiones internacionales. Consultame por los valores actualizados."
+          a: "Acepto transferencia bancaria, Mercado Pago y Western Union para sesiones internacionales. Consultame por los valores actualizados."
         },
         {
           q: "¿Necesito experiencia previa?",
@@ -643,11 +643,11 @@ export const T = {
         { text: "Today I feel from within that I am healing, with a much clearer vision. Thank you for accompanying me in this process.", author: "Mayra C." },
         { text: "After meditating I felt so much peace. I feel grateful and above all calm.", author: "Macarena C." },
         { text: "The energy cleansing you did in our apartment was truly felt. Everything feels so much lighter and calmer.", author: "Giselle H." },
-        { text: "Each session leaves me with great peace and clarity. Maga knows how to accompany even after the therapeutic encounter.", author: "Ayelen H." },
+        { text: "Each session leaves me with great peace and clarity. Maga knows how to accompany even after the therapeutic encounter.", author: "Ayelén H." },
         { text: "Your support helped me enormously emotionally. Thank you for your sweetness, dedication and care.", author: "Oriana A." },
-        { text: "The meditation you sent me helped me so much in a very difficult moment. I felt relief and a very deep connection with myself.", author: "Analia P." },
+        { text: "The meditation you sent me helped me so much in a very difficult moment. I felt relief and a very deep connection with myself.", author: "Analía P." },
         { text: "Thank you for helping me slow down and see situations from a different perspective.", author: "Noelia P." },
-        { text: "You are a being of light, truly. Listening to you transmits so much peace to me.", author: "S.B." },
+        { text: "Maga transmits an incredible sense of peace from the very first moment. Listening to her and working with her gives you a unique clarity and support; she truly is a being of light. Although I have known her for many years, seeing the evolution of her career and her professional commitment to the well-being of others is truly inspiring.", author: "Ezequiel R." },
       ],
     },
     contacto: {
@@ -668,7 +668,7 @@ export const T = {
       faqs: [
         { q: "How are sessions conducted?", a: "Sessions are 100% online via video call (Zoom or Meet). You can connect from anywhere in the world." },
         { q: "How long is a session?", a: "Each session lasts approximately 60 to 90 minutes, depending on the process and chosen therapy." },
-        { q: "What payment methods are accepted?", a: "I accept bank transfer, Mercado Pago and PayPal for international sessions. Ask me for current rates." },
+        { q: "What payment methods are accepted?", a: "I accept bank transfers, Mercado Pago, and PayPal or Western Union for international sessions. Please contact me for current pricing." },
         { q: "Do I need prior experience?", a: "No prior experience is needed. You only need openness and willingness to engage with the process." },
         { q: "How often are sessions held?", a: "This is defined personally according to each process. Generally, sessions are held weekly or bi-weekly." },
       ],
