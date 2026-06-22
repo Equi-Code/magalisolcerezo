@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { THEME, T } from "../constants";
 
-
 const FONT = {
   serif: "'Cormorant Garamond', 'Playfair Display', serif",
   sans: "'Quicksand', sans-serif",
@@ -9,8 +8,6 @@ const FONT = {
 
 const SECTION_IDS = ["inicio", "sobre", "terapias", "testimonios", "sesiones", "contacto"];
 
-
-// ── Sección visible por IntersectionObserver (sin scroll listener) ──
 function useActiveSection() {
   const [active, setActive] = useState("inicio");
   useEffect(() => {
@@ -30,7 +27,6 @@ function useActiveSection() {
   return active;
 }
 
-// ── Progreso de scroll ──────────────────────────────────────
 function useScrollProgress() {
   const [pct, setPct] = useState(0);
   useEffect(() => {
@@ -44,17 +40,6 @@ function useScrollProgress() {
   return pct;
 }
 
-// ── Scroll detectado ────────────────────────────────────────
-function useScrolled(t = 30) {
-  const [s, setS] = useState(false);
-  useEffect(() => {
-    const fn = () => setS(window.scrollY > t);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, [t]);
-  return s;
-}
-
 export default function Navbar({ lang, setLang, onNavigate }) {
   const t = T[lang].nav;
   const active = useActiveSection();
@@ -62,87 +47,52 @@ export default function Navbar({ lang, setLang, onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const linkRefs = useRef({});
-  const navRef = useRef(null);
-  const [ul, setUl] = useState({ left: 0, width: 0, opacity: 0 });
-
 
   useEffect(() => { setTimeout(() => setMounted(true), 60); }, []);
-
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const fn = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
-
-
-
-  const scrollTo = (id) => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); };
 
   const teal = "#2A6B5C";
 
   const links = [
-    { label: t.inicio, id: "inicio" },
-    { label: t.sobre, id: "sobre" },
-    { label: t.terapias, id: "terapias" },
+    { label: t.inicio,      id: "inicio" },
+    { label: t.sobre,       id: "sobre" },
+    { label: t.terapias,    id: "terapias" },
     { label: t.testimonios, id: "testimonios" },
-    { label: t.sesiones, id: "sesiones" },
-    // { label: t.faq, id: "faq" },
-    { label: t.contacto, id: "contacto" },
+    { label: t.sesiones,    id: "sesiones" },
+    { label: t.contacto,    id: "contacto" },
   ];
 
   const handleLink = (id) => {
     setMenuOpen(false);
-
-    if (onNavigate) {
-      onNavigate(id);
-      return;
-    }
-
-    scrollTo(id);
+    if (onNavigate) { onNavigate(id); return; }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-
     <>
-      {/* Barra de progreso */}
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          zIndex: 9998,
-          width: "100%",
-          height: 3,
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: `${progress}%`,
-            background: `linear-gradient(to right, ${teal}, ${THEME.gold})`,
-            transition: "width 0.1s linear",
-            borderRadius: "0 1px 1px 0",
-            boxShadow: `0 0 10px ${THEME.gold}55`
-          }}
-        />
+      {/* ── Barra de progreso ── */}
+      <div style={{ position:"fixed", top:0, left:0, zIndex:9998, width:"100%", height:3, pointerEvents:"none" }}>
+        <div style={{
+          height:"100%", width:`${progress}%`,
+          background:`linear-gradient(to right, ${teal}, ${THEME.gold})`,
+          transition:"width 0.1s linear", borderRadius:"0 1px 1px 0",
+          boxShadow:`0 0 10px ${THEME.gold}55`,
+        }} />
       </div>
-
-
-
-
 
       <nav
         style={{
-
-          position: "fixed", top: 0, left: 0, right: 0, zIndex: 9997,
-          height: 64, padding: "0 2rem",
+          position:"fixed", top:0, left:0, right:0, zIndex:9997,
+          height:64, padding:"0 2rem",
           backgroundColor: scrolled ? "rgba(245,248,246,0.93)" : "transparent",
           backdropFilter: scrolled ? "blur(14px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
           borderBottom: scrolled ? `1px solid rgba(42,107,92,0.12)` : "1px solid transparent",
-          transition: "background-color 0.4s, border-color 0.4s, backdrop-filter 0.4s",
+          transition:"background-color 0.4s, border-color 0.4s, backdrop-filter 0.4s",
           opacity: mounted ? 1 : 0,
           transform: mounted ? "translateY(0)" : "translateY(-10px)",
         }}
@@ -150,143 +100,79 @@ export default function Navbar({ lang, setLang, onNavigate }) {
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
 
-          {/* ── Logo ─────────────────────────────────────── */}
+          {/* ── Logo ── */}
           <button
-            onClick={() => {
-              if (onNavigate) {
-                onNavigate("inicio");
-              } else {
-                handleLink("inicio");
-              }
-            }}
-
-
+            onClick={() => handleLink("inicio")}
             style={{
-              background: "none", border: "none", cursor: "pointer", padding: 0,
-              display: "flex", alignItems: "center", gap: 8,
+              background:"none", border:"none", cursor:"pointer", padding:0,
+              display:"flex", alignItems:"center", gap:10,
               opacity: mounted ? 1 : 0,
               transform: mounted ? "scale(1)" : "scale(0.92)",
-              transition: "opacity 0.65s ease 0.1s, transform 0.65s ease 0.1s",
+              transition:"opacity 0.65s ease 0.1s, transform 0.65s ease 0.1s",
             }}
           >
             {/*
-              ↓ ÍCONO DE MARCA — /assets/logos_2.webp
-              ⚠️ Este PNG tiene FONDO NEGRO (pluma+luna+sol dorado).
-              "mix-blend-mode: multiply" sobre el navbar CLARO
-              dejaría un cuadrado negro sólido — no funciona.
+              ↓ logoNavbar.webp — fondo TRANSPARENTE (verificado).
+              El diseño dorado flota directamente sobre el navbar.
 
-              SOLUCIÓN: chip circular con fondo oscuro (teal) que
-              "recibe" el negro del PNG (se funde con el chip) y
-              deja el dorado intacto, sin lavarlo. Funciona igual
-              en navbar transparente o con blur claro.
+              Sin mix-blend-mode, sin backdrop blur, sin drop-shadow:
+              esos filtros son los que causaban el aspecto "borroso".
+              La nitidez viene de servir la imagen a 2x del display
+              size (160px de source para 80px de display = retina).
 
-              · .png → .webp
-              · width/height explícitos (44px, tamaño real del chip)
+              · width={160} height={150} → dimensiones reales del
+                archivo (aspect ratio original del diseño)
+              · style width/height en 80px → tamaño de display
+              · El navegador hace el downscale de 160→80 con alta
+                calidad gracias al LANCZOS del preprocessing
             */}
-            <div
+            <img
+              src="/assets/logoNavbar.webp"
+              alt="Magalí Sol Cerezo"
+              width={160}
+              height={150}
               style={{
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: 64,
-                height: 64,
+                width: 56,
+                height: "auto",
+                objectFit: "contain",
+                // Sin filtros que degraden nitidez — la imagen ya
+                // viene procesada con el brillo/contraste correcto
               }}
-            >
-
-              <div
-
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "50%",
-                  background:
-                    "radial-gradient(circle, rgba(10,41,38,.22) 0%, rgba(138,158,138,.18) 45%, transparent 80%)",
-                  filter: "blur(12px)",
-                  transform: "scale(1.3)",
-                  zIndex: 0,
-                }}
-
-
-
-
-              />
-
-
-              <img
-                src="/assets/logoNavbar.webp"
-                alt="Magalí Sol Cerezo"
-                width={64}
-                height={64}
-                style={{
-                  position: "relative",
-                  zIndex: 1,
-                  width: 64,
-                  height: 64,
-                  objectFit: "contain",
-                  filter:
-                    "saturate(1.25) contrast(1.2) brightness(1.25) drop-shadow(0 0 8px rgba(201,169,110,0.25))",
-                }}
-                onError={e => {
-                  e.target.parentElement.style.display = "none";
-                  e.target.parentElement.nextSibling.style.display = "flex";
-                }}
-              />
-            </div>
+              onError={e => { e.target.style.display = "none"; }}
+            />
 
             {/* Texto al lado del logo */}
-            <div
-              className="flex"
-              style={{
-                flexDirection: "column",
-                alignItems: "flex-start",
-                lineHeight: 1.1,
-                fontSize: "0.65rem"
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  color: THEME.text,
-                  fontSize: "1.6rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.03em",
-                }}
-              >
+            <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start", lineHeight:1.1 }}>
+              <span style={{
+                fontFamily:"'Cormorant Garamond', serif",
+                color: THEME.text,
+                fontSize:"1.6rem", fontWeight:500, letterSpacing:"0.03em",
+              }}>
                 Magalí Sol Cerezo
               </span>
-
-              <span
-                style={{
-                  fontFamily: "'Quicksand', sans-serif",
-                  color: THEME.textMuted,
-                  fontSize: "0.85rem",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginTop: "4px",
-                }}
-              >
+              <span style={{
+                fontFamily:"'Quicksand', sans-serif",
+                color: THEME.textMuted,
+                fontSize:"0.85rem", letterSpacing:"0.12em",
+                textTransform:"uppercase", marginTop:"2px",
+              }}>
                 Psicóloga Holística
               </span>
             </div>
           </button>
 
-
-
-
-
-          {/* ── Desktop nav ──────────────────────────────── */}
+          {/* ── Desktop nav ── */}
           <div className="hidden md:flex items-center gap-6">
             {links.map((l) => (
               <button
                 key={l.id}
                 onClick={() => handleLink(l.id)}
                 style={{
-                  fontFamily: "'Quicksand', sans-serif",
+                  fontFamily:"'Quicksand', sans-serif",
                   color: THEME.textMuted,
-                  fontSize: "0.82rem",
-                  letterSpacing: "0.07em",
-                  textTransform: "uppercase",
+                  fontSize:"0.82rem", letterSpacing:"0.07em",
+                  textTransform:"uppercase",
+                  background:"none", border:"none", cursor:"pointer",
                 }}
                 className="hover:opacity-60 transition-opacity"
               >
@@ -297,22 +183,128 @@ export default function Navbar({ lang, setLang, onNavigate }) {
             {/* Lang switch */}
             <div
               className="flex items-center gap-0.5 rounded-full px-2 py-1"
-              style={{ border: `1px solid ${THEME.border}`, backgroundColor: "rgba(255,255,255,0.55)" }}
+              style={{ border:`1px solid ${THEME.border}`, backgroundColor:"rgba(255,255,255,0.55)" }}
             >
               {["es", "en"].map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l)}
                   style={{
-                    fontFamily: "'Quicksand', sans-serif",
-                    fontSize: "0.72rem",
+                    fontFamily:"'Quicksand', sans-serif",
+                    fontSize:"0.72rem",
                     fontWeight: lang === l ? 700 : 400,
                     color: lang === l ? THEME.sage : THEME.textMuted,
-                    padding: "2px 8px",
-                    borderRadius: 9999,
+                    padding:"2px 8px", borderRadius:9999,
                     backgroundColor: lang === l ? `${THEME.sage}18` : "transparent",
-                    transition: "all 0.2s",
-                    letterSpacing: "0.06em",
+                    transition:"all 0.2s", letterSpacing:"0.06em",
+                    border:"none", cursor:"pointer",
+                  }}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Botón Reservar */}
+            <button
+              onClick={() => handleLink("sesiones")}
+              style={{
+                fontFamily:FONT.sans, fontSize:"0.79rem", fontWeight:600,
+                letterSpacing:"0.04em", padding:"0.52rem 1.3rem", borderRadius:"9999px",
+                border:"none", cursor:"pointer", position:"relative", overflow:"hidden",
+                backgroundColor:THEME.sage, color:"#fff",
+                boxShadow:`0 3px 16px rgba(138,158,138,0.32)`,
+                transition:"transform 0.25s, box-shadow 0.25s",
+                opacity: mounted ? 1 : 0,
+                transform: mounted ? "translateY(0)" : "translateY(-8px)",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform="translateY(-2px)";
+                e.currentTarget.style.boxShadow=`0 8px 24px rgba(138,158,138,0.44)`;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform="translateY(0)";
+                e.currentTarget.style.boxShadow=`0 3px 16px rgba(138,158,138,0.32)`;
+              }}
+            >
+              <span style={{
+                position:"absolute", top:0, bottom:0, left:"-60%", width:"220%",
+                background:"linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.28) 50%, transparent 65%)",
+                animation:"navShimmer 5s ease-in-out infinite",
+                borderRadius:"9999px", willChange:"transform",
+              }} />
+              <span style={{ position:"relative", zIndex:1 }}>{t.reservar}</span>
+            </button>
+          </div>
+
+          {/* ── Mobile hamburger ── */}
+          <button
+            className="md:hidden flex flex-col items-end gap-[5px] p-[0.35rem]"
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background:"none", border:"none", cursor:"pointer" }}
+          >
+            {[0, 1, 2].map((i) => (
+              <span key={i} style={{
+                display:"block", height:1.5, borderRadius:2,
+                backgroundColor: THEME.text,
+                transition:"all 0.3s ease",
+                width: menuOpen ? (i===1 ? 0 : 22) : (i===1 ? 14 : 22),
+                transform: menuOpen && i===0 ? "rotate(45deg) translate(4.5px,4.5px)"
+                  : menuOpen && i===2 ? "rotate(-45deg) translate(4.5px,-4.5px)" : "none",
+                opacity: menuOpen && i===1 ? 0 : 1,
+              }} />
+            ))}
+          </button>
+        </div>
+
+        {/* ── Mobile menu ── */}
+        {menuOpen && (
+          <div style={{
+            position:"fixed", top:64, left:0, right:0, zIndex:9996,
+            backgroundColor:"rgba(245,248,246,0.97)",
+            backdropFilter:"blur(16px)", WebkitBackdropFilter:"blur(16px)",
+            borderBottom:`1px solid rgba(42,107,92,0.10)`,
+            padding:"1.25rem 2rem 1.5rem",
+            maxHeight:"80vh", overflow:"hidden auto",
+          }}>
+            {links.map((item, i) => (
+              <button
+                key={item.id}
+                onClick={() => handleLink(item.id)}
+                style={{
+                  display:"block", width:"100%", textAlign:"left",
+                  fontFamily:FONT.sans, fontSize:"1rem",
+                  fontWeight: active===item.id ? 700 : 400,
+                  color: active===item.id ? teal : THEME.text,
+                  padding:"0.65rem 0", background:"none", border:"none",
+                  borderBottom:`1px solid rgba(42,107,92,0.08)`,
+                  cursor:"pointer", letterSpacing:"0.02em",
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? "translateX(0)" : "translateX(-14px)",
+                  transition:`opacity 0.32s ease ${i*0.05}s, transform 0.32s ease ${i*0.05}s`,
+                }}
+              >
+                {active===item.id && (
+                  <span style={{ color:THEME.gold, marginRight:8, fontSize:"0.62rem" }}>✦</span>
+                )}
+                {item.label}
+              </button>
+            ))}
+
+            <div style={{ display:"flex", gap:"0.5rem", paddingTop:"0.75rem" }}>
+              {["es","en"].map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  style={{
+                    fontFamily:FONT.sans, fontSize:"0.76rem",
+                    fontWeight: lang===l ? 700 : 400,
+                    textTransform:"uppercase", letterSpacing:"0.08em",
+                    padding:"0.38rem 1rem", borderRadius:"9999px",
+                    border:`1px solid ${lang===l ? teal : THEME.border}`,
+                    backgroundColor: lang===l ? teal : "transparent",
+                    color: lang===l ? "#fff" : THEME.textMuted,
+                    cursor:"pointer",
                   }}
                 >
                   {l.toUpperCase()}
@@ -323,182 +315,25 @@ export default function Navbar({ lang, setLang, onNavigate }) {
             <button
               onClick={() => handleLink("sesiones")}
               style={{
-                fontFamily: FONT.sans, fontSize: "0.79rem", fontWeight: 600,
-                letterSpacing: "0.04em", padding: "0.52rem 1.3rem", borderRadius: "9999px",
-                border: "none", cursor: "pointer", position: "relative", overflow: "hidden",
-                backgroundColor: THEME.sage, color: "#fff",
-                boxShadow: `0 3px 16px rgba(138,158,138,0.32)`,
-                transition: "transform 0.25s, box-shadow 0.25s",
-                opacity: mounted ? 1 : 0,
-                transform: mounted ? "translateY(0)" : "translateY(-8px)"
+                display:"block", width:"100%", marginTop:"0.75rem",
+                fontFamily:FONT.sans, fontSize:"0.85rem", fontWeight:600,
+                padding:"0.65rem 1.25rem", borderRadius:"9999px", border:"none",
+                backgroundColor:THEME.sage, color:"#fff",
+                boxShadow:`0 3px 14px rgba(138,158,138,0.28)`, cursor:"pointer",
               }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = `0 8px 24px rgba(138,158,138,0.44)`;
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = `0 3px 16px rgba(138,158,138,0.32)`;
-              }}
-              className="transition-all hover:opacity-90"
             >
-              {/*
-                Shimmer — ANTES animaba "background-position"
-                (paint en cada frame → "non-composited animation").
-                AHORA: gradiente más ancho que el botón (220%),
-                animado con transform: translateX (compositado en
-                GPU). overflow:hidden del botón recorta el excedente.
-              */}
-              <span style={{
-                position: "absolute",
-                top: 0, bottom: 0,
-                left: "-60%",
-                width: "220%",
-                background: "linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.28) 50%, transparent 65%)",
-                animation: "navShimmer 5s ease-in-out infinite",
-                borderRadius: "9999px",
-                willChange: "transform",
-              }} />
-              <span style={{ position: "relative", zIndex: 1 }}>{t.reservar}</span>
+              {t.reservar}
             </button>
           </div>
+        )}
+      </nav>
 
-          {/* ── Mobile hamburger ─────────────────────────── */}
-          <button className="md:hidden flex flex-col items-end gap-[5px] p-[0.35rem]"
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-            }}
-
-          >
-
-            {[0, 1, 2].map((i) => (
-              <span key={i}
-                style={{
-                  display: "block", height: 1.5, borderRadius: 2,
-                  backgroundColor: THEME.text,
-                  transition: "all 0.3s ease",
-                  width: menuOpen ? (i === 1 ? 0 : 22) : (i === 1 ? 14 : 22),
-                  transform: menuOpen && i === 0 ? "rotate(45deg) translate(4.5px,4.5px)"
-                    : menuOpen && i === 2 ? "rotate(-45deg) translate(4.5px,-4.5px)"
-                      : "none",
-                  opacity: menuOpen && i === 1 ? 0 : 1,
-                }} />
-            ))}
-          </button>
-        </div>
-
-        {/* ── Mobile menu ──────────────────────────────────── */}
-        {
-          menuOpen && (
-            <div
-              className="md:hidden absolute top-full left-0 right-0 py-6 px-8 flex flex-col gap-4"
-              style={{
-                position: "fixed", top: 64, left: 0, right: 0, zIndex: 9996,
-                backgroundColor: "rgba(245,248,246,0.97)",
-                backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
-                borderBottom: `1px solid rgba(42,107,92,0.10)`,
-                padding: menuOpen ? "1.25rem 2rem 1.5rem" : "0 2rem",
-                maxHeight: menuOpen ? "80vh" : 0,
-                overflow: "hidden",
-                transition: "max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s ease",
-              }}
-            >
-
-              {links.map((item, i) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleLink(item.id)}
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    textAlign: "left",
-                    fontFamily: FONT.sans,
-                    fontSize: "1rem",
-                    fontWeight: active === item.id ? 700 : 400,
-                    color: active === item.id ? teal : THEME.text,
-                    padding: "0.65rem 0",
-                    background: "none",
-                    border: "none",
-                    borderBottom: `1px solid rgba(42,107,92,0.08)`,
-                    cursor: "pointer",
-                    letterSpacing: "0.02em",
-                    opacity: menuOpen ? 1 : 0,
-                    transform: menuOpen ? "translateX(0)" : "translateX(-14px)",
-                    transition: `opacity 0.32s ease ${i * 0.05}s, transform 0.32s ease ${i * 0.05}s`,
-                  }}
-                >
-                  {active === item.id && (
-                    <span
-                      style={{
-                        color: THEME.gold,
-                        marginRight: 8,
-                        fontSize: "0.62rem",
-                      }}
-                    >
-                      ✦
-                    </span>
-                  )}
-
-                  {item.label}
-                </button>
-              ))}
-
-
-              <div className="flex gap-2 pt-2">
-
-
-
-                {["es", "en"].map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => setLang(l)}
-                    style={{
-                      fontFamily: FONT.sans, fontSize: "0.76rem",
-                      fontWeight: lang === l ? 700 : 400,
-                      textTransform: "uppercase", letterSpacing: "0.08em",
-                      padding: "0.38rem 1rem", borderRadius: "9999px",
-                      border: `1px solid ${lang === l ? teal : THEME.border}`,
-                      backgroundColor: lang === l ? teal : "transparent",
-                      color: lang === l ? "#fff" : THEME.textMuted,
-                      cursor: "pointer"
-                    }}
-                  >
-                    {l.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-
-
-
-              <button
-                onClick={() => handleLink("sesiones")}
-                style={{
-                  flex: 1, fontFamily: FONT.sans, fontSize: "0.85rem", fontWeight: 600,
-                  padding: "0.52rem 1.25rem", borderRadius: "9999px", border: "none",
-                  backgroundColor: THEME.sage, color: "#fff",
-                  boxShadow: `0 3px 14px rgba(138,158,138,0.28)`, cursor: "pointer",
-                }}
-              >
-                {t.reservar}
-              </button>
-            </div>
-
-
-          )
+      <style>{`
+        @keyframes navShimmer {
+          0%   { transform: translateX(-55%); }
+          100% { transform: translateX(55%); }
         }
-      </nav >
-
-      <style>
-        {`
-    @keyframes navShimmer {
-      0%   { transform: translateX(-55%); }
-      100% { transform: translateX(55%); }
-    }
-  `}
-      </style>
+      `}</style>
     </>
   );
 }
