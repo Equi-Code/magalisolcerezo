@@ -85,7 +85,7 @@ export const T = {
       title: "Magalí Sol Cerezo",
       role: "Licenciada en Psicología & Terapeuta Holística",
       p1: "Creo profundamente que sanar es un proceso personal, único y sagrado. Mi intención es brindarte un espacio seguro, confidencial y lleno de dulzura donde puedas recuperar el equilibrio, la claridad y el bienestar emocional.",
-      p2: "Entendí que la psicología tradicional potencia enormemente su alcance cuando se complementa con la sabiduría holística. Por eso, mi enfoque no se limita a escuchar, sino abrindarte herramientas prácticas para que aprendas a habitarte en paz y transformes tu energía desde la raíz.",
+      p2: "Entendí que la psicología tradicional potencia enormemente su alcance cuando se complementa con la sabiduría holística. Por eso, mi enfoque no se limita a escuchar, sino a brindarte herramientas prácticas para que aprendas a habitarte en paz y transformes tu energía desde la raíz.",
       p3: "En nuestro espacio, integraremos diferentes herramientas adaptadas a lo que tu alma necesite hoy:",
       p4: "Psicología Clínica: Espacio terapéutico tradicional de contención y palabra.",
       p5: "Herramientas Holísticas: Mindfulness, Tapping (EFT), Sanación Energética y Terapias Florales.",
